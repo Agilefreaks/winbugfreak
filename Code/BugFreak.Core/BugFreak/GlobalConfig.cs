@@ -1,0 +1,21 @@
+﻿using System;
+using BugFreak.Components;
+
+namespace BugFreak
+{
+    public class GlobalConfig
+    {
+        public class Settings
+        {
+            public static string ServiceEndPoint { get; set; }
+
+            public static string AppName { get; set; }
+
+            public static string InstanceIdentifier { get; set; }
+        }
+
+        public static IServiceProvider ServiceProvider { get; set; }
+
+        public static IErrorReportSerializer ErrorReportSerializer { get; set; }
+    }
+}
