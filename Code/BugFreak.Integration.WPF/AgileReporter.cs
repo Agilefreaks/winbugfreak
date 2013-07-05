@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Threading;
-using AgileBug;
 
 namespace BugFreak.Integration.WPF
 {
@@ -12,14 +11,14 @@ namespace BugFreak.Integration.WPF
             var app = Application.Current;
 
             GlobalConfig.Settings.AppName = AppDomain.CurrentDomain.FriendlyName;
-            AgileBug.AgileReporter.Init();
+            BugFreak.AgileReporter.Init();
             app.Exit += OnExit;
             app.DispatcherUnhandledException += OnException;
         }
 
         private static void OnException(object sender, DispatcherUnhandledExceptionEventArgs eventArgs)
         {
-            AgileBug.AgileReporter.Instance.BeginReport(eventArgs.Exception);
+            BugFreak.AgileReporter.Instance.BeginReport(eventArgs.Exception);
             
             eventArgs.Handled = true;
         }
@@ -30,7 +29,7 @@ namespace BugFreak.Integration.WPF
 
             app.DispatcherUnhandledException -= OnException;
             app.Exit -= OnExit;
-            AgileBug.AgileReporter.Dispose();
+            BugFreak.AgileReporter.Dispose();
         }
     }
 }
