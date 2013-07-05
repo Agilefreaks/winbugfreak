@@ -84,7 +84,7 @@ namespace AgileBug.Tests
             var result = _subject.Build(new ErrorReport());
             result.Abort();
 
-            Assert.AreEqual(GlobalConfig.Settings.InstanceIdentifier, result.Headers["apiKey"]);
+            Assert.AreEqual(GlobalConfig.Settings.InstanceIdentifier, result.Headers["InstanceIdentifier"]);
         }
 
         [Test]

@@ -7,7 +7,7 @@ namespace BugFreak.Components
 {
     public class ReportRequestBuilder : IReportRequestBuilder
     {
-        public const string InstanceIdentifierKey = "apiKey";
+        public const string InstanceIdentifierKey = "InstanceIdentifier";
         public const string HttpMethod = "POST";
 
         private readonly IWebRequestCreate _webRequestFactory;
