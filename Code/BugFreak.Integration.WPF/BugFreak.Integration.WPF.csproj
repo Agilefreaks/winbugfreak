@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AgileBug">
-      <HintPath>..\..\Libs\AgileBug.dll</HintPath>
+      <HintPath>..\..\Libs\BugFreak\BugFreak.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
