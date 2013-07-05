@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AgileErrorReporting.WPF")]
+[assembly: AssemblyTitle("BugFreak.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AgileErrorReporting.WPF")]
+[assembly: AssemblyProduct("BugFreak.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3b86aa7c-061d-4db4-81d1-34d7df5457f5")]
+[assembly: Guid("37b9643d-338f-423b-b156-38deec77bbaa")]
 
 // Version information for an assembly consists of the following four values:
 //

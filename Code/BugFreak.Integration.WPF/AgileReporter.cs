@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Threading;
+using AgileBug;
 
-namespace AgileBug.WPF
+namespace BugFreak.Integration.WPF
 {
     public class AgileReporter
     {
