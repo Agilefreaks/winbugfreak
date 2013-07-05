@@ -7,8 +7,8 @@
     <ProjectGuid>{A27585F1-FCEE-407A-AFF0-F4D2300CA226}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AgileBug.WPF</RootNamespace>
-    <AssemblyName>AgileBug.WPF</AssemblyName>
+    <RootNamespace>BugFreak.Integration.WPF</RootNamespace>
+    <AssemblyName>BugFreak.Integration.WPF</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
