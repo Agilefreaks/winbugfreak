@@ -77,7 +77,7 @@ namespace AgileBug.Tests
         }
 
         [Test]
-        public void Build_Always_SetsApiKeyInHeaders()
+        public void Build_Always_SetsInstanceIdentifier()
         {
             GlobalConfig.Settings.InstanceIdentifier = "user-token";
 
@@ -85,6 +85,17 @@ namespace AgileBug.Tests
             result.Abort();
 
             Assert.AreEqual(GlobalConfig.Settings.InstanceIdentifier, result.Headers["InstanceIdentifier"]);
+        }
+
+        [Test]
+        public void Build_Always_SetsApiKeyInHeaders()
+        {
+            GlobalConfig.Settings.ApiKey = "apiKey";
+
+            var result = _subject.Build(new ErrorReport());
+            result.Abort();
+
+            Assert.AreEqual(GlobalConfig.Settings.ApiKey, result.Headers["apiKey"]);
         }
 
         [Test]

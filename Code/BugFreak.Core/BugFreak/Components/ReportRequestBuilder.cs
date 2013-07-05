@@ -7,6 +7,7 @@ namespace BugFreak.Components
 {
     public class ReportRequestBuilder : IReportRequestBuilder
     {
+        public const string ApiKey = "ApiKey";
         public const string InstanceIdentifierKey = "InstanceIdentifier";
         public const string HttpMethod = "POST";
 
@@ -40,6 +41,7 @@ namespace BugFreak.Components
 
         private void Sign(WebRequest request)
         {
+            request.Headers.Add(ApiKey, GlobalConfig.Settings.ApiKey);
             request.Headers.Add(InstanceIdentifierKey, GlobalConfig.Settings.InstanceIdentifier);
         }
 
