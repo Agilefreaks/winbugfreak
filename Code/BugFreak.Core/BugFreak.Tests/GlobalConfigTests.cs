@@ -12,6 +12,8 @@ namespace AgileBug.Tests
         {
             GlobalConfig.Settings.AppName = "app";
             GlobalConfig.Settings.Token = "v2.2";
+            GlobalConfig.Settings.ApiKey = "apiKey";
+            GlobalConfig.Settings.ServiceEndPoint = "http://myTest.com";
             
             AgileReporter.Init();
         }
@@ -21,6 +23,8 @@ namespace AgileBug.Tests
         {
             GlobalConfig.Settings.AppName = null;
             GlobalConfig.Settings.Token = null;
+            GlobalConfig.Settings.ApiKey = null;
+            GlobalConfig.Settings.ServiceEndPoint = null;
         }
 
         [Test]

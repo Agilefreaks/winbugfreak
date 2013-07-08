@@ -84,7 +84,7 @@ namespace AgileBug.Tests
             var result = _subject.Build(new ErrorReport());
             result.Abort();
 
-            Assert.AreEqual(GlobalConfig.Settings.Token, result.Headers["InstanceIdentifier"]);
+            Assert.AreEqual(GlobalConfig.Settings.Token, result.Headers["Token"]);
         }
 
         [Test]

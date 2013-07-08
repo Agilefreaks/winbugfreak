@@ -23,6 +23,14 @@ namespace BugFreak.Components
             {
                 throw new ArgumentException("Token not set");
             }
+            if (!Uri.IsWellFormedUriString(GlobalConfig.Settings.ServiceEndPoint, UriKind.Absolute))
+            {
+                throw new ArgumentException("ServiceEndpoint not valid");
+            }
+            if (string.IsNullOrEmpty(GlobalConfig.Settings.ApiKey))
+            {
+                throw new ArgumentException("ApiKey not set");
+            }
         }
 
         private static void InitServices()
@@ -31,12 +39,7 @@ namespace BugFreak.Components
 
             GlobalConfig.ServiceProvider = serviceContainer;
             GlobalConfig.ErrorReportSerializer = new FormErrorReportSerializer();
-            
-            RegisterComponents(serviceContainer);
-        }
-
-        private static void RegisterComponents(ServiceContainer serviceContainer)
-        {
+           
             var errorReportQueue = new ErrorReportQueue();
             serviceContainer.AddService(typeof(IWebRequestCreate), new WebRequestFactory());
             serviceContainer.AddService(typeof(IErrorReportSerializer), (container, type) => GlobalConfig.ErrorReportSerializer);

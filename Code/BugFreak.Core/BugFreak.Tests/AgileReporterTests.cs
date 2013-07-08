@@ -20,6 +20,8 @@ namespace AgileBug.Tests
         {
             GlobalConfig.Settings.Token = "user-token";
             GlobalConfig.Settings.AppName = "appName";
+            GlobalConfig.Settings.ServiceEndPoint = "http://myTests.com";
+            GlobalConfig.Settings.ApiKey = "apiKey";
 
             AgileReporter.Init();
 
@@ -48,6 +50,8 @@ namespace AgileBug.Tests
             GlobalConfig.ServiceProvider = null;
             GlobalConfig.Settings.Token = null;
             GlobalConfig.Settings.AppName = null;
+            GlobalConfig.Settings.ApiKey = null;
+            GlobalConfig.Settings.ServiceEndPoint = null;
         }
 
         [Test]
@@ -90,8 +94,25 @@ namespace AgileBug.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void Init_WhenAppNameIsNotSet_RaisesArgumentException()
         {
-            GlobalConfig.Settings.Token = "user-token";
             GlobalConfig.Settings.AppName = null;
+
+            AgileReporter.Init();
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Init_WhenApiKeyNotSet_RaisesArgumentException()
+        {
+            GlobalConfig.Settings.ApiKey = null;
+
+            AgileReporter.Init();
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Init_WhenInvalidServiceEndpoint_RaisesArgumentException()
+        {
+            GlobalConfig.Settings.ServiceEndPoint = "http:/test.com";
 
             AgileReporter.Init();
         }
