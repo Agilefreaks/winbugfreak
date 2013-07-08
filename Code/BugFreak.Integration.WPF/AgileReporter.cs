@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.Specialized;
+using System.Configuration;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -10,7 +11,8 @@ namespace BugFreak.Integration.WPF
         {
             var app = Application.Current;
 
-            GlobalConfig.Settings.AppName = AppDomain.CurrentDomain.FriendlyName;
+            ReadSettings();
+            
             BugFreak.AgileReporter.Init();
             app.Exit += OnExit;
             app.DispatcherUnhandledException += OnException;
@@ -30,6 +32,18 @@ namespace BugFreak.Integration.WPF
             app.DispatcherUnhandledException -= OnException;
             app.Exit -= OnExit;
             BugFreak.AgileReporter.Dispose();
+        }
+
+        private static void ReadSettings()
+        {
+            var configSection = ConfigurationManager.GetSection("BugFreak") as NameValueCollection;
+            if (configSection != null)
+            {
+                GlobalConfig.Settings.ServiceEndPoint = configSection["ServiceEndpoint"];
+                GlobalConfig.Settings.ApiKey = configSection["ApiKey"];
+                GlobalConfig.Settings.AppName = configSection["AppName"];
+                GlobalConfig.Settings.Token = configSection["Token"];
+            }
         }
     }
 }
