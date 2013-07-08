@@ -18,8 +18,10 @@ namespace AgileBug.Tests
         [SetUp]
         public void SetUp()
         {
-            GlobalConfig.Settings.InstanceIdentifier = "user-token";
+            GlobalConfig.Settings.Token = "user-token";
             GlobalConfig.Settings.AppName = "appName";
+            GlobalConfig.Settings.ServiceEndPoint = "http://myTests.com";
+            GlobalConfig.Settings.ApiKey = "apiKey";
 
             AgileReporter.Init();
 
@@ -46,8 +48,10 @@ namespace AgileBug.Tests
             }
 
             GlobalConfig.ServiceProvider = null;
-            GlobalConfig.Settings.InstanceIdentifier = null;
+            GlobalConfig.Settings.Token = null;
             GlobalConfig.Settings.AppName = null;
+            GlobalConfig.Settings.ApiKey = null;
+            GlobalConfig.Settings.ServiceEndPoint = null;
         }
 
         [Test]
@@ -81,7 +85,7 @@ namespace AgileBug.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void Init_WhenApiKeyIsNotSet_RaisesArgumentException()
         {
-            GlobalConfig.Settings.InstanceIdentifier = null;
+            GlobalConfig.Settings.Token = null;
 
             AgileReporter.Init();
         }
@@ -90,8 +94,25 @@ namespace AgileBug.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void Init_WhenAppNameIsNotSet_RaisesArgumentException()
         {
-            GlobalConfig.Settings.InstanceIdentifier = "user-token";
             GlobalConfig.Settings.AppName = null;
+
+            AgileReporter.Init();
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Init_WhenApiKeyNotSet_RaisesArgumentException()
+        {
+            GlobalConfig.Settings.ApiKey = null;
+
+            AgileReporter.Init();
+        }
+
+        [Test]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Init_WhenInvalidServiceEndpoint_RaisesArgumentException()
+        {
+            GlobalConfig.Settings.ServiceEndPoint = "http:/test.com";
 
             AgileReporter.Init();
         }
@@ -99,7 +120,7 @@ namespace AgileBug.Tests
         [Test]
         public void Init_Always_SetsSerializerToFormSerializer()
         {
-            GlobalConfig.Settings.InstanceIdentifier = "user-token";
+            GlobalConfig.Settings.Token = "user-token";
             GlobalConfig.Settings.AppName = "app";
 
             AgileReporter.Init();
@@ -110,7 +131,7 @@ namespace AgileBug.Tests
         [Test]
         public void Init_Always_SetsDefaultIRemoteErrorReportStorage()
         {
-            GlobalConfig.Settings.InstanceIdentifier = "user-token";
+            GlobalConfig.Settings.Token = "user-token";
             GlobalConfig.Settings.AppName = "app";
 
             AgileReporter.Init();
@@ -121,7 +142,7 @@ namespace AgileBug.Tests
         [Test]
         public void Init_Always_SetsDefaultErrorQueueListener()
         {
-            GlobalConfig.Settings.InstanceIdentifier = "user-token";
+            GlobalConfig.Settings.Token = "user-token";
             GlobalConfig.Settings.AppName = "app";
 
             AgileReporter.Init();
@@ -132,7 +153,7 @@ namespace AgileBug.Tests
         [Test]
         public void Init_Always_SetsDefaultErrorHandler()
         {
-            GlobalConfig.Settings.InstanceIdentifier = "user-token";
+            GlobalConfig.Settings.Token = "user-token";
             GlobalConfig.Settings.AppName = "app";
 
             AgileReporter.Init();
@@ -143,7 +164,7 @@ namespace AgileBug.Tests
         [Test]
         public void Init_Always_SetsDefaultLocalErrorReportStorage()
         {
-            GlobalConfig.Settings.InstanceIdentifier = "user-token";
+            GlobalConfig.Settings.Token = "user-token";
             GlobalConfig.Settings.AppName = "app";
 
             AgileReporter.Init();
@@ -154,7 +175,7 @@ namespace AgileBug.Tests
         [Test]
         public void Init_Always_SetsDefaultWebRequestCreate()
         {
-            GlobalConfig.Settings.InstanceIdentifier = "user-token";
+            GlobalConfig.Settings.Token = "user-token";
             GlobalConfig.Settings.AppName = "app";
 
             AgileReporter.Init();

@@ -7,7 +7,8 @@ namespace BugFreak.Components
 {
     public class ReportRequestBuilder : IReportRequestBuilder
     {
-        public const string InstanceIdentifierKey = "InstanceIdentifier";
+        public const string ApiKey = "ApiKey";
+        public const string TokenKey = "Token";
         public const string HttpMethod = "POST";
 
         private readonly IWebRequestCreate _webRequestFactory;
@@ -40,7 +41,8 @@ namespace BugFreak.Components
 
         private void Sign(WebRequest request)
         {
-            request.Headers.Add(InstanceIdentifierKey, GlobalConfig.Settings.InstanceIdentifier);
+            request.Headers.Add(ApiKey, GlobalConfig.Settings.ApiKey);
+            request.Headers.Add(TokenKey, GlobalConfig.Settings.Token);
         }
 
         private void SetAgent(WebRequest request)

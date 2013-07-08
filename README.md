@@ -12,17 +12,32 @@ Dependencies
 Usage
 =====
 
+AppConfig:
 
-	BugFreak.GlobalConfig.Settings.InstanceIdentifier = "Id";
-	BugFreak.GlobalConfig.Settings.ServiceEndPoint = "http://domain.com";
-	BugFreak.Integration.WPF.AgileReporter.Hook();
+
+  <configSections>
+    <section name="BugFreak" type="System.Configuration.AppSettingsSection, System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  </configSections>
+
+  <BugFreak>
+    <add key="ServiceEndpoint" value="http://endpoint.ro"/>
+    <add key="ApiKey" value="apiKey"/>
+    <add key="AppName" value="appName"/>
+    <add key="Token" value="token"/>
+  </BugFreak>
+
+
+Initialize:
+
+    BugFreak.Integration.WPF.AgileReporter.Hook();
 			
 
 Sample Request
 ==============
 
 	POST http://domain.com/ HTTP/1.1
-	InstanceIdentifier: Id
+    ApiKey: apiKey
+	Token: token
 	User-Agent: MyTest.vshost.exe
 	Host: domain.com
 	Content-Type: application/x-www-form-urlencoded

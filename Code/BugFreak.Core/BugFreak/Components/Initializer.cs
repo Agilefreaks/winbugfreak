@@ -15,13 +15,21 @@ namespace BugFreak.Components
 
         private static void VerifySettings()
         {
-            if (String.IsNullOrEmpty(GlobalConfig.Settings.InstanceIdentifier))
-            {
-                throw new ArgumentException("Instance identifier not set");
-            }
             if (String.IsNullOrEmpty(GlobalConfig.Settings.AppName))
             {
                 throw new ArgumentException("AppName not set");
+            }
+            if (String.IsNullOrEmpty(GlobalConfig.Settings.Token))
+            {
+                throw new ArgumentException("Token not set");
+            }
+            if (!Uri.IsWellFormedUriString(GlobalConfig.Settings.ServiceEndPoint, UriKind.Absolute))
+            {
+                throw new ArgumentException("ServiceEndpoint not valid");
+            }
+            if (string.IsNullOrEmpty(GlobalConfig.Settings.ApiKey))
+            {
+                throw new ArgumentException("ApiKey not set");
             }
         }
 
@@ -31,12 +39,7 @@ namespace BugFreak.Components
 
             GlobalConfig.ServiceProvider = serviceContainer;
             GlobalConfig.ErrorReportSerializer = new FormErrorReportSerializer();
-            
-            RegisterComponents(serviceContainer);
-        }
-
-        private static void RegisterComponents(ServiceContainer serviceContainer)
-        {
+           
             var errorReportQueue = new ErrorReportQueue();
             serviceContainer.AddService(typeof(IWebRequestCreate), new WebRequestFactory());
             serviceContainer.AddService(typeof(IErrorReportSerializer), (container, type) => GlobalConfig.ErrorReportSerializer);
