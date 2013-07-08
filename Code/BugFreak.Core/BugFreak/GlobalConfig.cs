@@ -13,7 +13,7 @@ namespace BugFreak
 
             public static string AppName { get; set; }
 
-            public static string InstanceIdentifier { get; set; }
+            public static string Token { get; set; }
         }
 
         public static IServiceProvider ServiceProvider { get; set; }

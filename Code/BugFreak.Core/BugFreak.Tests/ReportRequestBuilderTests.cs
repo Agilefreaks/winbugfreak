@@ -23,7 +23,7 @@ namespace AgileBug.Tests
         [SetUp]
         public void SetUp()
         {
-            GlobalConfig.Settings.InstanceIdentifier = "user-token";
+            GlobalConfig.Settings.Token = "user-token";
             GlobalConfig.Settings.AppName = "appName";
             GlobalConfig.Settings.ServiceEndPoint = "http://global-endpoint.com";
 
@@ -51,7 +51,7 @@ namespace AgileBug.Tests
         [TearDown]
         public void TearDown()
         {
-            GlobalConfig.Settings.InstanceIdentifier = null;
+            GlobalConfig.Settings.Token = null;
             GlobalConfig.Settings.AppName = null;
             GlobalConfig.Settings.ServiceEndPoint = null;
         }
@@ -79,12 +79,12 @@ namespace AgileBug.Tests
         [Test]
         public void Build_Always_SetsInstanceIdentifier()
         {
-            GlobalConfig.Settings.InstanceIdentifier = "user-token";
+            GlobalConfig.Settings.Token = "user-token";
 
             var result = _subject.Build(new ErrorReport());
             result.Abort();
 
-            Assert.AreEqual(GlobalConfig.Settings.InstanceIdentifier, result.Headers["InstanceIdentifier"]);
+            Assert.AreEqual(GlobalConfig.Settings.Token, result.Headers["InstanceIdentifier"]);
         }
 
         [Test]
