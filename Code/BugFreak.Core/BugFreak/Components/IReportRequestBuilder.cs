@@ -1,9 +1,11 @@
-﻿using System.Net;
+﻿using System;
 
 namespace BugFreak.Components
 {
     public interface IReportRequestBuilder
     {
-        WebRequest Build(ErrorReport report);
+        event EventHandler<ReportRequestBuildCompletedEventArgs> BuildCompleted; 
+
+        void BuildAsync(ErrorReport report);
     }
 }

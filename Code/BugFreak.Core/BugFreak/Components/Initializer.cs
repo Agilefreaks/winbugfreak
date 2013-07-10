@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.Design;
 using System.Net;
 
 namespace BugFreak.Components
@@ -35,17 +34,17 @@ namespace BugFreak.Components
 
         private static void InitServices()
         {
-            var serviceContainer = new ServiceContainer();
+            var serviceContainer = new SimpleServiceContainer();
 
-            GlobalConfig.ServiceProvider = serviceContainer;
+            GlobalConfig.ServiceLocator = serviceContainer;
             GlobalConfig.ErrorReportSerializer = new FormErrorReportSerializer();
            
             var errorReportQueue = new ErrorReportQueue();
             serviceContainer.AddService(typeof(IWebRequestCreate), new WebRequestFactory());
             serviceContainer.AddService(typeof(IErrorReportSerializer), (container, type) => GlobalConfig.ErrorReportSerializer);
             serviceContainer.AddService(typeof(IReportRequestBuilder), (container, type) => new ReportRequestBuilder());
-            serviceContainer.AddService(typeof(IRemoteErrorReportStorage), (container, type) => new RemoteErrorReportStorage());
-            serviceContainer.AddService(typeof(ILocalErrorReportStorage), (container, type) => new LocalErrorReportStorage());
+            serviceContainer.AddService(typeof(IErrorReportStorage), (container, type) => new RemoteErrorReportStorage());
+            serviceContainer.AddService(typeof(IErrorReportStorage), (container, type) => new LocalErrorReportStorage());
             serviceContainer.AddService(typeof(IErrorReportQueue), errorReportQueue);
             
             var errorHandler = new ErrorReportHandler();

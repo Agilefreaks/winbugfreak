@@ -1,6 +1,5 @@
 ﻿using System;
 using BugFreak.Components;
-using BugFreak.Utils;
 
 namespace BugFreak
 {
@@ -26,15 +25,15 @@ namespace BugFreak
 
         private void Queue(ErrorReport errorReport)
         {
-            var errorReportQueue = GlobalConfig.ServiceProvider.GetService<IErrorReportQueue>();
-
+            var errorReportQueue = GlobalConfig.ServiceLocator.GetService<IErrorReportQueue>();
+            
             errorReportQueue.Enqueue(errorReport);
         }
 
         public static void Dispose()
         {
-            GlobalConfig.ServiceProvider.GetService<IErrorReportQueueListener>().Dispose();
-            GlobalConfig.ServiceProvider.GetService<IErrorReportHandler>().Dispose();
+            GlobalConfig.ServiceLocator.GetService<IErrorReportQueueListener>().Dispose();
+            GlobalConfig.ServiceLocator.GetService<IErrorReportHandler>().Dispose();
 
             Instance = null;
         }

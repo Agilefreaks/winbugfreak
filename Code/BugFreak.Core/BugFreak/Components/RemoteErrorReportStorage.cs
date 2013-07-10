@@ -1,34 +1,41 @@
 ﻿using System;
-using BugFreak.Utils;
+using System.Collections.Generic;
+using BugFreak.Framework;
+using BugFreak.Results;
 
 namespace BugFreak.Components
 {
-    public class RemoteErrorReportStorage : IRemoteErrorReportStorage
+    public class RemoteErrorReportStorage : IErrorReportStorage
     {
         private readonly IReportRequestBuilder _reportRequestBuilder;
 
         public RemoteErrorReportStorage()
         {
-            _reportRequestBuilder = GlobalConfig.ServiceProvider.GetService<IReportRequestBuilder>();
+            _reportRequestBuilder = GlobalConfig.ServiceLocator.GetService<IReportRequestBuilder>();
         }
 
-        public bool TryStore(ErrorReport report)
+        public event EventHandler<ErrorReportSaveCompletedEventArgs> SaveCompleted;
+
+        public void SaveAsync(ErrorReport report)
         {
-            bool success;
+            new SequentialResult(Save(report)).Execute(new ExecutionContext());
+        }
 
-            try
-            {
-                var request = _reportRequestBuilder.Build(report);
-                request.GetResponse();
+        public IEnumerable<IResult> Save(ErrorReport report)
+        {
+            var requestBuildResult = new RequestBuildResult(_reportRequestBuilder, report);
+            yield return requestBuildResult;
 
-                success = true;
-            }
-            catch (Exception)
-            {
-                success = false;
-            }
+            var requestExecuteResult = new RequestExecutionResult(requestBuildResult.Result);
+            yield return requestExecuteResult;
 
-            return success;
+            OnSaveCompleted(new ErrorReportSaveCompletedEventArgs { Success = true });
+        }
+
+        protected virtual void OnSaveCompleted(ErrorReportSaveCompletedEventArgs e)
+        {
+            var handler = SaveCompleted;
+            if (handler != null) handler(this, e);
         }
     }
 }

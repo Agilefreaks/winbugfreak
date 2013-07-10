@@ -3,6 +3,8 @@ using System.IO;
 using System.Net;
 using BugFreak;
 using BugFreak.Components;
+using BugFreak.Framework;
+using BugFreak.Results;
 using Moq;
 using NUnit.Framework;
 
@@ -13,7 +15,7 @@ namespace AgileBug.Tests
     {
         const string SERIALIZER_OUTPUT = "serializer output";
 
-        private Mock<IServiceProvider> _mockServiceProvider;
+        private Mock<IServiceLocator> _mockServiceProvider;
         private Mock<IErrorReportSerializer> _mockSerializer;
         private Mock<IWebRequestCreate> _mockWebRequestFactory;
         private Mock<WebRequest> _mockWebRequest;
@@ -35,11 +37,11 @@ namespace AgileBug.Tests
             _mockWebRequestFactory = new Mock<IWebRequestCreate>();
             _mockWebRequestFactory.Setup(m => m.Create(It.IsAny<Uri>()))
                 .Returns(_mockWebRequest.Object);
-            _mockServiceProvider = new Mock<IServiceProvider>();
-            GlobalConfig.ServiceProvider = _mockServiceProvider.Object;
-            _mockServiceProvider.Setup(m => m.GetService(typeof(IErrorReportSerializer)))
+            _mockServiceProvider = new Mock<IServiceLocator>();
+            GlobalConfig.ServiceLocator = _mockServiceProvider.Object;
+            _mockServiceProvider.Setup(m => m.GetService<IErrorReportSerializer>())
                                 .Returns(_mockSerializer.Object);
-            _mockServiceProvider.Setup(m => m.GetService(typeof(IWebRequestCreate)))
+            _mockServiceProvider.Setup(m => m.GetService<IWebRequestCreate>())
                                 .Returns(_mockWebRequestFactory.Object);
 
             _mockSerializer.Setup(m => m.Serialize(It.IsAny<ErrorReport>()))
@@ -61,8 +63,7 @@ namespace AgileBug.Tests
         {
             GlobalConfig.Settings.ServiceEndPoint = "http://endpoint.com";
 
-            var result = _subject.Build(new ErrorReport());
-            result.Abort();
+            new SequentialResult(new[] { new RequestBuildResult(_subject, new ErrorReport()) }).Execute(new ExecutionContext());
 
             _mockWebRequestFactory.Verify(m => m.Create(It.Is<Uri>(u => u.OriginalString == "http://endpoint.com")));
         }
@@ -70,8 +71,7 @@ namespace AgileBug.Tests
         [Test]
         public void Build_Always_SetsMethodToPost()
         {
-            var result = _subject.Build(new ErrorReport());
-            result.Abort();
+            new SequentialResult(new[] { new RequestBuildResult(_subject, new ErrorReport()) }).Execute(new ExecutionContext());
 
             _mockWebRequest.VerifySet(m => m.Method, "POST");
         }
@@ -80,42 +80,45 @@ namespace AgileBug.Tests
         public void Build_Always_SetsInstanceIdentifier()
         {
             GlobalConfig.Settings.Token = "user-token";
+            var webHeaderCollection = new WebHeaderCollection();
+            _mockWebRequest.Setup(m => m.Headers).Returns(webHeaderCollection);
 
-            var result = _subject.Build(new ErrorReport());
-            result.Abort();
+            new SequentialResult(new[] { new RequestBuildResult(_subject, new ErrorReport()) }).Execute(new ExecutionContext());
 
-            Assert.AreEqual(GlobalConfig.Settings.Token, result.Headers["Token"]);
+            Assert.AreEqual("user-token", webHeaderCollection["Token"]);
         }
 
         [Test]
         public void Build_Always_SetsApiKeyInHeaders()
         {
             GlobalConfig.Settings.ApiKey = "apiKey";
+            var webHeaderCollection = new WebHeaderCollection();
+            _mockWebRequest.Setup(m => m.Headers).Returns(webHeaderCollection);
 
-            var result = _subject.Build(new ErrorReport());
-            result.Abort();
+            new SequentialResult(new[] { new RequestBuildResult(_subject, new ErrorReport()) }).Execute(new ExecutionContext());
 
-            Assert.AreEqual(GlobalConfig.Settings.ApiKey, result.Headers["apiKey"]);
+            Assert.AreEqual("apiKey", webHeaderCollection["apiKey"]);
         }
 
         [Test]
         public void Build_Always_WritesContentToStream()
         {
+            var memoryStream = new MemoryStream();
             var errorReport = new ErrorReport();
             _mockSerializer.Setup(m => m.Serialize(errorReport))
                            .Returns(SERIALIZER_OUTPUT);
+            _mockWebRequest.Setup(m => m.EndGetRequestStream(It.IsAny<IAsyncResult>()))
+                           .Returns(memoryStream);
+            
+            new SequentialResult(new[] { new RequestBuildResult(_subject, errorReport) }).Execute(new ExecutionContext());
 
-            var result = _subject.Build(errorReport);
-            result.Abort();
-
-            Assert.AreEqual(SERIALIZER_OUTPUT, new StreamReader(_stream).ReadToEnd());
+            _mockWebRequest.Verify(m => m.BeginGetRequestStream(It.IsAny<AsyncCallback>(), It.IsAny<object>()));
         }
 
         [Test]
         public void Build_Always_CallsSerializerSerialize()
         {
-            var result = _subject.Build(new ErrorReport());
-            result.Abort();
+            new SequentialResult(new[] { new RequestBuildResult(_subject, new ErrorReport()) }).Execute(new ExecutionContext());
 
             _mockSerializer.Verify(m => m.Serialize(It.IsAny<ErrorReport>()));
         }
@@ -125,8 +128,7 @@ namespace AgileBug.Tests
         {
             _mockSerializer.Setup(m => m.GetContentType()).Returns("contentType");
 
-            var resut = _subject.Build(new ErrorReport());
-            resut.Abort();
+            new SequentialResult(new[] { new RequestBuildResult(_subject, new ErrorReport()) }).Execute(new ExecutionContext());
 
             _mockWebRequest.VerifySet(m => m.ContentType, "contentType");
         }

@@ -42,13 +42,17 @@
     <Compile Include="AgileReporter.cs" />
     <Compile Include="Components\ErrorReportHandler.cs" />
     <Compile Include="Components\ErrorReportQueueListener.cs" />
+    <Compile Include="Components\ErrorReportSaveCompletedEventArgs.cs" />
+    <Compile Include="Components\ReportRequestBuildCompletedEventArgs.cs" />
+    <Compile Include="Framework\IServiceLocator.cs" />
+    <Compile Include="Results\ErrorReportSaveResult.cs" />
+    <Compile Include="Framework\ExecutionContext.cs" />
     <Compile Include="Components\IErrorReportHandler.cs" />
     <Compile Include="Components\IErrorReportQueueListener.cs" />
     <Compile Include="Components\IErrorReportStorage.cs" />
-    <Compile Include="Components\ILocalErrorReportStorage.cs" />
-    <Compile Include="Components\IRemoteErrorReportStorage.cs" />
     <Compile Include="Components\LocalErrorReportStorage.cs" />
     <Compile Include="Components\RemoteErrorReportStorage.cs" />
+    <Compile Include="Components\SimpleServiceContainer.cs" />
     <Compile Include="Components\WebRequestFactory.cs" />
     <Compile Include="ErrorReport.cs" />
     <Compile Include="Components\ErrorReportQueue.cs" />
@@ -56,13 +60,17 @@
     <Compile Include="Components\IErrorReportQueue.cs" />
     <Compile Include="Components\IErrorReportSerializer.cs" />
     <Compile Include="Components\Initializer.cs" />
+    <Compile Include="Framework\IResult.cs" />
+    <Compile Include="Framework\ResultCompletionEventArgs.cs" />
+    <Compile Include="Framework\SequentialResult.cs" />
     <Compile Include="IReportingService.cs" />
     <Compile Include="Components\IReportRequestBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Collections\ObservableList.cs" />
     <Compile Include="Components\ReportRequestBuilder.cs" />
     <Compile Include="GlobalConfig.cs" />
-    <Compile Include="Utils\ServiceProviderExtensions.cs" />
+    <Compile Include="Results\RequestBuildResult.cs" />
+    <Compile Include="Results\RequestExecutionResult.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

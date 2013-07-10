@@ -1,5 +1,5 @@
-﻿using System;
-using BugFreak.Components;
+﻿using BugFreak.Components;
+using BugFreak.Framework;
 
 namespace BugFreak
 {
@@ -16,7 +16,7 @@ namespace BugFreak
             public static string Token { get; set; }
         }
 
-        public static IServiceProvider ServiceProvider { get; set; }
+        public static IServiceLocator ServiceLocator { get; set; }
 
         public static IErrorReportSerializer ErrorReportSerializer { get; set; }
     }

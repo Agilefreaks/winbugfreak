@@ -29,7 +29,9 @@ namespace BugFreak
             var errorReport = new ErrorReport
                                     {
                                         Message = exc.Message,
+#if !SILVERLIGHT
                                         Source = exc.Source,
+#endif
                                         StackTrace = exc.StackTrace,
                                         AdditionalData = new List<KeyValuePair<string, string>>()
                                     };

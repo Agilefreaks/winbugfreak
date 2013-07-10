@@ -1,6 +1,6 @@
-﻿using System;
-using BugFreak;
+﻿using BugFreak;
 using BugFreak.Components;
+using BugFreak.Framework;
 using Moq;
 using NUnit.Framework;
 
@@ -9,7 +9,7 @@ namespace AgileBug.Tests
     [TestFixture]
     public class ErrorReportQueueListenerTests
     {
-        private Mock<IServiceProvider> _mockServiceProvider;
+        private Mock<IServiceLocator> _mockServiceProvider;
         private Mock<IErrorReportHandler> _mockErrorReportHandler;
         private ErrorReportQueueListener _subject;
 
@@ -17,11 +17,11 @@ namespace AgileBug.Tests
         public void SetUp()
         {
             _mockErrorReportHandler = new Mock<IErrorReportHandler>();
-            _mockServiceProvider = new Mock<IServiceProvider>();
-            _mockServiceProvider.Setup(m => m.GetService(typeof(IErrorReportHandler)))
+            _mockServiceProvider = new Mock<IServiceLocator>();
+            _mockServiceProvider.Setup(m => m.GetService<IErrorReportHandler>())
                                 .Returns(_mockErrorReportHandler.Object);
 
-            GlobalConfig.ServiceProvider = _mockServiceProvider.Object;
+            GlobalConfig.ServiceLocator = _mockServiceProvider.Object;
 
             _subject = new ErrorReportQueueListener();
         }
@@ -29,7 +29,7 @@ namespace AgileBug.Tests
         [TearDown]
         public void TearDown()
         {
-            GlobalConfig.ServiceProvider = null;
+            GlobalConfig.ServiceLocator = null;
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace AgileBug.Tests
         {
             _subject.Listen(new ErrorReportQueue());
 
-            _mockServiceProvider.Verify(m => m.GetService(typeof(IErrorReportHandler)));
+            _mockServiceProvider.Verify(m => m.GetService<IErrorReportHandler>());
         }
 
         [Test]
