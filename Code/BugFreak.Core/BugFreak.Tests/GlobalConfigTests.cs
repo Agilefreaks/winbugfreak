@@ -30,7 +30,7 @@ namespace AgileBug.Tests
         [Test]
         public void ServiceProviderGet_Always_ReturnsInstance()
         {
-            var result = GlobalConfig.ServiceProvider;
+            var result = GlobalConfig.ServiceLocator;
 
             Assert.IsNotNull(result);
         }
@@ -38,7 +38,7 @@ namespace AgileBug.Tests
         [Test]
         public void ServiceProvider_GetServiceOfTypeIReportRequestBuilder_ReturnsInstanceOfReportRequestBuilder()
         {
-            var result = GlobalConfig.ServiceProvider.GetService(typeof (IReportRequestBuilder));
+            var result = GlobalConfig.ServiceLocator.GetService<IReportRequestBuilder>();
 
             Assert.AreEqual(typeof(ReportRequestBuilder), result.GetType());
         }
@@ -46,7 +46,7 @@ namespace AgileBug.Tests
         [Test]
         public void ServiceProvider_GetServiceOfTypeIErrorReportQueue_ReturnsInstance()
         {
-            var result = GlobalConfig.ServiceProvider.GetService(typeof (IErrorReportQueue));
+            var result = GlobalConfig.ServiceLocator.GetService<IErrorReportQueue>();
 
             Assert.IsNotNull(result);
         }
@@ -54,9 +54,9 @@ namespace AgileBug.Tests
         [Test]
         public void ServiceProvider_GetServiceOfTypeIErrorReportQueue_ReturnsSameInstance()
         {
-            var instance1 = GlobalConfig.ServiceProvider.GetService(typeof (IErrorReportQueue));
+            var instance1 = GlobalConfig.ServiceLocator.GetService<IErrorReportQueue>();
 
-            var instance2 = GlobalConfig.ServiceProvider.GetService(typeof (IErrorReportQueue));
+            var instance2 = GlobalConfig.ServiceLocator.GetService<IErrorReportQueue>();
 
             Assert.AreSame(instance1, instance2);
         }
@@ -66,7 +66,7 @@ namespace AgileBug.Tests
         {
             var serializer = GlobalConfig.ErrorReportSerializer;
 
-            var instance = GlobalConfig.ServiceProvider.GetService(typeof (IErrorReportSerializer));
+            var instance = GlobalConfig.ServiceLocator.GetService<IErrorReportSerializer>();
 
             Assert.AreSame(serializer, instance);
         }

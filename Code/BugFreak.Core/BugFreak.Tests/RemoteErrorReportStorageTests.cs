@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using BugFreak;
 using BugFreak.Components;
+using BugFreak.Framework;
 using Moq;
 using NUnit.Framework;
 
@@ -11,17 +13,17 @@ namespace AgileBug.Tests
     public class RemoteErrorReportStorageTests
     {
         private RemoteErrorReportStorage _subject;
-        private Mock<IServiceProvider> _mockServiceProvider;
+        private Mock<IServiceLocator> _mockServiceProvider;
         private Mock<IReportRequestBuilder> _mockReportRequestBuilder;
 
         [SetUp]
         public void SetUp()
         {
             _mockReportRequestBuilder = new Mock<IReportRequestBuilder>();
-            _mockServiceProvider = new Mock<IServiceProvider>();
-            _mockServiceProvider.Setup(m => m.GetService(typeof (IReportRequestBuilder)))
+            _mockServiceProvider = new Mock<IServiceLocator>();
+            _mockServiceProvider.Setup(m => m.GetService<IReportRequestBuilder>())
                                 .Returns(_mockReportRequestBuilder.Object);
-            GlobalConfig.ServiceProvider = _mockServiceProvider.Object;
+            GlobalConfig.ServiceLocator = _mockServiceProvider.Object;
 
             _subject = new RemoteErrorReportStorage();
         }
@@ -29,13 +31,13 @@ namespace AgileBug.Tests
         [TearDown]
         public void TearDown()
         {
-            GlobalConfig.ServiceProvider = null;
+            GlobalConfig.ServiceLocator = null;
         }
 
         [Test]
         public void Ctor_Always_CallsServiceProviderGetInstanceOfTypeIReportRequestBuilder()
         {
-            _mockServiceProvider.Verify(m => m.GetService(typeof(IReportRequestBuilder)));
+            _mockServiceProvider.Verify(m => m.GetService<IReportRequestBuilder>());
         }
 
         [Test]
@@ -43,36 +45,9 @@ namespace AgileBug.Tests
         {
             var errorReport = new ErrorReport();
 
-            _subject.TryStore(errorReport);
+            new SequentialResult(_subject.Save(errorReport)).Execute(new ExecutionContext());
 
-            _mockReportRequestBuilder.Verify(m => m.Build(errorReport));
-        }
-
-        [Test]
-        public void TryStore_WhenRequestBuilderRaisesException_ReturnsFalse()
-        {
-            var errorReport = new ErrorReport();
-            _mockReportRequestBuilder.Setup(m => m.Build(errorReport))
-                                     .Throws<Exception>();
-
-            var result = _subject.TryStore(errorReport);
-
-            Assert.IsFalse(result);
-        }
-
-        [Test]
-        public void TryStore_WhenGetResponseRaisesException_ReturnsFalse()
-        {
-            var errorReport = new ErrorReport();
-            var mockRequest = new Mock<WebRequest>();
-            mockRequest.Setup(m => m.GetResponse())
-                       .Throws<Exception>();
-            _mockReportRequestBuilder.Setup(m => m.Build(errorReport))
-                                     .Returns(mockRequest.Object);
-
-            var result = _subject.TryStore(errorReport);
-
-            Assert.IsFalse(result);
+            _mockReportRequestBuilder.Verify(m => m.BuildAsync(errorReport));
         }
 
         [Test]
@@ -80,13 +55,14 @@ namespace AgileBug.Tests
         {
             var errorReport = new ErrorReport();
             var mockRequest = new Mock<WebRequest>();
-            
-            _mockReportRequestBuilder.Setup(m => m.Build(errorReport))
-                                     .Returns(mockRequest.Object);
+            _mockReportRequestBuilder.Setup(m => m.BuildAsync(errorReport))
+                .Raises(m => m.BuildCompleted += null, new ReportRequestBuildCompletedEventArgs { Result = mockRequest.Object });
+            ErrorReportSaveCompletedEventArgs eventArgs = null;
+            _subject.SaveCompleted += (o, e) => { eventArgs = e; };
 
-            var result = _subject.TryStore(errorReport);
+            _subject.Save(errorReport).ToList();
 
-            Assert.IsTrue(result);
+            Assert.IsTrue(eventArgs.Success);
         }
     }
 }

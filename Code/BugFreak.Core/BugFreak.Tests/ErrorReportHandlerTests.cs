@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using BugFreak;
 using BugFreak.Components;
+using BugFreak.Framework;
 using Moq;
 using NUnit.Framework;
 
@@ -9,23 +12,21 @@ namespace AgileBug.Tests
     [TestFixture]
     public class ErrorReportHandlerTests
     {
-        private Mock<IRemoteErrorReportStorage> _mockRemoteErrorReportStorage;
-        private Mock<ILocalErrorReportStorage> _mockLocalErrorReportStorage;
-        private Mock<IServiceProvider> _mockServiceProvider;
+        private Mock<IErrorReportStorage> _mockRemoteErrorReportStorage;
+        private Mock<IErrorReportStorage> _mockLocalErrorReportStorage;
+        private Mock<IServiceLocator> _mockServiceProvider;
         private ErrorReportHandler _subject;
 
         [SetUp]
         public void SetUp()
         {
-            _mockRemoteErrorReportStorage = new Mock<IRemoteErrorReportStorage>();
-            _mockLocalErrorReportStorage = new Mock<ILocalErrorReportStorage>();
-            _mockServiceProvider = new Mock<IServiceProvider>();
-            _mockServiceProvider.Setup(m => m.GetService(typeof (IRemoteErrorReportStorage)))
-                                .Returns(_mockRemoteErrorReportStorage.Object);
-            _mockServiceProvider.Setup(m => m.GetService(typeof (ILocalErrorReportStorage)))
-                                .Returns(_mockLocalErrorReportStorage.Object);
+            _mockRemoteErrorReportStorage = new Mock<IErrorReportStorage>();
+            _mockLocalErrorReportStorage = new Mock<IErrorReportStorage>();
+            _mockServiceProvider = new Mock<IServiceLocator>();
+            _mockServiceProvider.Setup(m => m.GetServices<IErrorReportStorage>())
+                                .Returns(new List<IErrorReportStorage> { _mockRemoteErrorReportStorage.Object, _mockLocalErrorReportStorage.Object });
 
-            GlobalConfig.ServiceProvider = _mockServiceProvider.Object;
+            GlobalConfig.ServiceLocator = _mockServiceProvider.Object;
 
             _subject = new ErrorReportHandler();
         }
@@ -33,19 +34,13 @@ namespace AgileBug.Tests
         [TearDown]
         public void TearDown()
         {
-            GlobalConfig.ServiceProvider = null;
+            GlobalConfig.ServiceLocator = null;
         }
 
         [Test]
         public void Ctor_Always_CallsServiceProviderGetServiceOfTypeIRemoteErrorReportStorage()
         {
-            _mockServiceProvider.Verify(m => m.GetService(typeof(IRemoteErrorReportStorage)));
-        }
-
-        [Test]
-        public void Ctor_Always_CallsServiceProviderGetServiceOfTypeILocalErrorReportStorage()
-        {
-            _mockServiceProvider.Verify(m => m.GetService(typeof(ILocalErrorReportStorage)));
+            _mockServiceProvider.Verify(m => m.GetServices<IErrorReportStorage>());
         }
 
         [Test]
@@ -53,31 +48,33 @@ namespace AgileBug.Tests
         {
             var errorReport = new ErrorReport();
 
-            _subject.Handle(errorReport);
+            new SequentialResult(_subject.Handle(errorReport)).Execute(new ExecutionContext());
 
-            _mockRemoteErrorReportStorage.Verify(m => m.TryStore(errorReport));
+            _mockRemoteErrorReportStorage.Verify(m => m.SaveAsync(errorReport));
         }
 
         [Test]
         public void Handle_WhenRemoteStorageReturnsFalse_CallsLocalStorage()
         {
             var errorReport = new ErrorReport();
-            
-            _subject.Handle(errorReport);
+            _mockRemoteErrorReportStorage.Setup(m => m.SaveAsync(errorReport))
+                .Raises(m => m.SaveCompleted += null, new ErrorReportSaveCompletedEventArgs { Success = false });
 
-            _mockLocalErrorReportStorage.Verify(m => m.TryStore(errorReport));
+            new SequentialResult(_subject.Handle(errorReport)).Execute(new ExecutionContext());
+
+            _mockLocalErrorReportStorage.Verify(m => m.SaveAsync(errorReport));
         }
 
         [Test]
         public void Handle_WhenRemoteStorageReturnsTrue_DoesNotCallLocalStorage()
         {
             var errorReport = new ErrorReport();
-            _mockRemoteErrorReportStorage.Setup(m => m.TryStore(errorReport))
-                                         .Returns(true);
+            _mockRemoteErrorReportStorage.Setup(m => m.SaveAsync(errorReport))
+                .Raises(m => m.SaveCompleted += null, new ErrorReportSaveCompletedEventArgs { Success = true });
 
-            _subject.Handle(errorReport);
+            _subject.Handle(errorReport).ToList();
 
-            _mockLocalErrorReportStorage.Verify(m => m.TryStore(It.IsAny<ErrorReport>()), Times.Never());
+            _mockLocalErrorReportStorage.Verify(m => m.SaveAsync(It.IsAny<ErrorReport>()), Times.Never());
         }
     }
 }
