@@ -12,33 +12,50 @@ Dependencies
 Usage
 =====
 
-AppConfig:
+<b>WPF</b>
 
+	Config:
+	
+	Add in <i>App.config</i>:
 
-  <configSections>
-    <section name="BugFreak" type="System.Configuration.AppSettingsSection, System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  </configSections>
+	<pre>
+		<configSections>
+			<section name="BugFreak" type="System.Configuration.AppSettingsSection, System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+		</configSections>
 
-  <BugFreak>
-    <add key="ServiceEndpoint" value="http://endpoint.ro"/>
-    <add key="ApiKey" value="apiKey"/>
-    <add key="AppName" value="appName"/>
-    <add key="Token" value="token"/>
-  </BugFreak>
+		<BugFreak>
+			<add key="ServiceEndpoint" value="http://endpoint.ro"/>
+			<add key="ApiKey" value="apiKey"/>
+			<add key="AppName" value="appName"/>
+			<add key="Token" value="token"/>
+		</BugFreak>
+	<pre>
 
+	Initialize:
 
-Initialize:
-
-    BugFreak.Integration.WPF.AgileReporter.Hook();
+		BugFreak.Integration.WPF.AgileReporter.Hook();
 			
 
+<b>SilverLight 4</b>
+	
+	Config:
+		Add in App.xaml.cs in Application_Startup:
+		
+		BugFreak.GlobalConfig.Settings.ApiKey = "apiKey";
+		BugFreak.GlobalConfig.Settings.Token = "token";
+		BugFreak.GlobalConfig.Settings.AppName = "AppName";
+		BugFreak.GlobalConfig.Settings.ServiceEndpoint = "http://service.com";
+		
+		BugFreak.Integration.Silverlight.AgileReporter.Hook();
+		
+			
 Sample Request
 ==============
 
 	POST http://domain.com/ HTTP/1.1
     ApiKey: apiKey
 	Token: token
-	User-Agent: MyTest.vshost.exe
+	AppName: MyTest.vshost.exe
 	Host: domain.com
 	Content-Type: application/x-www-form-urlencoded
 	Content-Length: 1579
