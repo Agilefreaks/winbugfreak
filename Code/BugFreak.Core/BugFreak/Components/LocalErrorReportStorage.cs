@@ -1,10 +1,20 @@
-﻿namespace BugFreak.Components
+﻿using System;
+
+namespace BugFreak.Components
 {
-    public class LocalErrorReportStorage : ILocalErrorReportStorage
+    public class LocalErrorReportStorage : IErrorReportStorage
     {
-        public bool TryStore(ErrorReport report)
+        public event EventHandler<ErrorReportSaveCompletedEventArgs> SaveCompleted;
+
+        public void SaveAsync(ErrorReport report)
         {
-            return true;
+            OnSaveCompleted(new ErrorReportSaveCompletedEventArgs { Success = true });
+        }
+
+        protected virtual void OnSaveCompleted(ErrorReportSaveCompletedEventArgs e)
+        {
+            var handler = SaveCompleted;
+            if (handler != null) handler(this, e);
         }
     }
 }

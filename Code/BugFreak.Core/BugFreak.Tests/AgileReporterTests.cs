@@ -2,6 +2,7 @@
 using System.Net;
 using BugFreak;
 using BugFreak.Components;
+using BugFreak.Framework;
 using Moq;
 using NUnit.Framework;
 
@@ -11,7 +12,7 @@ namespace AgileBug.Tests
     public class AgileReporterTests
     {
         private Mock<IErrorReportQueue> _mockErrorQueue;
-        private Mock<IServiceProvider> _mockServiceProvider;
+        private Mock<IServiceLocator> _mockServiceProvider;
         private Mock<IErrorReportHandler> _mockErrorReportHandler;
         private Mock<IErrorReportQueueListener> _mockErrorReportQueueListener;
 
@@ -28,15 +29,15 @@ namespace AgileBug.Tests
             _mockErrorQueue = new Mock<IErrorReportQueue>();
             _mockErrorReportHandler = new Mock<IErrorReportHandler>();
             _mockErrorReportQueueListener = new Mock<IErrorReportQueueListener>();
-            _mockServiceProvider = new Mock<IServiceProvider>();
-            _mockServiceProvider.Setup(m => m.GetService(typeof(IErrorReportQueue)))
+            _mockServiceProvider = new Mock<IServiceLocator>();
+            _mockServiceProvider.Setup(m => m.GetService<IErrorReportQueue>())
                                 .Returns(_mockErrorQueue.Object);
-            _mockServiceProvider.Setup(m => m.GetService(typeof(IErrorReportHandler)))
+            _mockServiceProvider.Setup(m => m.GetService<IErrorReportHandler>())
                                 .Returns(_mockErrorReportHandler.Object);
-            _mockServiceProvider.Setup(m => m.GetService(typeof(IErrorReportQueueListener)))
+            _mockServiceProvider.Setup(m => m.GetService<IErrorReportQueueListener>())
                                 .Returns(_mockErrorReportQueueListener.Object);
 
-            GlobalConfig.ServiceProvider = _mockServiceProvider.Object;
+            GlobalConfig.ServiceLocator = _mockServiceProvider.Object;
         }
 
         [TearDown]
@@ -47,7 +48,7 @@ namespace AgileBug.Tests
                 AgileReporter.Dispose();
             }
 
-            GlobalConfig.ServiceProvider = null;
+            GlobalConfig.ServiceLocator = null;
             GlobalConfig.Settings.Token = null;
             GlobalConfig.Settings.AppName = null;
             GlobalConfig.Settings.ApiKey = null;
@@ -136,7 +137,7 @@ namespace AgileBug.Tests
 
             AgileReporter.Init();
 
-            Assert.IsTrue(GlobalConfig.ServiceProvider.GetService(typeof(IRemoteErrorReportStorage)) is RemoteErrorReportStorage);
+            Assert.IsTrue(GlobalConfig.ServiceLocator.GetService<IErrorReportStorage>() is RemoteErrorReportStorage);
         }
 
         [Test]
@@ -147,7 +148,7 @@ namespace AgileBug.Tests
 
             AgileReporter.Init();
 
-            Assert.IsTrue(GlobalConfig.ServiceProvider.GetService(typeof(IErrorReportQueueListener)) is ErrorReportQueueListener);
+            Assert.IsTrue(GlobalConfig.ServiceLocator.GetService<IErrorReportQueueListener>() is ErrorReportQueueListener);
         }
 
         [Test]
@@ -158,18 +159,7 @@ namespace AgileBug.Tests
 
             AgileReporter.Init();
 
-            Assert.IsTrue(GlobalConfig.ServiceProvider.GetService(typeof(IErrorReportHandler)) is ErrorReportHandler);
-        }
-
-        [Test]
-        public void Init_Always_SetsDefaultLocalErrorReportStorage()
-        {
-            GlobalConfig.Settings.Token = "user-token";
-            GlobalConfig.Settings.AppName = "app";
-
-            AgileReporter.Init();
-
-            Assert.IsTrue(GlobalConfig.ServiceProvider.GetService(typeof(ILocalErrorReportStorage)) is LocalErrorReportStorage);
+            Assert.IsTrue(GlobalConfig.ServiceLocator.GetService<IErrorReportHandler>() is ErrorReportHandler);
         }
 
         [Test]
@@ -180,7 +170,7 @@ namespace AgileBug.Tests
 
             AgileReporter.Init();
 
-            Assert.IsTrue(GlobalConfig.ServiceProvider.GetService(typeof(IWebRequestCreate)) is WebRequestFactory);
+            Assert.IsTrue(GlobalConfig.ServiceLocator.GetService<IWebRequestCreate>() is WebRequestFactory);
         }
 
         [Test]

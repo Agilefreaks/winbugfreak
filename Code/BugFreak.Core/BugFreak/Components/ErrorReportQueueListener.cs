@@ -1,7 +1,5 @@
-﻿using System;
-using System.Threading;
-using BugFreak.Collections;
-using BugFreak.Utils;
+﻿using BugFreak.Collections;
+using BugFreak.Framework;
 
 namespace BugFreak.Components
 {
@@ -9,19 +7,17 @@ namespace BugFreak.Components
     {
         private IErrorReportQueue _queue;
         private IErrorReportHandler _errorReportHandler;
-        
+
         public void Listen(IErrorReportQueue reportQueue)
         {
-            _errorReportHandler = GlobalConfig.ServiceProvider.GetService<IErrorReportHandler>();
+            _errorReportHandler = GlobalConfig.ServiceLocator.GetService<IErrorReportHandler>();
 
             _queue = reportQueue;
             _queue.ItemAdded += QueueOnItemAdded;
-            _errorReportHandler.HandleComplete += WorkCompleted;
         }
 
         public void Dispose()
         {
-            _errorReportHandler.HandleComplete -= WorkCompleted;
             _queue.ItemAdded -= QueueOnItemAdded;
             _queue = null;
             _errorReportHandler.Dispose();
@@ -35,25 +31,10 @@ namespace BugFreak.Components
 
         private void BeginWork()
         {
-            Lock();
-
             var item = _queue.Dequeue();
-            _errorReportHandler.Handle(item);
-        }
 
-        private void WorkCompleted(object sender, EventArgs eventArgs)
-        {
-            Unlock();
-        }
-
-        private void Lock()
-        {
-            Monitor.Enter(_queue);
-        }
-
-        private void Unlock()
-        {
-            Monitor.Exit(_queue);
+            var result = new SequentialResult(_errorReportHandler.Handle(item));
+            result.Execute(new ExecutionContext());
         }
     }
 }

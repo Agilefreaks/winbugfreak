@@ -1,7 +1,11 @@
-﻿namespace BugFreak.Components
+﻿using System;
+
+namespace BugFreak.Components
 {
     public interface IErrorReportStorage
     {
-        bool TryStore(ErrorReport report);
+        event EventHandler<ErrorReportSaveCompletedEventArgs> SaveCompleted;
+
+        void SaveAsync(ErrorReport report);
     }
 }
