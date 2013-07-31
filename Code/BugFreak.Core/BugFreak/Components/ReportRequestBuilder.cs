@@ -6,7 +6,7 @@ namespace BugFreak.Components
 {
     public class ReportRequestBuilder : IReportRequestBuilder
     {
-        public const string ApiKey = "ApiKey";
+        public const string ApiKey = "Api-Key";
         public const string TokenKey = "Token";
         public const string HttpMethod = "POST";
         public const string AppNameKey = "AppName";
