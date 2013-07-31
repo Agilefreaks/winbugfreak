@@ -9,8 +9,7 @@ namespace BugFreak.Components
         public const string ApiKey = "Api-Key";
         public const string TokenKey = "Token";
         public const string HttpMethod = "POST";
-        public const string AppNameKey = "AppName";
-
+        
         private readonly IWebRequestCreate _webRequestFactory;
 
         public event EventHandler<ReportRequestBuildCompletedEventArgs> BuildCompleted;
@@ -42,7 +41,6 @@ namespace BugFreak.Components
         {
             request.Headers[ApiKey] = GlobalConfig.Settings.ApiKey;
             request.Headers[TokenKey] = GlobalConfig.Settings.Token;
-            request.Headers[AppNameKey] = GlobalConfig.Settings.AppName;
         }
 
         private void WriteAsync(ErrorReport report, WebRequest request)
