@@ -97,7 +97,7 @@ namespace AgileBug.Tests
 
             new SequentialResult(new[] { new RequestBuildResult(_subject, new ErrorReport()) }).Execute(new ExecutionContext());
 
-            Assert.AreEqual("apiKey", webHeaderCollection["apiKey"]);
+            Assert.AreEqual("apiKey", webHeaderCollection["Api-Key"]);
         }
 
         [Test]
