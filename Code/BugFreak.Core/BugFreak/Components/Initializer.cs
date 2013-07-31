@@ -14,10 +14,6 @@ namespace BugFreak.Components
 
         private static void VerifySettings()
         {
-            if (String.IsNullOrEmpty(GlobalConfig.Settings.AppName))
-            {
-                throw new ArgumentException("AppName not set");
-            }
             if (String.IsNullOrEmpty(GlobalConfig.Settings.Token))
             {
                 throw new ArgumentException("Token not set");

@@ -26,7 +26,6 @@ namespace AgileBug.Tests
         public void SetUp()
         {
             GlobalConfig.Settings.Token = "user-token";
-            GlobalConfig.Settings.AppName = "appName";
             GlobalConfig.Settings.ServiceEndPoint = "http://global-endpoint.com";
 
             _mockSerializer = new Mock<IErrorReportSerializer>();
@@ -54,7 +53,6 @@ namespace AgileBug.Tests
         public void TearDown()
         {
             GlobalConfig.Settings.Token = null;
-            GlobalConfig.Settings.AppName = null;
             GlobalConfig.Settings.ServiceEndPoint = null;
         }
 

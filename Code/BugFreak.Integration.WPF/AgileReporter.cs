@@ -41,7 +41,6 @@ namespace BugFreak.Integration.WPF
             {
                 GlobalConfig.Settings.ServiceEndPoint = configSection["ServiceEndpoint"];
                 GlobalConfig.Settings.ApiKey = configSection["ApiKey"];
-                GlobalConfig.Settings.AppName = configSection["AppName"];
                 GlobalConfig.Settings.Token = configSection["Token"];
             }
         }
