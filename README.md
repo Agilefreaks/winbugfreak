@@ -54,9 +54,9 @@ Sample Request
 
 ```text
 POST http://domain.com/ HTTP/1.1
-ApiKey: apiKey
+Api-Key: apiKey
 Token: token
-AppName: MyTest.vshost.exe
+App-Name: MyTest.vshost.exe
 Host: domain.com
 Content-Type: application/x-www-form-urlencoded
 Content-Length: 1579
@@ -72,5 +72,5 @@ The request needs to have:
 
 From curl:
 ```
-curl -d message=message -d source=source -d stackTrace=stackTrace 'http://localhost:3000/v1/api/errors' -H Content-Type:application/x-www-form-urlencoded -H "Token: 123token" -H "ApiKey: 123ApiKey" -H "AppName: MyTest.vshost.exe" -v
+curl -d message=message -d source=source -d stackTrace=stackTrace 'http://localhost:3000/v1/api/errors' -H Content-Type:application/x-www-form-urlencoded -H "Token: 123token" -H "Api-Key: 123ApiKey" -H "App-Name: MyTest.vshost.exe" -v
 ```
