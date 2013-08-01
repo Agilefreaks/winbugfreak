@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>dev@omnipasteapp.com</authors>
+    <owners>AgileFreaks</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
+    <projectUrl>https://github.com/Agilefreaks/winbugfreak</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Beta version of BugFreak for WPF</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>error reporting exception handle</tags>
+  </metadata>
+   <files>
+		<file src="readme.txt" target="" />
+   </files>
+</package>

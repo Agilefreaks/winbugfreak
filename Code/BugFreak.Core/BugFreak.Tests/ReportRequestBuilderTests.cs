@@ -26,7 +26,6 @@ namespace AgileBug.Tests
         public void SetUp()
         {
             GlobalConfig.Settings.Token = "user-token";
-            GlobalConfig.Settings.AppName = "appName";
             GlobalConfig.Settings.ServiceEndPoint = "http://global-endpoint.com";
 
             _mockSerializer = new Mock<IErrorReportSerializer>();
@@ -54,7 +53,6 @@ namespace AgileBug.Tests
         public void TearDown()
         {
             GlobalConfig.Settings.Token = null;
-            GlobalConfig.Settings.AppName = null;
             GlobalConfig.Settings.ServiceEndPoint = null;
         }
 
@@ -97,7 +95,7 @@ namespace AgileBug.Tests
 
             new SequentialResult(new[] { new RequestBuildResult(_subject, new ErrorReport()) }).Execute(new ExecutionContext());
 
-            Assert.AreEqual("apiKey", webHeaderCollection["apiKey"]);
+            Assert.AreEqual("apiKey", webHeaderCollection["Api-Key"]);
         }
 
         [Test]

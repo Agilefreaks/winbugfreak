@@ -10,7 +10,6 @@ namespace AgileBug.Tests
         [SetUp]
         public void SetUp()
         {
-            GlobalConfig.Settings.AppName = "app";
             GlobalConfig.Settings.Token = "v2.2";
             GlobalConfig.Settings.ApiKey = "apiKey";
             GlobalConfig.Settings.ServiceEndPoint = "http://myTest.com";
@@ -21,7 +20,6 @@ namespace AgileBug.Tests
         [TearDown]
         public void TearDown()
         {
-            GlobalConfig.Settings.AppName = null;
             GlobalConfig.Settings.Token = null;
             GlobalConfig.Settings.ApiKey = null;
             GlobalConfig.Settings.ServiceEndPoint = null;
