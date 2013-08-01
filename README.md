@@ -1,4 +1,4 @@
-winbugfreak
+Winbugfreak
 ===========
 
 Bug tracking client for wpf/silverlight applications, see [server](https://github.com/agilefreaks/apibugfreak)
@@ -59,3 +59,12 @@ BugFreak.Integration.Silverlight.AgileReporter.Hook();
 ```
 
 That's all folks, any uncatched exceptions will be reported back to the server
+
+Contributing
+============
+
+1. Fork it.
+2. Create a branch (git checkout -b my_cool_feature)
+3. Commit your changes (git commit -am "Added CoolFeature")
+4. Push to the branch (git push origin my_cool_feature)
+5. Open a Pull Request
