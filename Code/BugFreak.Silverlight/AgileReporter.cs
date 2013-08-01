@@ -1,8 +1,8 @@
-﻿using System;
-using System.Windows;
-
-namespace BugFreak.Integration.Silverlight
+﻿namespace BugFreak.Silverlight
 {
+    using System;
+    using System.Windows;
+
     public class AgileReporter
     {
         public static void Hook()

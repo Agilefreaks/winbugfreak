@@ -6,16 +6,23 @@ Bug tracking client for wpf/silverlight applications, see [server](https://githu
 Overview
 ========
 
-A bare bones bug tracking framework that you can use and deploy your self, it's main aim is to integrate seemesly 
+A bare bones bug tracking framework that you can use and deploy yourself, it's main aim is to integrate seemesly 
 with your application and centralize issues in a main repository, we are working on having a free server deployed
 please contact us if you can help
 
 Instalation
 ===========
 
-You can grad the package from [nuget](http://www.nuget.org/)
+You can grab the package from [nuget](http://www.nuget.org/)
+
+For wpf
 ```
-PM> Install-Package BugFreak
+PM> Install-Package BugFreak.WPF
+```
+
+For Silverlight
+```
+PM> Install-Package BugFreak.Silverlight
 ```
 
 Configuration

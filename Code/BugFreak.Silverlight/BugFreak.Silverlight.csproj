@@ -9,8 +9,8 @@
     <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BugFreak.Integration.Silverlight</RootNamespace>
-    <AssemblyName>BugFreak.Integration.Silverlight</AssemblyName>
+    <RootNamespace>BugFreak.Silverlight</RootNamespace>
+    <AssemblyName>BugFreak.Silverlight</AssemblyName>
     <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
@@ -28,7 +28,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>Bin\Debug</OutputPath>
+    <OutputPath>..\..\Libs\Integration\Silverlight\</OutputPath>
     <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
@@ -38,7 +38,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Libs\</OutputPath>
+    <OutputPath>..\..\Libs\Integration\Silverlight\</OutputPath>
     <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
@@ -58,97 +58,97 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\BugFreak.Core\BugFreak\AgileReporter.cs">
+    <Compile Include="..\Core\BugFreak\AgileReporter.cs">
       <Link>Core\AgileReporter.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Collections\ObservableList.cs">
+    <Compile Include="..\Core\BugFreak\Collections\ObservableList.cs">
       <Link>Core\Collections\ObservableList.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Components\ErrorReportHandler.cs">
+    <Compile Include="..\Core\BugFreak\Components\ErrorReportHandler.cs">
       <Link>Core\Components\ErrorReportHandler.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Components\ErrorReportQueue.cs">
+    <Compile Include="..\Core\BugFreak\Components\ErrorReportQueue.cs">
       <Link>Core\Components\ErrorReportQueue.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Components\ErrorReportQueueListener.cs">
+    <Compile Include="..\Core\BugFreak\Components\ErrorReportQueueListener.cs">
       <Link>Core\Components\ErrorReportQueueListener.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Components\ErrorReportSaveCompletedEventArgs.cs">
+    <Compile Include="..\Core\BugFreak\Components\ErrorReportSaveCompletedEventArgs.cs">
       <Link>Core\Components\ErrorReportSaveCompletedEventArgs.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Components\FormErrorReportSerializer.cs">
+    <Compile Include="..\Core\BugFreak\Components\FormErrorReportSerializer.cs">
       <Link>Core\Components\FormErrorReportSerializer.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Components\IErrorReportHandler.cs">
+    <Compile Include="..\Core\BugFreak\Components\IErrorReportHandler.cs">
       <Link>Core\Components\IErrorReportHandler.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Components\IErrorReportQueue.cs">
+    <Compile Include="..\Core\BugFreak\Components\IErrorReportQueue.cs">
       <Link>Core\Components\IErrorReportQueue.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Components\IErrorReportQueueListener.cs">
+    <Compile Include="..\Core\BugFreak\Components\IErrorReportQueueListener.cs">
       <Link>Core\Components\IErrorReportQueueListener.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Components\IErrorReportSerializer.cs">
+    <Compile Include="..\Core\BugFreak\Components\IErrorReportSerializer.cs">
       <Link>Core\Components\IErrorReportSerializer.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Components\IErrorReportStorage.cs">
+    <Compile Include="..\Core\BugFreak\Components\IErrorReportStorage.cs">
       <Link>Core\Components\IErrorReportStorage.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Components\Initializer.cs">
+    <Compile Include="..\Core\BugFreak\Components\Initializer.cs">
       <Link>Core\Components\Initializer.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Components\IReportRequestBuilder.cs">
+    <Compile Include="..\Core\BugFreak\Components\IReportRequestBuilder.cs">
       <Link>Core\Components\IReportRequestBuilder.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Components\LocalErrorReportStorage.cs">
+    <Compile Include="..\Core\BugFreak\Components\LocalErrorReportStorage.cs">
       <Link>Core\Components\LocalErrorReportStorage.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Components\RemoteErrorReportStorage.cs">
+    <Compile Include="..\Core\BugFreak\Components\RemoteErrorReportStorage.cs">
       <Link>Core\Components\RemoteErrorReportStorage.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Components\ReportRequestBuildCompletedEventArgs.cs">
+    <Compile Include="..\Core\BugFreak\Components\ReportRequestBuildCompletedEventArgs.cs">
       <Link>Core\Components\ReportRequestBuildCompletedEventArgs.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Components\ReportRequestBuilder.cs">
+    <Compile Include="..\Core\BugFreak\Components\ReportRequestBuilder.cs">
       <Link>Core\Components\ReportRequestBuilder.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Components\SimpleServiceContainer.cs">
+    <Compile Include="..\Core\BugFreak\Components\SimpleServiceContainer.cs">
       <Link>Core\Components\SimpleServiceContainer.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Components\WebRequestFactory.cs">
+    <Compile Include="..\Core\BugFreak\Components\WebRequestFactory.cs">
       <Link>Core\Components\WebRequestFactory.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\ErrorReport.cs">
+    <Compile Include="..\Core\BugFreak\ErrorReport.cs">
       <Link>Core\ErrorReport.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Framework\ExecutionContext.cs">
+    <Compile Include="..\Core\BugFreak\Framework\ExecutionContext.cs">
       <Link>Core\Framework\ExecutionContext.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Framework\IResult.cs">
+    <Compile Include="..\Core\BugFreak\Framework\IResult.cs">
       <Link>Core\Framework\IResult.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Framework\IServiceLocator.cs">
+    <Compile Include="..\Core\BugFreak\Framework\IServiceLocator.cs">
       <Link>Core\Framework\IServiceLocator.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Framework\ResultCompletionEventArgs.cs">
+    <Compile Include="..\Core\BugFreak\Framework\ResultCompletionEventArgs.cs">
       <Link>Core\Framework\ResultCompletionEventArgs.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Framework\SequentialResult.cs">
+    <Compile Include="..\Core\BugFreak\Framework\SequentialResult.cs">
       <Link>Core\Framework\SequentialResult.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\GlobalConfig.cs">
+    <Compile Include="..\Core\BugFreak\GlobalConfig.cs">
       <Link>Core\GlobalConfig.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\IReportingService.cs">
+    <Compile Include="..\Core\BugFreak\IReportingService.cs">
       <Link>Core\IReportingService.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Results\ErrorReportSaveResult.cs">
+    <Compile Include="..\Core\BugFreak\Results\ErrorReportSaveResult.cs">
       <Link>Core\Results\ErrorReportSaveResult.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Results\RequestBuildResult.cs">
+    <Compile Include="..\Core\BugFreak\Results\RequestBuildResult.cs">
       <Link>Core\Results\RequestBuildResult.cs</Link>
     </Compile>
-    <Compile Include="..\BugFreak.Core\BugFreak\Results\RequestExecutionResult.cs">
+    <Compile Include="..\Core\BugFreak\Results\RequestExecutionResult.cs">
       <Link>Core\Results\RequestExecutionResult.cs</Link>
     </Compile>
     <Compile Include="AgileReporter.cs" />
