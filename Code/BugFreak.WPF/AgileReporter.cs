@@ -1,10 +1,10 @@
-﻿using System.Collections.Specialized;
-using System.Configuration;
-using System.Windows;
-using System.Windows.Threading;
-
-namespace BugFreak.Integration.WPF
+﻿namespace BugFreak.WPF
 {
+    using System.Collections.Specialized;
+    using System.Configuration;
+    using System.Windows;
+    using System.Windows.Threading;
+
     public class AgileReporter
     {
         public static void Hook()
