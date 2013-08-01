@@ -21,8 +21,6 @@ namespace BugFreak.Integration.WPF
         private static void OnException(object sender, DispatcherUnhandledExceptionEventArgs eventArgs)
         {
             BugFreak.AgileReporter.Instance.BeginReport(eventArgs.Exception);
-            
-            eventArgs.Handled = true;
         }
 
         private static void OnExit(object sender, ExitEventArgs exitEventArgs)
@@ -41,7 +39,6 @@ namespace BugFreak.Integration.WPF
             {
                 GlobalConfig.Settings.ServiceEndPoint = configSection["ServiceEndpoint"];
                 GlobalConfig.Settings.ApiKey = configSection["ApiKey"];
-                GlobalConfig.Settings.AppName = configSection["AppName"];
                 GlobalConfig.Settings.Token = configSection["Token"];
             }
         }

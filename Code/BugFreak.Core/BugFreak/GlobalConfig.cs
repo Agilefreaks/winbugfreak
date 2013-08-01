@@ -11,8 +11,6 @@ namespace BugFreak
 
             public static string ApiKey { get; set; }
 
-            public static string AppName { get; set; }
-
             public static string Token { get; set; }
         }
 
