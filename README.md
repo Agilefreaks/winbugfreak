@@ -13,7 +13,7 @@ please contact us if you can help
 Instalation
 ===========
 
-You can grad the package from [nuget](http://www.nuget.org/)
+You can grab the package from [nuget](http://www.nuget.org/)
 
 For wpf
 ```
