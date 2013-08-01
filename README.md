@@ -14,8 +14,15 @@ Instalation
 ===========
 
 You can grad the package from [nuget](http://www.nuget.org/)
+
+For wpf
 ```
-PM> Install-Package BugFreak
+PM> Install-Package BugFreak.WPF
+```
+
+For Silverlight
+```
+PM> Install-Package BugFreak.Silverlight
 ```
 
 Configuration
