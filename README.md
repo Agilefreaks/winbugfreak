@@ -57,12 +57,12 @@ Register
 
 Hook tracking in WPF
 ```
-BugFreak.Integration.WPF.AgileReporter.Hook();
+BugFreak.WPF.AgileReporter.Hook();
 ```
 
 Hook tracking in Silverlight
 ```
-BugFreak.Integration.Silverlight.AgileReporter.Hook();
+BugFreak.Silverlight.AgileReporter.Hook();
 ```
 
 That's all folks, any uncatched exceptions will be reported back to the server
