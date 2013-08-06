@@ -30,17 +30,15 @@ Configuration
 
 For WPF update you config file
 ```
-<pre>
-	<configSections>
-		<section name="BugFreak" type="System.Configuration.AppSettingsSection, System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-	</configSections>
+<configSections>
+	<section name="BugFreak" type="System.Configuration.AppSettingsSection, System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+</configSections>
 
-	<BugFreak>
-		<add key="ServiceEndpoint" value="http://endpoint.ro"/>
-		<add key="ApiKey" value="apiKey"/>
-		<add key="Token" value="token"/>
-	</BugFreak>
-<pre>
+<BugFreak>
+	<add key="ServiceEndpoint" value="http://endpoint.ro"/>
+	<add key="ApiKey" value="apiKey"/>
+	<add key="Token" value="token"/>
+</BugFreak>
 
 ```
 
