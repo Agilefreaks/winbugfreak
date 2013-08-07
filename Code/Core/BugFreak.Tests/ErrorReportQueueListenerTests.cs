@@ -1,6 +1,6 @@
-﻿using BugFreak;
-using BugFreak.Components;
-using BugFreak.Framework;
+﻿using Bugfreak;
+using Bugfreak.Components;
+using Bugfreak.Framework;
 using Moq;
 using NUnit.Framework;
 

@@ -1,7 +1,7 @@
 ﻿using System;
-using BugFreak.Collections;
+using Bugfreak.Collections;
 
-namespace BugFreak.Components
+namespace Bugfreak.Components
 {
     public interface IErrorReportQueue
     {

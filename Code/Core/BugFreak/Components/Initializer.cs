@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace BugFreak.Components
+namespace Bugfreak.Components
 {
     internal class Initializer
     {
@@ -63,7 +63,7 @@ namespace BugFreak.Components
 
         private static void InitReporter()
         {
-            AgileReporter.Instance = new AgileReporter();
+            BugFreak.Instance = new BugFreak();
         }
     }
 }

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
-using BugFreak;
-using BugFreak.Components;
-using BugFreak.Framework;
+using Bugfreak;
+using Bugfreak.Components;
+using Bugfreak.Framework;
 using Moq;
 using NUnit.Framework;
 

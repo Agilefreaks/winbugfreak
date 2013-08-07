@@ -1,5 +1,5 @@
-﻿using BugFreak;
-using BugFreak.Components;
+﻿using Bugfreak;
+using Bugfreak.Components;
 using NUnit.Framework;
 
 namespace AgileBug.Tests
@@ -14,7 +14,7 @@ namespace AgileBug.Tests
             GlobalConfig.Settings.ApiKey = "apiKey";
             GlobalConfig.Settings.ServiceEndPoint = "http://myTest.com";
             
-            AgileReporter.Init();
+            BugFreak.Init();
         }
 
         [TearDown]

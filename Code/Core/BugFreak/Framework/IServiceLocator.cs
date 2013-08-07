@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BugFreak.Framework
+namespace Bugfreak.Framework
 {
     public interface IServiceLocator
     {

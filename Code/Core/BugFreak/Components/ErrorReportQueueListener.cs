@@ -1,7 +1,7 @@
-﻿using BugFreak.Collections;
-using BugFreak.Framework;
+﻿using Bugfreak.Collections;
+using Bugfreak.Framework;
 
-namespace BugFreak.Components
+namespace Bugfreak.Components
 {
     public class ErrorReportQueueListener : IErrorReportQueueListener
     {

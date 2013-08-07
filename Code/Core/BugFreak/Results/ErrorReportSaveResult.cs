@@ -1,8 +1,8 @@
 ﻿using System;
-using BugFreak.Components;
-using BugFreak.Framework;
+using Bugfreak.Components;
+using Bugfreak.Framework;
 
-namespace BugFreak.Results
+namespace Bugfreak.Results
 {
     public class ErrorReportSaveResult : IResult
     {

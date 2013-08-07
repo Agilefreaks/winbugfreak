@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net;
-using BugFreak.Components;
+using Bugfreak.Components;
 using NUnit.Framework;
 
 namespace AgileBug.Tests

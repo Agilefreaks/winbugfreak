@@ -1,22 +1,22 @@
-﻿namespace BugFreak.Silverlight
+﻿namespace Bugfreak.Silverlight
 {
     using System;
     using System.Windows;
 
-    public class AgileReporter
+    public class BugFreak
     {
         public static void Hook()
         {
             var app = Application.Current;
 
-            BugFreak.AgileReporter.Init();
+            Bugfreak.BugFreak.Init();
             app.Exit += OnExit;
             app.UnhandledException += OnException;
         }
 
         private static void OnException(object sender, ApplicationUnhandledExceptionEventArgs eventArgs)
         {
-            BugFreak.AgileReporter.Instance.BeginReport(eventArgs.ExceptionObject);
+            Bugfreak.BugFreak.Instance.BeginReport(eventArgs.ExceptionObject);
 
             eventArgs.Handled = true;
         }
@@ -27,7 +27,7 @@
 
             app.UnhandledException -= OnException;
             app.Exit -= OnExit;
-            BugFreak.AgileReporter.Dispose();
+            Bugfreak.BugFreak.Dispose();
         }
     }
 }

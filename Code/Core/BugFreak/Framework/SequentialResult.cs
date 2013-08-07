@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BugFreak.Framework
+namespace Bugfreak.Framework
 {
     public class SequentialResult : IResult
     {

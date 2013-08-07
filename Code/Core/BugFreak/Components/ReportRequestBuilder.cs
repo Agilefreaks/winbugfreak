@@ -2,7 +2,7 @@
 using System.IO;
 using System.Net;
 
-namespace BugFreak.Components
+namespace Bugfreak.Components
 {
     public class ReportRequestBuilder : IReportRequestBuilder
     {

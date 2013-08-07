@@ -1,4 +1,4 @@
-﻿namespace BugFreak.Components
+﻿namespace Bugfreak.Components
 {
     public interface IErrorReportSerializer
     {
