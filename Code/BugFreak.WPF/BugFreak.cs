@@ -1,26 +1,26 @@
-﻿namespace BugFreak.WPF
+﻿namespace Bugfreak.WPF
 {
     using System.Collections.Specialized;
     using System.Configuration;
     using System.Windows;
     using System.Windows.Threading;
 
-    public class AgileReporter
+    public class BugFreak
     {
         public static void Hook()
         {
             var app = Application.Current;
 
             ReadSettings();
-            
-            BugFreak.AgileReporter.Init();
+
+            Bugfreak.BugFreak.Init();
             app.Exit += OnExit;
             app.DispatcherUnhandledException += OnException;
         }
 
         private static void OnException(object sender, DispatcherUnhandledExceptionEventArgs eventArgs)
         {
-            BugFreak.AgileReporter.Instance.BeginReport(eventArgs.Exception);
+            Bugfreak.BugFreak.Instance.BeginReport(eventArgs.Exception);
         }
 
         private static void OnExit(object sender, ExitEventArgs exitEventArgs)
@@ -29,7 +29,7 @@
 
             app.DispatcherUnhandledException -= OnException;
             app.Exit -= OnExit;
-            BugFreak.AgileReporter.Dispose();
+            Bugfreak.BugFreak.Dispose();
         }
 
         private static void ReadSettings()

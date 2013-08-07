@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Net;
-using BugFreak.Components;
-using BugFreak.Framework;
+using Bugfreak.Components;
+using Bugfreak.Framework;
 
-namespace BugFreak.Results
+namespace Bugfreak.Results
 {
     public class RequestBuildResult : IResult
     {

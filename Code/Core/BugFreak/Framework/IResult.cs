@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BugFreak.Framework
+namespace Bugfreak.Framework
 {
     public interface IResult
     {

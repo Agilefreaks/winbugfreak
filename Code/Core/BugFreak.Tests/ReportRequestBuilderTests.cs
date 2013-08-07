@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using BugFreak;
-using BugFreak.Components;
-using BugFreak.Framework;
-using BugFreak.Results;
+using Bugfreak;
+using Bugfreak.Components;
+using Bugfreak.Framework;
+using Bugfreak.Results;
 using Moq;
 using NUnit.Framework;
 
@@ -71,7 +71,7 @@ namespace AgileBug.Tests
         {
             new SequentialResult(new[] { new RequestBuildResult(_subject, new ErrorReport()) }).Execute(new ExecutionContext());
 
-            _mockWebRequest.VerifySet(m => m.Method, "POST");
+            _mockWebRequest.VerifySet(m => m.Method = "POST");
         }
 
         [Test]
@@ -128,7 +128,7 @@ namespace AgileBug.Tests
 
             new SequentialResult(new[] { new RequestBuildResult(_subject, new ErrorReport()) }).Execute(new ExecutionContext());
 
-            _mockWebRequest.VerifySet(m => m.ContentType, "contentType");
+            _mockWebRequest.VerifySet(m => m.ContentType = "contentType");
         }
     }
 }

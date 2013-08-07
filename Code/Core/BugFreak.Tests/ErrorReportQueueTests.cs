@@ -1,5 +1,5 @@
-﻿using BugFreak;
-using BugFreak.Components;
+﻿using Bugfreak;
+using Bugfreak.Components;
 using NUnit.Framework;
 
 namespace AgileBug.Tests

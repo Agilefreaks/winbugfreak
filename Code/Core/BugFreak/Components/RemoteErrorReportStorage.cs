@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using BugFreak.Framework;
-using BugFreak.Results;
+using Bugfreak.Framework;
+using Bugfreak.Results;
 
-namespace BugFreak.Components
+namespace Bugfreak.Components
 {
     public class RemoteErrorReportStorage : IErrorReportStorage
     {

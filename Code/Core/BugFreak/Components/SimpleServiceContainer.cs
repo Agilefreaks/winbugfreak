@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using BugFreak.Framework;
+using Bugfreak.Framework;
 
-namespace BugFreak.Components
+namespace Bugfreak.Components
 {
     internal class SimpleServiceContainer : IServiceLocator
     {

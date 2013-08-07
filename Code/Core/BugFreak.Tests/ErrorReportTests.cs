@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using BugFreak;
+using Bugfreak;
 using NUnit.Framework;
 
 namespace AgileBug.Tests

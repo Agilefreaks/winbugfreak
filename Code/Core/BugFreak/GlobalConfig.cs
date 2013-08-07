@@ -1,7 +1,7 @@
-﻿using BugFreak.Components;
-using BugFreak.Framework;
+﻿using Bugfreak.Components;
+using Bugfreak.Framework;
 
-namespace BugFreak
+namespace Bugfreak
 {
     public class GlobalConfig
     {

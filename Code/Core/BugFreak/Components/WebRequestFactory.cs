@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace BugFreak.Components
+namespace Bugfreak.Components
 {
     public class WebRequestFactory : IWebRequestCreate
     {

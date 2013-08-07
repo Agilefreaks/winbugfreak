@@ -7,7 +7,7 @@
     <ProjectGuid>{6423CEA7-9E46-48C4-B3C5-C0CFA5E5FF7A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BugFreak</RootNamespace>
+    <RootNamespace>Bugfreak</RootNamespace>
     <AssemblyName>BugFreak</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgileReporter.cs" />
+    <Compile Include="BugFreak.cs" />
     <Compile Include="Components\ErrorReportHandler.cs" />
     <Compile Include="Components\ErrorReportQueueListener.cs" />
     <Compile Include="Components\ErrorReportSaveCompletedEventArgs.cs" />

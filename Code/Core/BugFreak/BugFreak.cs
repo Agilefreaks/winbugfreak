@@ -1,9 +1,9 @@
 ﻿using System;
-using BugFreak.Components;
+using Bugfreak.Components;
 
-namespace BugFreak
+namespace Bugfreak
 {
-    public class AgileReporter : IReportingService
+    public class BugFreak : IReportingService
     {
         public static IReportingService Instance { get; internal set; }
 

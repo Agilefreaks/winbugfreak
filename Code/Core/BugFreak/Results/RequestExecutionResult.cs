@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net;
-using BugFreak.Framework;
+using Bugfreak.Framework;
 
-namespace BugFreak.Results
+namespace Bugfreak.Results
 {
     public class RequestExecutionResult : IResult
     {

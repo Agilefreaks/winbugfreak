@@ -7,7 +7,7 @@
     <ProjectGuid>{A27585F1-FCEE-407A-AFF0-F4D2300CA226}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BugFreak.WPF</RootNamespace>
+    <RootNamespace>Bugfreak.WPF</RootNamespace>
     <AssemblyName>BugFreak.WPF</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -42,8 +42,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Core\BugFreak\AgileReporter.cs">
-      <Link>Core\AgileReporter.cs</Link>
+    <Compile Include="..\Core\BugFreak\BugFreak.cs">
+      <Link>Core\BugFreak.cs</Link>
     </Compile>
     <Compile Include="..\Core\BugFreak\Collections\ObservableList.cs">
       <Link>Core\Collections\ObservableList.cs</Link>
@@ -135,7 +135,7 @@
     <Compile Include="..\Core\BugFreak\Results\RequestExecutionResult.cs">
       <Link>Core\Results\RequestExecutionResult.cs</Link>
     </Compile>
-    <Compile Include="AgileReporter.cs" />
+    <Compile Include="BugFreak.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

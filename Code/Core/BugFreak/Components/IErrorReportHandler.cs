@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using BugFreak.Framework;
+using Bugfreak.Framework;
 
-namespace BugFreak.Components
+namespace Bugfreak.Components
 {
     public interface IErrorReportHandler : IDisposable
     {

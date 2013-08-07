@@ -1,15 +1,24 @@
 ﻿using System;
 using System.Net;
 
-namespace BugFreak.Components
+namespace Bugfreak.Components
 {
     internal class Initializer
     {
         public static void Initialize()
         {
+            SetDefaults();
             VerifySettings();
             InitServices();
             InitReporter();
+        }
+
+        private static void SetDefaults()
+        {
+            if (!Uri.IsWellFormedUriString(GlobalConfig.Settings.ServiceEndPoint, UriKind.Absolute))
+            {
+                GlobalConfig.Settings.ServiceEndPoint = "http://bugfreak.co/v1/api/errors";
+            }
         }
 
         private static void VerifySettings()
@@ -54,7 +63,7 @@ namespace BugFreak.Components
 
         private static void InitReporter()
         {
-            AgileReporter.Instance = new AgileReporter();
+            BugFreak.Instance = new BugFreak();
         }
     }
 }

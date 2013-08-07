@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BugFreak.Components
+namespace Bugfreak.Components
 {
     public class ErrorReportSaveCompletedEventArgs : EventArgs
     {
