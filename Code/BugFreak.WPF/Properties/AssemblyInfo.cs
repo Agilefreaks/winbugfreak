@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("BugFreak.WPF")]
-[assembly: AssemblyDescription("Wpf integration for BugFreak, the error reporting tool. More info at https://github.com/Agilefreaks/winbugfreak")]
+[assembly: AssemblyDescription("BugFreak for Wpf. Easily track your applications errors. More info at https://bugfreak.co")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AgileFreaks")]
 [assembly: AssemblyProduct("BugFreak.WPF")]
