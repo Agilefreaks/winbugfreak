@@ -7,9 +7,18 @@ namespace BugFreak.Components
     {
         public static void Initialize()
         {
+            SetDefaults();
             VerifySettings();
             InitServices();
             InitReporter();
+        }
+
+        private static void SetDefaults()
+        {
+            if (!Uri.IsWellFormedUriString(GlobalConfig.Settings.ServiceEndPoint, UriKind.Absolute))
+            {
+                GlobalConfig.Settings.ServiceEndPoint = "http://bugfreak.co/v1/api/errors";
+            }
         }
 
         private static void VerifySettings()

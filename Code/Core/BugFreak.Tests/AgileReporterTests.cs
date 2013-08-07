@@ -99,12 +99,13 @@ namespace AgileBug.Tests
         }
 
         [Test]
-        [ExpectedException(typeof(ArgumentException))]
-        public void Init_WhenInvalidServiceEndpoint_RaisesArgumentException()
+        public void Init_WhenInvalidServiceEndpoint_DoesNotRaiseException()
         {
             GlobalConfig.Settings.ServiceEndPoint = "http:/test.com";
 
             AgileReporter.Init();
+
+            Assert.Pass();
         }
 
         [Test]
@@ -179,6 +180,30 @@ namespace AgileBug.Tests
             AgileReporter.Dispose();
 
             _mockErrorReportQueueListener.Verify(m => m.Dispose());
+        }
+
+        [Test]
+        public void Init_WhenServiceEndpointIsNotSet_SetsDefault()
+        {
+            GlobalConfig.Settings.Token = "token";
+            GlobalConfig.Settings.ApiKey = "apikey";
+            GlobalConfig.Settings.ServiceEndPoint = null;
+
+            AgileReporter.Init();
+
+            Assert.AreEqual("http://bugfreak.co/v1/api/errors", GlobalConfig.Settings.ServiceEndPoint);
+        }
+
+        [Test]
+        public void Init_WhenServiceEndpointIsSet_DoesNotOverwrite()
+        {
+            GlobalConfig.Settings.Token = "token";
+            GlobalConfig.Settings.ApiKey = "apikey";
+            GlobalConfig.Settings.ServiceEndPoint = "http://test.com";
+
+            AgileReporter.Init();
+
+            Assert.AreEqual("http://test.com", GlobalConfig.Settings.ServiceEndPoint);
         }
     }
 }
