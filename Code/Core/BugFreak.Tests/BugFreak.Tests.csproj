@@ -42,7 +42,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgileReporterTests.cs" />
+    <Compile Include="ReportingServiceTests.cs" />
     <Compile Include="ErrorReportHandlerTests.cs" />
     <Compile Include="ErrorReportQueueListenerTests.cs" />
     <Compile Include="ErrorReportQueueTests.cs" />

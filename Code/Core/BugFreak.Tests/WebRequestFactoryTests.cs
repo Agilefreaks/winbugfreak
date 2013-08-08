@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net;
-using Bugfreak.Components;
+using BugFreak.Components;
 using NUnit.Framework;
 
 namespace BugFreak.Tests

@@ -1,13 +1,25 @@
 ﻿using System;
 using System.Linq;
-using Bugfreak;
+using BugFreak;
 using NUnit.Framework;
 
 namespace BugFreak.Tests
 {
+    using System.Collections.Generic;
+
+    using BugFreak.Components;
+
     [TestFixture]
     public class ErrorReportTests
     {
+        private class MockErrorDataProvider : IErrorDataProvider
+        {
+            public List<KeyValuePair<string, string>> GetData()
+            {
+                return new List<KeyValuePair<string, string>> { new KeyValuePair<string, string>("test", "test")};
+            }
+        }
+
         [Test]
         public void FromException_WhenExceptionIsNull_ReturnsNull()
         {
@@ -30,11 +42,11 @@ namespace BugFreak.Tests
         public void FromException_Always_AddsAdditionalData()
         {
             var exception = new Exception();
-            exception.Data.Add("myKey", "myValue");
+            GlobalConfig.ErrorDataProviders.Add(new MockErrorDataProvider());
 
             var result = ErrorReport.FromException(exception);
 
-            Assert.AreEqual("myValue", result.AdditionalData.First(kvp => kvp.Key == "myKey").Value);
+            Assert.AreEqual("test", result.AdditionalData.First(kvp => kvp.Key == "test").Value);
         }
     }
 }

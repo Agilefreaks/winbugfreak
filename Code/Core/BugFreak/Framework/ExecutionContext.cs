@@ -1,4 +1,4 @@
-﻿namespace Bugfreak.Framework
+﻿namespace BugFreak.Framework
 {
     public class ExecutionContext
     {

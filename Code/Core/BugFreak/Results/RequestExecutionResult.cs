@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Net;
-using Bugfreak.Framework;
+using BugFreak.Framework;
 
-namespace Bugfreak.Results
+namespace BugFreak.Results
 {
+    using global::BugFreak.Framework;
+
     public class RequestExecutionResult : IResult
     {
         private readonly WebRequest _request;

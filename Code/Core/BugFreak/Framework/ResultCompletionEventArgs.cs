@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bugfreak.Framework
+namespace BugFreak.Framework
 {
     public class ResultCompletionEventArgs : EventArgs
     {

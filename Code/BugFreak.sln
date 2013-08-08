@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugFreak.Silverlight", "Bug
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugFreak.WPF", "BugFreak.WPF\BugFreak.WPF.csproj", "{A27585F1-FCEE-407A-AFF0-F4D2300CA226}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugFreak.Silverlight.Tests", "BugFreak.Silverlight.Tests\BugFreak.Silverlight.Tests.csproj", "{56E7CE6B-783A-4785-A456-471C0451513B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugFreak.WPF.Tests", "BugFreak.WPF.Tests\BugFreak.WPF.Tests.csproj", "{73982C18-43D0-4D58-859E-9DC7D26AE495}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{A27585F1-FCEE-407A-AFF0-F4D2300CA226}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A27585F1-FCEE-407A-AFF0-F4D2300CA226}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A27585F1-FCEE-407A-AFF0-F4D2300CA226}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56E7CE6B-783A-4785-A456-471C0451513B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56E7CE6B-783A-4785-A456-471C0451513B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56E7CE6B-783A-4785-A456-471C0451513B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56E7CE6B-783A-4785-A456-471C0451513B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73982C18-43D0-4D58-859E-9DC7D26AE495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73982C18-43D0-4D58-859E-9DC7D26AE495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73982C18-43D0-4D58-859E-9DC7D26AE495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73982C18-43D0-4D58-859E-9DC7D26AE495}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

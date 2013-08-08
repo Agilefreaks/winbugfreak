@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Bugfreak.Framework;
-using Bugfreak.Results;
+using BugFreak.Framework;
+using BugFreak.Results;
 
-namespace Bugfreak.Components
+namespace BugFreak.Components
 {
+    using global::BugFreak.Framework;
+    using global::BugFreak.Results;
+
     public class ErrorReportHandler : IErrorReportHandler
     {
         private IList<IErrorReportStorage> _storageLocations;

@@ -1,8 +1,10 @@
-﻿using Bugfreak.Components;
-using Bugfreak.Framework;
-
-namespace Bugfreak
+﻿namespace BugFreak
 {
+    using System.Collections.Generic;
+
+    using global::BugFreak.Components;
+    using global::BugFreak.Framework;
+
     public class GlobalConfig
     {
         public class Settings
@@ -17,5 +19,12 @@ namespace Bugfreak
         public static IServiceLocator ServiceLocator { get; set; }
 
         public static IErrorReportSerializer ErrorReportSerializer { get; set; }
+
+        public static List<IErrorDataProvider> ErrorDataProviders { get; set; }
+
+        static GlobalConfig()
+        {
+            ErrorDataProviders = new List<IErrorDataProvider>();
+        }
     }
 }

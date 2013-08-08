@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bugfreak.Components
+namespace BugFreak.Components
 {
     public interface IErrorReportStorage
     {

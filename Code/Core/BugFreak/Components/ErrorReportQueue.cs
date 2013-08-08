@@ -1,8 +1,10 @@
 ﻿using System.Linq;
-using Bugfreak.Collections;
+using BugFreak.Collections;
 
-namespace Bugfreak.Components
+namespace BugFreak.Components
 {
+    using global::BugFreak.Collections;
+
     public class ErrorReportQueue : ObservableList<ErrorReport>, IErrorReportQueue
     {
         public void Enqueue(ErrorReport errorReport)

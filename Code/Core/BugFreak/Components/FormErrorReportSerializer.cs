@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Bugfreak.Components
+namespace BugFreak.Components
 {
     public class FormErrorReportSerializer : IErrorReportSerializer
     {

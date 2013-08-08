@@ -1,11 +1,9 @@
-﻿using Bugfreak;
-using Bugfreak.Components;
+﻿using BugFreak;
+using BugFreak.Components;
 using NUnit.Framework;
 
 namespace BugFreak.Tests
 {
-    using BugFreak = Bugfreak.BugFreak;
-
     [TestFixture]
     public class GlobalConfigTests
     {
@@ -15,8 +13,8 @@ namespace BugFreak.Tests
             GlobalConfig.Settings.Token = "v2.2";
             GlobalConfig.Settings.ApiKey = "apiKey";
             GlobalConfig.Settings.ServiceEndPoint = "http://myTest.com";
-            
-            BugFreak.Init();
+
+            ReportingService.Init();
         }
 
         [TearDown]
@@ -25,6 +23,12 @@ namespace BugFreak.Tests
             GlobalConfig.Settings.Token = null;
             GlobalConfig.Settings.ApiKey = null;
             GlobalConfig.Settings.ServiceEndPoint = null;
+        }
+
+        [Test]
+        public void ErrorDataProviders_IsNotNull()
+        {
+            Assert.IsNotNull(GlobalConfig.ErrorDataProviders);
         }
 
         [Test]

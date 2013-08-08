@@ -1,9 +1,12 @@
 ﻿using System;
-using Bugfreak.Components;
-using Bugfreak.Framework;
+using BugFreak.Components;
+using BugFreak.Framework;
 
-namespace Bugfreak.Results
+namespace BugFreak.Results
 {
+    using global::BugFreak.Components;
+    using global::BugFreak.Framework;
+
     public class ErrorReportSaveResult : IResult
     {
         private ErrorReport _report;

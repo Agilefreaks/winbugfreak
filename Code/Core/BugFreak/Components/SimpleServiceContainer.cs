@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Bugfreak.Framework;
+using BugFreak.Framework;
 
-namespace Bugfreak.Components
+namespace BugFreak.Components
 {
+    using global::BugFreak.Framework;
+
     internal class SimpleServiceContainer : IServiceLocator
     {
         private readonly Dictionary<Type, List<object>> _instanceDictionary;

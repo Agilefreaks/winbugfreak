@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace Bugfreak.Components
+namespace BugFreak.Components
 {
     public class ReportRequestBuildCompletedEventArgs : EventArgs
     {
