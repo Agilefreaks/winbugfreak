@@ -3,7 +3,7 @@ using System.Linq;
 using Bugfreak;
 using NUnit.Framework;
 
-namespace AgileBug.Tests
+namespace BugFreak.Tests
 {
     [TestFixture]
     public class ErrorReportTests

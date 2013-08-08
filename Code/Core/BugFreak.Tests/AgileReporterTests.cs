@@ -6,8 +6,10 @@ using Bugfreak.Framework;
 using Moq;
 using NUnit.Framework;
 
-namespace AgileBug.Tests
+namespace BugFreak.Tests
 {
+    using BugFreak = Bugfreak.BugFreak;
+
     [TestFixture]
     public class AgileReporterTests
     {

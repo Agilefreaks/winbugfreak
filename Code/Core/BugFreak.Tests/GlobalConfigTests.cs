@@ -2,8 +2,10 @@
 using Bugfreak.Components;
 using NUnit.Framework;
 
-namespace AgileBug.Tests
+namespace BugFreak.Tests
 {
+    using BugFreak = Bugfreak.BugFreak;
+
     [TestFixture]
     public class GlobalConfigTests
     {
