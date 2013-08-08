@@ -1,7 +1,7 @@
 Winbugfreak
 ===========
 
-Bug tracking client for wpf/silverlight applications, see [server](https://github.com/agilefreaks/apibugfreak)
+Bug tracking client for wpf/silverlight applications, see [http://bugfreak.co](http://bugfreak.co)
 
 Overview
 ========
