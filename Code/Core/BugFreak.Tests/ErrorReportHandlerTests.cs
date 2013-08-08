@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Bugfreak;
-using Bugfreak.Components;
-using Bugfreak.Framework;
-using Moq;
-using NUnit.Framework;
-
-namespace AgileBug.Tests
+﻿namespace BugFreak.Tests
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using BugFreak.Components;
+    using BugFreak.Framework;
+    using Moq;
+    using NUnit.Framework;
+
     [TestFixture]
     public class ErrorReportHandlerTests
     {

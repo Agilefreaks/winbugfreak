@@ -7,8 +7,8 @@
     <ProjectGuid>{CAAC4A64-B32A-4011-952E-DED8225DEA8C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AgileBug.Tests</RootNamespace>
-    <AssemblyName>AgileBug.Tests</AssemblyName>
+    <RootNamespace>BugFreak.Tests</RootNamespace>
+    <AssemblyName>BugFreak.Tests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -40,13 +40,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgileReporterTests.cs" />
+    <Compile Include="ReportingServiceTests.cs" />
     <Compile Include="ErrorReportHandlerTests.cs" />
     <Compile Include="ErrorReportQueueListenerTests.cs" />
     <Compile Include="ErrorReportQueueTests.cs" />

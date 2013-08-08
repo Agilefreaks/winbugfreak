@@ -1,12 +1,12 @@
 ﻿using System.Linq;
 using System.Net;
-using Bugfreak;
-using Bugfreak.Components;
-using Bugfreak.Framework;
+using BugFreak;
+using BugFreak.Components;
+using BugFreak.Framework;
 using Moq;
 using NUnit.Framework;
 
-namespace AgileBug.Tests
+namespace BugFreak.Tests
 {
     [TestFixture]
     public class RemoteErrorReportStorageTests

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Net;
-using Bugfreak.Components;
-using Bugfreak.Framework;
+using BugFreak.Components;
+using BugFreak.Framework;
 
-namespace Bugfreak.Results
+namespace BugFreak.Results
 {
+    using global::BugFreak.Components;
+    using global::BugFreak.Framework;
+
     public class RequestBuildResult : IResult
     {
         private IReportRequestBuilder _builder;

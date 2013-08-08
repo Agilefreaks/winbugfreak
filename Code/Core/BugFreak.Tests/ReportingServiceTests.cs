@@ -1,15 +1,15 @@
-﻿using System;
-using System.Net;
-using Bugfreak;
-using Bugfreak.Components;
-using Bugfreak.Framework;
-using Moq;
-using NUnit.Framework;
-
-namespace AgileBug.Tests
+﻿namespace BugFreak.Tests
 {
+    using System;
+    using System.Net;
+    using BugFreak;
+    using BugFreak.Components;
+    using BugFreak.Framework;
+    using Moq;
+    using NUnit.Framework;
+
     [TestFixture]
-    public class AgileReporterTests
+    public class ReportingServiceTests
     {
         private Mock<IErrorReportQueue> _mockErrorQueue;
         private Mock<IServiceLocator> _mockServiceProvider;
@@ -23,7 +23,7 @@ namespace AgileBug.Tests
             GlobalConfig.Settings.ServiceEndPoint = "http://myTests.com";
             GlobalConfig.Settings.ApiKey = "apiKey";
 
-            BugFreak.Init();
+            ReportingService.Init();
 
             _mockErrorQueue = new Mock<IErrorReportQueue>();
             _mockErrorReportHandler = new Mock<IErrorReportHandler>();
@@ -42,9 +42,9 @@ namespace AgileBug.Tests
         [TearDown]
         public void TearDown()
         {
-            if (BugFreak.Instance != null)
+            if (ReportingService.Instance != null)
             {
-                BugFreak.Dispose();
+                ReportingService.Dispose();
             }
 
             GlobalConfig.ServiceLocator = null;
@@ -56,7 +56,7 @@ namespace AgileBug.Tests
         [Test]
         public void Instance_Always_ReturnsNotNull()
         {
-            var instance = BugFreak.Instance;
+            var instance = ReportingService.Instance;
 
             Assert.IsNotNull(instance);
         }
@@ -64,8 +64,8 @@ namespace AgileBug.Tests
         [Test]
         public void Instance_Always_ReturnsSameInstance()
         {
-            var instance1 = BugFreak.Instance;
-            var instance2 = BugFreak.Instance;
+            var instance1 = ReportingService.Instance;
+            var instance2 = ReportingService.Instance;
 
             Assert.AreSame(instance1, instance2);
         }
@@ -73,9 +73,9 @@ namespace AgileBug.Tests
         [Test]
         public void Instance_AfterCallingDisposeOnCurrentInstance_ReturnsNull()
         {
-            BugFreak.Dispose();
+            ReportingService.Dispose();
 
-            var instance = BugFreak.Instance;
+            var instance = ReportingService.Instance;
 
             Assert.IsNull(instance);
         }
@@ -86,7 +86,7 @@ namespace AgileBug.Tests
         {
             GlobalConfig.Settings.Token = null;
 
-            BugFreak.Init();
+            ReportingService.Init();
         }
         
         [Test]
@@ -95,7 +95,7 @@ namespace AgileBug.Tests
         {
             GlobalConfig.Settings.ApiKey = null;
 
-            BugFreak.Init();
+            ReportingService.Init();
         }
 
         [Test]
@@ -103,7 +103,7 @@ namespace AgileBug.Tests
         {
             GlobalConfig.Settings.ServiceEndPoint = "http:/test.com";
 
-            BugFreak.Init();
+            ReportingService.Init();
 
             Assert.Pass();
         }
@@ -113,7 +113,7 @@ namespace AgileBug.Tests
         {
             GlobalConfig.Settings.Token = "user-token";
 
-            BugFreak.Init();
+            ReportingService.Init();
 
             Assert.IsTrue(GlobalConfig.ErrorReportSerializer is FormErrorReportSerializer);
         }
@@ -123,7 +123,7 @@ namespace AgileBug.Tests
         {
             GlobalConfig.Settings.Token = "user-token";
 
-            BugFreak.Init();
+            ReportingService.Init();
 
             Assert.IsTrue(GlobalConfig.ServiceLocator.GetService<IErrorReportStorage>() is RemoteErrorReportStorage);
         }
@@ -133,7 +133,7 @@ namespace AgileBug.Tests
         {
             GlobalConfig.Settings.Token = "user-token";
 
-            BugFreak.Init();
+            ReportingService.Init();
 
             Assert.IsTrue(GlobalConfig.ServiceLocator.GetService<IErrorReportQueueListener>() is ErrorReportQueueListener);
         }
@@ -143,7 +143,7 @@ namespace AgileBug.Tests
         {
             GlobalConfig.Settings.Token = "user-token";
 
-            BugFreak.Init();
+            ReportingService.Init();
 
             Assert.IsTrue(GlobalConfig.ServiceLocator.GetService<IErrorReportHandler>() is ErrorReportHandler);
         }
@@ -153,7 +153,7 @@ namespace AgileBug.Tests
         {
             GlobalConfig.Settings.Token = "user-token";
 
-            BugFreak.Init();
+            ReportingService.Init();
 
             Assert.IsTrue(GlobalConfig.ServiceLocator.GetService<IWebRequestCreate>() is WebRequestFactory);
         }
@@ -161,7 +161,7 @@ namespace AgileBug.Tests
         [Test]
         public void BeginRequest_Always_CallsReportQueueEnqueue()
         {
-            BugFreak.Instance.BeginReport(new Exception());
+            ReportingService.Instance.BeginReport(new Exception());
 
             _mockErrorQueue.Verify(m => m.Enqueue(It.IsAny<ErrorReport>()));
         }
@@ -169,7 +169,7 @@ namespace AgileBug.Tests
         [Test]
         public void Dispose_Always_CallsHandlerDispose()
         {
-            BugFreak.Dispose();
+            ReportingService.Dispose();
 
             _mockErrorReportHandler.Verify(m => m.Dispose());
         }
@@ -177,7 +177,7 @@ namespace AgileBug.Tests
         [Test]
         public void Dispose_Always_CallsListenerDispose()
         {
-            BugFreak.Dispose();
+            ReportingService.Dispose();
 
             _mockErrorReportQueueListener.Verify(m => m.Dispose());
         }
@@ -189,7 +189,7 @@ namespace AgileBug.Tests
             GlobalConfig.Settings.ApiKey = "apikey";
             GlobalConfig.Settings.ServiceEndPoint = null;
 
-            BugFreak.Init();
+            ReportingService.Init();
 
             Assert.AreEqual("http://bugfreak.co/v1/api/errors", GlobalConfig.Settings.ServiceEndPoint);
         }
@@ -201,7 +201,7 @@ namespace AgileBug.Tests
             GlobalConfig.Settings.ApiKey = "apikey";
             GlobalConfig.Settings.ServiceEndPoint = "http://test.com";
 
-            BugFreak.Init();
+            ReportingService.Init();
 
             Assert.AreEqual("http://test.com", GlobalConfig.Settings.ServiceEndPoint);
         }

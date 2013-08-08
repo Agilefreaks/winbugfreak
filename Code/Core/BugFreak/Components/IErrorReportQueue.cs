@@ -1,8 +1,10 @@
 ﻿using System;
-using Bugfreak.Collections;
+using BugFreak.Collections;
 
-namespace Bugfreak.Components
+namespace BugFreak.Components
 {
+    using global::BugFreak.Collections;
+
     public interface IErrorReportQueue
     {
         event EventHandler<ObservableList<ErrorReport>.ListChangedEventArgs> ItemAdded;

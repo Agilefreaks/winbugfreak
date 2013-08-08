@@ -1,14 +1,14 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using Bugfreak;
-using Bugfreak.Components;
-using Bugfreak.Framework;
-using Bugfreak.Results;
+using BugFreak;
+using BugFreak.Components;
+using BugFreak.Framework;
+using BugFreak.Results;
 using Moq;
 using NUnit.Framework;
 
-namespace AgileBug.Tests
+namespace BugFreak.Tests
 {
     [TestFixture]
     public class ReportRequestBuilderTests

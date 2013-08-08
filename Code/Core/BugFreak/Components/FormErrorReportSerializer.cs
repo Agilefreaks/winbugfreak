@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Text;
 
-namespace Bugfreak.Components
+namespace BugFreak.Components
 {
     public class FormErrorReportSerializer : IErrorReportSerializer
     {
         private const string ContentType = "application/x-www-form-urlencoded";
         private const string Format = "{0}={1}";
+        private const string AdditionalDataFormat = "additionalData[{0}]={1}";
         private const string Separator = "&";
 
         public string GetContentType()
@@ -27,7 +28,7 @@ namespace Bugfreak.Components
             foreach (var data in report.AdditionalData)
             {
                 stringBuilder.Append(Separator);
-                stringBuilder.Append(string.Format(Format, data.Key, data.Value));
+                stringBuilder.Append(string.Format(AdditionalDataFormat, data.Key, data.Value));
             }
 
             return stringBuilder.ToString();

@@ -1,22 +1,33 @@
-﻿namespace Bugfreak.Silverlight
+﻿namespace BugFreak
 {
     using System;
     using System.Windows;
 
+    using global::BugFreak.Components;
+
     public class BugFreak
     {
+        /// <summary>
+        /// User Hook don't instantiate this class
+        /// </summary>
+        private BugFreak()
+        {
+        }
+
         public static void Hook()
         {
             var app = Application.Current;
 
-            Bugfreak.BugFreak.Init();
+            ReportingService.Init();
+            GlobalConfig.ErrorDataProviders.Add(new SilverlightErrorDataProvider());
+
             app.Exit += OnExit;
             app.UnhandledException += OnException;
         }
 
         private static void OnException(object sender, ApplicationUnhandledExceptionEventArgs eventArgs)
         {
-            Bugfreak.BugFreak.Instance.BeginReport(eventArgs.ExceptionObject);
+            ReportingService.Instance.BeginReport(eventArgs.ExceptionObject);
 
             eventArgs.Handled = true;
         }
@@ -27,7 +38,7 @@
 
             app.UnhandledException -= OnException;
             app.Exit -= OnExit;
-            Bugfreak.BugFreak.Dispose();
+            ReportingService.Dispose();
         }
     }
 }

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using Bugfreak.Framework;
-using Bugfreak.Results;
+using BugFreak.Framework;
+using BugFreak.Results;
 
-namespace Bugfreak.Components
+namespace BugFreak.Components
 {
+    using global::BugFreak.Framework;
+    using global::BugFreak.Results;
+
     public class RemoteErrorReportStorage : IErrorReportStorage
     {
         private readonly IReportRequestBuilder _reportRequestBuilder;

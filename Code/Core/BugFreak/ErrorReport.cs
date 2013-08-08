@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Bugfreak
+namespace BugFreak
 {
     public class ErrorReport
     {
@@ -36,9 +36,13 @@ namespace Bugfreak
                                         AdditionalData = new List<KeyValuePair<string, string>>()
                                     };
 
-            foreach (var key in exc.Data.Keys.Cast<object>().Where(key => exc.Data[key] != null))
+            // Populate additional data
+            foreach (var errorDataProvider in GlobalConfig.ErrorDataProviders)
             {
-                errorReport.AdditionalData.Add(new KeyValuePair<string, string>(key.ToString(), exc.Data[key].ToString()));
+                foreach (var keyValuePair in errorDataProvider.GetData())
+                {
+                    errorReport.AdditionalData.Add(keyValuePair);
+                }
             }
 
             return errorReport;

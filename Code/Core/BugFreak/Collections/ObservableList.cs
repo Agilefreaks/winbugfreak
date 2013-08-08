@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections;
 
-namespace Bugfreak.Collections
+namespace BugFreak.Collections
 {
     public class ObservableList<T> : IList<T>
     {

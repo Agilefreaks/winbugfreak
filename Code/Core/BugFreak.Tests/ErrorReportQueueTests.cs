@@ -1,8 +1,8 @@
-﻿using Bugfreak;
-using Bugfreak.Components;
+﻿using BugFreak;
+using BugFreak.Components;
 using NUnit.Framework;
 
-namespace AgileBug.Tests
+namespace BugFreak.Tests
 {
     [TestFixture]
     public class ErrorReportQueueTests

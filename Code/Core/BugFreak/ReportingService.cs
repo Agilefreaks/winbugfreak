@@ -1,9 +1,11 @@
 ﻿using System;
-using Bugfreak.Components;
+using BugFreak.Components;
 
-namespace Bugfreak
+namespace BugFreak
 {
-    public class BugFreak : IReportingService
+    using global::BugFreak.Components;
+
+    public class ReportingService : IReportingService
     {
         public static IReportingService Instance { get; internal set; }
 

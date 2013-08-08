@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bugfreak
+namespace BugFreak
 {
     public interface IReportingService
     {
