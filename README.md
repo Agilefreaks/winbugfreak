@@ -53,14 +53,9 @@ BugFreak.GlobalConfig.Settings.ServiceEndpoint = "http://service.com";
 Register
 ========
 
-Hook tracking in WPF
+Hook tracking
 ```
-BugFreak.WPF.AgileReporter.Hook();
-```
-
-Hook tracking in Silverlight
-```
-BugFreak.Silverlight.AgileReporter.Hook();
+BugFreak.Hook();
 ```
 
 That's all folks, any uncatched exceptions will be reported back to the server
