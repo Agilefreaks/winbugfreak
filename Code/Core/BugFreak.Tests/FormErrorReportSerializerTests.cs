@@ -55,11 +55,12 @@ namespace BugFreak.Tests
                                       Source = "source",
                                       StackTrace = "stack trace"
                                   };
-            errorReport.AdditionalData.Add(new KeyValuePair<string, string>("OS", "4.2"));
+            errorReport.AdditionalData.Add(new KeyValuePair<string, string>("OS", "WinXp"));
+            errorReport.AdditionalData.Add(new KeyValuePair<string, string>("NET_VERSION", "3.5"));
 
             var result = _subject.Serialize(errorReport);
 
-            Assert.AreEqual("message=test%20message&source=source&stackTrace=stack%20trace&OS=4.2", result);
+            Assert.AreEqual("message=test%20message&source=source&stackTrace=stack%20trace&additionalData[OS]=WinXp&additionalData[NET_VERSION]=3.5", result);
         }
     }
 }
