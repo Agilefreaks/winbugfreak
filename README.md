@@ -1,7 +1,7 @@
 Winbugfreak
 ===========
 
-Bug tracking client for wpf/silverlight applications, see [server](https://github.com/agilefreaks/apibugfreak)
+Bug tracking client for wpf/silverlight applications, see [http://bugfreak.co](http://bugfreak.co)
 
 Overview
 ========
@@ -53,14 +53,9 @@ BugFreak.GlobalConfig.Settings.ServiceEndpoint = "http://service.com";
 Register
 ========
 
-Hook tracking in WPF
+Hook tracking
 ```
-BugFreak.WPF.AgileReporter.Hook();
-```
-
-Hook tracking in Silverlight
-```
-BugFreak.Silverlight.AgileReporter.Hook();
+BugFreak.Hook();
 ```
 
 That's all folks, any uncatched exceptions will be reported back to the server
