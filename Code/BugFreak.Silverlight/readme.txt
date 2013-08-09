@@ -13,8 +13,8 @@ In your App.xaml.cs
         {
             this.RootVisual = new MainPage();
 
-            GlobalConfig.Settings.ApiKey = "9dd7f8aa-6b29-4022-80fa-441609ca1547";
-            GlobalConfig.Settings.Token = "5204f224d2443315be000027";
+            GlobalConfig.Settings.ApiKey = "[apiKey]";
+            GlobalConfig.Settings.Token = "[token]";
 
             BugFreak.Hook();
         }
