@@ -2,6 +2,7 @@
 SETUP
 ==================================================
 
+Check sample app at https://github.com/Agilefreaks/winbugfreak/tree/master/Code/Wpf.Sample
 In you App.xaml.cs
 
 	using BugFreak;

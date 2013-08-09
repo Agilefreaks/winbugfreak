@@ -6,7 +6,6 @@
 
     public partial class App
     {
-
         public App()
         {
             this.Startup += this.Application_Startup;

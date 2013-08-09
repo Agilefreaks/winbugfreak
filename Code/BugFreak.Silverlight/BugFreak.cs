@@ -28,8 +28,6 @@
         private static void OnException(object sender, ApplicationUnhandledExceptionEventArgs eventArgs)
         {
             ReportingService.Instance.BeginReport(eventArgs.ExceptionObject);
-
-            eventArgs.Handled = true;
         }
 
         private static void OnExit(object sender, EventArgs eventArgs)
