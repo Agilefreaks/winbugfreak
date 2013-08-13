@@ -25,37 +25,52 @@ For Silverlight
 PM> Install-Package BugFreak.Silverlight
 ```
 
-Configuration
+Setup
 =============
 
-For WPF update you config file
-```
-<configSections>
-	<section name="BugFreak" type="System.Configuration.AppSettingsSection, System.Configuration, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-</configSections>
+For WPF add a hook in your App.xaml.cs#OnStartup method
+```csharp
+  using BugFreak;
 
-<BugFreak>
-	<add key="ServiceEndpoint" value="http://endpoint.ro"/>
-	<add key="ApiKey" value="apiKey"/>
-	<add key="Token" value="token"/>
-</BugFreak>
+  public partial class App
+  {
+      protected override void OnStartup(System.Windows.StartupEventArgs e)
+      {
+          base.OnStartup(e);
 
-```
+          GlobalConfig.Settings.ApiKey = "ApiKey";
+          GlobalConfig.Settings.Token = "Token";
 
-For Silverlight user add the configuration in `App.xaml.cs#Application_Startup`
+          BugFreak.Hook();
+      }
+  }
 
-```
-BugFreak.GlobalConfig.Settings.ApiKey = "apiKey";
-BugFreak.GlobalConfig.Settings.Token = "token";
-BugFreak.GlobalConfig.Settings.ServiceEndpoint = "http://service.com";
 ```
 
-Register
-========
+For Silverlight add a hook it up in your App.xaml.cs
 
-Hook tracking
-```
-BugFreak.Hook();
+```csharp
+  using BugFreak;
+
+  public partial class App
+  {
+      public App()
+      {
+          this.Startup += this.Application_Startup;
+
+          InitializeComponent();
+      }
+
+      private void Application_Startup(object sender, StartupEventArgs e)
+      {
+          this.RootVisual = new MainPage();
+
+          GlobalConfig.Settings.ApiKey = "#{api_key(current_user)}";
+          GlobalConfig.Settings.Token = "#{token}";
+
+          BugFreak.Hook();
+      }
+  }
 ```
 
 That's all folks, any uncatched exceptions will be reported back to the server
