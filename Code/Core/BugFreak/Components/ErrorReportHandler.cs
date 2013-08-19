@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BugFreak.Framework;
-using BugFreak.Results;
 
 namespace BugFreak.Components
 {
@@ -17,9 +15,9 @@ namespace BugFreak.Components
             _storageLocations = GlobalConfig.ServiceLocator.GetServices<IErrorReportStorage>();
         }
 
-        public IEnumerable<IResult> Handle(ErrorReport report)
+        public void Handle(ErrorReport report)
         {
-            return _storageLocations.Select(storage => new ErrorReportSaveResult(storage, report)).Cast<IResult>();
+            new SequentialResult(_storageLocations.Select(storage => new ErrorReportSaveResult(storage, report)).Cast<IResult>()).Execute(new ExecutionContext());
         }
 
         public void Dispose()

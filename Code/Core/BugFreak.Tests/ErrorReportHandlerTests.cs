@@ -1,8 +1,6 @@
 ﻿namespace BugFreak.Tests
 {
     using System.Collections.Generic;
-    using System.Linq;
-
     using BugFreak.Components;
     using BugFreak.Framework;
     using Moq;
@@ -47,7 +45,7 @@
         {
             var errorReport = new ErrorReport();
 
-            new SequentialResult(_subject.Handle(errorReport)).Execute(new ExecutionContext());
+            _subject.Handle(errorReport);
 
             _mockRemoteErrorReportStorage.Verify(m => m.SaveAsync(errorReport));
         }
@@ -59,7 +57,7 @@
             _mockRemoteErrorReportStorage.Setup(m => m.SaveAsync(errorReport))
                 .Raises(m => m.SaveCompleted += null, new ErrorReportSaveCompletedEventArgs { Success = false });
 
-            new SequentialResult(_subject.Handle(errorReport)).Execute(new ExecutionContext());
+            _subject.Handle(errorReport);
 
             _mockLocalErrorReportStorage.Verify(m => m.SaveAsync(errorReport));
         }
@@ -71,7 +69,7 @@
             _mockRemoteErrorReportStorage.Setup(m => m.SaveAsync(errorReport))
                 .Raises(m => m.SaveCompleted += null, new ErrorReportSaveCompletedEventArgs { Success = true });
 
-            _subject.Handle(errorReport).ToList();
+            _subject.Handle(errorReport);
 
             _mockLocalErrorReportStorage.Verify(m => m.SaveAsync(It.IsAny<ErrorReport>()), Times.Never());
         }

@@ -36,8 +36,7 @@ namespace BugFreak.Components
         {
             var item = _queue.Dequeue();
 
-            var result = new SequentialResult(_errorReportHandler.Handle(item));
-            result.Execute(new ExecutionContext());
+            _errorReportHandler.Handle(item);
         }
     }
 }
