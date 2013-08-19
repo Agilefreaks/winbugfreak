@@ -12,7 +12,7 @@
     <description>$description$</description>
     <releaseNotes>Beta version of BugFreak for MVC3</releaseNotes>
     <copyright>Copyright 2013</copyright>
-    <tags>error reporting exception handle</tags>
+    <tags>error reporting exception handle mvc</tags>
   </metadata>
    <files>
 		<file src="readme.txt" target="" />

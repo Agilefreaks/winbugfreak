@@ -1,4 +1,5 @@
 using System.Web.Mvc;
+using BugFreak;
 
 namespace Bugfreak.MVC3
 {
@@ -6,7 +7,7 @@ namespace Bugfreak.MVC3
     {
         public override void OnException(ExceptionContext filterContext)
         {
-            Bugfreak.BugFreak.Instance.BeginReport(filterContext.Exception);
+            ReportingService.Instance.BeginReport(filterContext.Exception);
         }
     }
 }

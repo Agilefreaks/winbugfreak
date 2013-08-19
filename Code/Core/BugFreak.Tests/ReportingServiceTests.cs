@@ -191,7 +191,7 @@
 
             ReportingService.Init();
 
-            Assert.AreEqual("http://bugfreak.co/v1/api/errors", GlobalConfig.Settings.ServiceEndPoint);
+            Assert.AreEqual("https://www.bugfreak.co/v1/api/errors", GlobalConfig.Settings.ServiceEndPoint);
         }
 
         [Test]

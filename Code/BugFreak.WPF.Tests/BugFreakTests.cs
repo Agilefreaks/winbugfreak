@@ -17,6 +17,14 @@
             GlobalConfig.Settings.ServiceEndPoint = "http://service.co";
         }
 
+        [TearDown]
+        public void TearDown()
+        {
+            GlobalConfig.Settings.Token = null;
+            GlobalConfig.Settings.ApiKey = null;
+            GlobalConfig.Settings.ServiceEndPoint = null;
+        }
+
         [Test]
         public void Hook_Always_AddsSilverlightErrorDataProvider()
         {
