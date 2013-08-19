@@ -1,4 +1,6 @@
-﻿namespace Bugfreak.MVC3
+﻿using BugFreak;
+
+namespace Bugfreak.MVC3
 {
     using System.Collections.Specialized;
     using System.Configuration;
@@ -10,7 +12,7 @@
         {
             ReadSettings();
 
-            Bugfreak.BugFreak.Init();
+            ReportingService.Init();
 
             GlobalFilters.Filters.Add(new ReportErrorAttribute());
         }

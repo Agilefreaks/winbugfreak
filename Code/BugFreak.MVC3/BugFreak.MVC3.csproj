@@ -70,9 +70,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Core\BugFreak\BugFreak.cs">
-      <Link>Core\BugFreak.cs</Link>
-    </Compile>
     <Compile Include="..\Core\BugFreak\Collections\ObservableList.cs">
       <Link>Core\Collections\ObservableList.cs</Link>
     </Compile>
@@ -90,6 +87,9 @@
     </Compile>
     <Compile Include="..\Core\BugFreak\Components\FormErrorReportSerializer.cs">
       <Link>Core\Components\FormErrorReportSerializer.cs</Link>
+    </Compile>
+    <Compile Include="..\Core\BugFreak\Components\IErrorDataProvider.cs">
+      <Link>Core\Components\IErrorDataProvider.cs</Link>
     </Compile>
     <Compile Include="..\Core\BugFreak\Components\IErrorReportHandler.cs">
       <Link>Core\Components\IErrorReportHandler.cs</Link>
@@ -131,7 +131,7 @@
       <Link>Core\Components\WebRequestFactory.cs</Link>
     </Compile>
     <Compile Include="..\Core\BugFreak\ErrorReport.cs">
-      <Link>Core\ErrorReport.cs</Link>
+      <Link>ErrorReport.cs</Link>
     </Compile>
     <Compile Include="..\Core\BugFreak\Framework\ExecutionContext.cs">
       <Link>Core\Framework\ExecutionContext.cs</Link>
@@ -149,10 +149,13 @@
       <Link>Core\Framework\SequentialResult.cs</Link>
     </Compile>
     <Compile Include="..\Core\BugFreak\GlobalConfig.cs">
-      <Link>Core\GlobalConfig.cs</Link>
+      <Link>GlobalConfig.cs</Link>
     </Compile>
     <Compile Include="..\Core\BugFreak\IReportingService.cs">
-      <Link>Core\IReportingService.cs</Link>
+      <Link>IReportingService.cs</Link>
+    </Compile>
+    <Compile Include="..\Core\BugFreak\ReportingService.cs">
+      <Link>ReportingService.cs</Link>
     </Compile>
     <Compile Include="..\Core\BugFreak\Results\ErrorReportSaveResult.cs">
       <Link>Core\Results\ErrorReportSaveResult.cs</Link>

@@ -17,7 +17,7 @@ namespace BugFreak.Components
         {
             if (!Uri.IsWellFormedUriString(GlobalConfig.Settings.ServiceEndPoint, UriKind.Absolute))
             {
-                GlobalConfig.Settings.ServiceEndPoint = "http://www.bugfreak.co/v1/api/errors";
+                GlobalConfig.Settings.ServiceEndPoint = "https://www.bugfreak.co/v1/api/errors";
             }
         }
 
