@@ -1,10 +1,10 @@
-﻿namespace Silverlight.Sample
-{
-    using System;
-    using System.Windows;
-    using BugFreak;
+﻿using System;
+using System.Windows;
+using BugFreak;
 
-    public partial class App
+namespace Silverlight.Sample
+{
+    public partial class App : Application
     {
         public App()
         {
@@ -17,12 +17,12 @@
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            this.RootVisual = new MainPage();
+            RootVisual = new MainPage();
 
             GlobalConfig.Settings.ApiKey = "9dd7f8aa-6b29-4022-80fa-441609ca1547";
             GlobalConfig.Settings.Token = "5204f224d2443315be000027";
 
-            BugFreak.Hook();
+            BugFreak.BugFreak.Hook();
         }
 
         private void Application_Exit(object sender, EventArgs e)

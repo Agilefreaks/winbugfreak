@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using BugFreak;
 using NUnit.Framework;
 
 namespace BugFreak.Tests

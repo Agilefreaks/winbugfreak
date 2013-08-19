@@ -1,7 +1,7 @@
 using System.Web.Mvc;
 using BugFreak;
 
-namespace Bugfreak.MVC3
+namespace BugFreak.MVC3
 {
     public class ReportErrorAttribute : HandleErrorAttribute
     {
