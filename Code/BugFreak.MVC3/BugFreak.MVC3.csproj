@@ -131,7 +131,7 @@
       <Link>Core\Components\WebRequestFactory.cs</Link>
     </Compile>
     <Compile Include="..\Core\BugFreak\ErrorReport.cs">
-      <Link>Core\ErrorReport.cs</Link>
+      <Link>ErrorReport.cs</Link>
     </Compile>
     <Compile Include="..\Core\BugFreak\Framework\ExecutionContext.cs">
       <Link>Core\Framework\ExecutionContext.cs</Link>
@@ -149,13 +149,13 @@
       <Link>Core\Framework\SequentialResult.cs</Link>
     </Compile>
     <Compile Include="..\Core\BugFreak\GlobalConfig.cs">
-      <Link>Core\GlobalConfig.cs</Link>
+      <Link>GlobalConfig.cs</Link>
     </Compile>
     <Compile Include="..\Core\BugFreak\IReportingService.cs">
-      <Link>Core\IReportingService.cs</Link>
+      <Link>IReportingService.cs</Link>
     </Compile>
     <Compile Include="..\Core\BugFreak\ReportingService.cs">
-      <Link>Core\ReportingService.cs</Link>
+      <Link>ReportingService.cs</Link>
     </Compile>
     <Compile Include="..\Core\BugFreak\Results\ErrorReportSaveResult.cs">
       <Link>Core\Results\ErrorReportSaveResult.cs</Link>
