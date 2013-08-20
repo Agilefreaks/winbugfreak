@@ -96,10 +96,10 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+      <HintPath>..\..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Providers">
-      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
