@@ -1,8 +1,6 @@
-﻿using System;
-using BugFreak.Components;
-
-namespace BugFreak
+﻿namespace BugFreak
 {
+    using System;
     using global::BugFreak.Components;
 
     public class ReportingService : IReportingService

@@ -62,7 +62,7 @@ namespace BugFreak.Components
 
             writer.Write(serializedError);
             writer.Flush();
-            writer.Close();
+            writer.Dispose();
 
             OnBuildCompleted(new ReportRequestBuildCompletedEventArgs { Result = request });
         }

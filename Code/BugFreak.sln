@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC3.Sample", "Samples\MVC3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silverlight.Sample", "Samples\Silverlight.Sample\Silverlight.Sample.csproj", "{DFEA50F5-3668-48C5-AFB4-C874E23E0786}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugFreak.WinRT", "BugFreak.WinRT\BugFreak.WinRT.csproj", "{B068DE33-0C58-4363-92AE-3A0D33B283C6}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugFreak.WinRT.Lib", "BugFreak.WinRT.Lib\BugFreak.WinRT.Lib.csproj", "{F7853041-052E-4539-B178-665C6A4154F0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugFreak.WinRT.Tests", "BugFreak.WinRT.Tests\BugFreak.WinRT.Tests.csproj", "{E2822050-3DD1-448E-818D-A8FC2B8CD083}"

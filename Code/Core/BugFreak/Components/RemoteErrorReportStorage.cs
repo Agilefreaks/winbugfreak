@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using BugFreak.Framework;
-using BugFreak.Results;
 
 namespace BugFreak.Components
 {
