@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugFreak.WinRT", "BugFreak.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugFreak.WinRT.Lib", "BugFreak.WinRT.Lib\BugFreak.WinRT.Lib.csproj", "{F7853041-052E-4539-B178-665C6A4154F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRT.Sample", "Samples\WinRT.Sample\WinRT.Sample.csproj", "{39F7BFC0-CF00-4374-B7F2-DFB235B4B588}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugFreak.WinRT.Tests", "BugFreak.WinRT.Tests\BugFreak.WinRT.Tests.csproj", "{E2822050-3DD1-448E-818D-A8FC2B8CD083}"
 EndProject
 Global
