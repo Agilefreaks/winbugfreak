@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("BugFreak.WinRT")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("BugFreak for WinRT. Easily track your applications errors. More info at https://bugfreak.co")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("AgileFreaks")]
 [assembly: AssemblyProduct("BugFreak.WinRT")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
