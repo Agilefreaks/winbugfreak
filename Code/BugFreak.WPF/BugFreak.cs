@@ -1,7 +1,5 @@
 ﻿namespace BugFreak
 {
-    using System.Collections.Specialized;
-    using System.Configuration;
     using System.Windows;
     using System.Windows.Threading;
 
@@ -16,11 +14,10 @@
         {
         }
 
-        public static void Hook()
+        public static void Hook(string apiKey, string token, Application app)
         {
-            var app = Application.Current;
-
-            ReadSettings();
+            GlobalConfig.ApiKey = apiKey;
+            GlobalConfig.Token = token;
 
             ReportingService.Init();
             GlobalConfig.ErrorDataProviders.Add(new WpfErrorDataProvider());
@@ -41,17 +38,6 @@
             app.DispatcherUnhandledException -= OnException;
             app.Exit -= OnExit;
             ReportingService.Dispose();
-        }
-
-        private static void ReadSettings()
-        {
-            var configSection = ConfigurationManager.GetSection("BugFreak") as NameValueCollection;
-            if (configSection != null)
-            {
-                GlobalConfig.ServiceEndPoint = configSection["ServiceEndpoint"];
-                GlobalConfig.ApiKey = configSection["ApiKey"];
-                GlobalConfig.Token = configSection["Token"];
-            }
         }
     }
 }

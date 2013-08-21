@@ -50,11 +50,8 @@ For WPF add a hook in your App.xaml.cs#OnStartup method
       protected override void OnStartup(System.Windows.StartupEventArgs e)
       {
           base.OnStartup(e);
-
-          GlobalConfig.Settings.ApiKey = "ApiKey";
-          GlobalConfig.Settings.Token = "Token";
-
-          BugFreak.Hook();
+		  
+		  BugFreak.Hook("ApiKey", "Token", this);
       }
   }
 

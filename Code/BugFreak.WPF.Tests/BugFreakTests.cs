@@ -30,7 +30,7 @@
         {
             try
             {
-                BugFreak.Hook();
+                BugFreak.Hook("apiKey", "token", null);
             }
             catch (NullReferenceException)
             {
