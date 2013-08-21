@@ -89,14 +89,13 @@ For Silverlight add a hook it up in your App.xaml.cs
 For WinRT add a hook it up in your App.xaml.cs
 
 ```csharp
+  using BugFreak;
+  
   public partial class App
   {
 	protected override void OnLaunched(LaunchActivatedEventArgs args)
 	{
-		BugFreak.WinRT.GlobalConfig.ApiKey = "ApiKey";
-		BugFreak.WinRT.GlobalConfig.Token = "Token";
-
-		BugFreak.WinRT.BugFreak.Hook();
+		BugFreak.Hook("ApiKey", "Token", this);
 	}
   }
 ```

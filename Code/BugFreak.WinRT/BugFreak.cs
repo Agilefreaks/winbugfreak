@@ -1,15 +1,16 @@
-﻿namespace BugFreak.WinRT
+﻿namespace BugFreak
 {
     using global::BugFreak.WinRT.Components;
     using Windows.UI.Xaml;
     
     public static class BugFreak
     {
-        public static void Hook()
+        public static void Hook(string apiKey, string token, Application app)
         {
-            var app = Application.Current;
-            
-            global::BugFreak.GlobalConfig.ErrorDataProviders.Add(new PackageInfoProvier());
+            GlobalConfig.ApiKey = apiKey;
+            GlobalConfig.Token = token;
+
+            GlobalConfig.ErrorDataProviders.Add(new PackageInfoProvier());
             ReportingService.Init();
             
             app.UnhandledException += OnException;

@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace BugFreak.WinRT
+﻿namespace BugFreak
 {
+    using System;
+
     public static class WinRTReportingService
     {
         public static void BeginReport(Exception exc)
