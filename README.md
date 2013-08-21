@@ -25,6 +25,11 @@ For Silverlight
 PM> Install-Package BugFreak.Silverlight
 ```
 
+For WinRT
+```
+PM> Install-Package BugFreak.WinRT
+```
+
 Setup
 =============
 
@@ -70,6 +75,26 @@ For Silverlight add a hook it up in your App.xaml.cs
 
           BugFreak.Hook();
       }
+  }
+```
+
+For WinRT add a hook it up in your App.xaml.cs
+
+```csharp
+  using BugFreak;
+
+  public partial class App
+  {
+	protected override void OnLaunched(LaunchActivatedEventArgs args)
+	{
+		GlobalConfig.ApiKey = "[apiKey]";
+		GlobalConfig.Token = "[token]";
+	
+		BugFreak.WinRT.BugFreak.Hook();
+
+		Frame rootFrame = Window.Current.Content as Frame;
+		// ...
+	}
   }
 ```
 
