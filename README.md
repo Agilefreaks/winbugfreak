@@ -30,6 +30,11 @@ For WinRT
 PM> Install-Package BugFreak.WinRT
 ```
 
+For MVC3
+```
+PM> Install-Package BugFreak.MVC3
+```
+
 Registration
 ============
 
