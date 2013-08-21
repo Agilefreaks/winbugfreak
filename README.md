@@ -74,11 +74,8 @@ For Silverlight add a hook it up in your App.xaml.cs
       private void Application_Startup(object sender, StartupEventArgs e)
       {
           this.RootVisual = new MainPage();
-
-          GlobalConfig.Settings.ApiKey = "ApiKey";
-          GlobalConfig.Settings.Token = "Token";
-
-          BugFreak.Hook();
+		  
+		  BugFreak.Hook("ApiKey", "Token", this);
       }
   }
 ```

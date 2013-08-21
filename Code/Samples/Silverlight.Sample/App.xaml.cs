@@ -19,10 +19,7 @@ namespace Silverlight.Sample
         {
             RootVisual = new MainPage();
 
-            GlobalConfig.Settings.ApiKey = "9dd7f8aa-6b29-4022-80fa-441609ca1547";
-            GlobalConfig.Settings.Token = "5204f224d2443315be000027";
-
-            BugFreak.BugFreak.Hook();
+            BugFreak.BugFreak.Hook("9dd7f8aa-6b29-4022-80fa-441609ca1547", "5204f224d2443315be000027", this);
         }
 
         private void Application_Exit(object sender, EventArgs e)
