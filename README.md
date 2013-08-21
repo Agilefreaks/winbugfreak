@@ -89,19 +89,14 @@ For Silverlight add a hook it up in your App.xaml.cs
 For WinRT add a hook it up in your App.xaml.cs
 
 ```csharp
-  using BugFreak;
-
   public partial class App
   {
 	protected override void OnLaunched(LaunchActivatedEventArgs args)
 	{
-		GlobalConfig.ApiKey = "[apiKey]";
-		GlobalConfig.Token = "[token]";
-	
-		BugFreak.WinRT.BugFreak.Hook();
+		BugFreak.WinRT.GlobalConfig.ApiKey = "ApiKey";
+		BugFreak.WinRT.GlobalConfig.Token = "Token";
 
-		Frame rootFrame = Window.Current.Content as Frame;
-		// ...
+		BugFreak.WinRT.BugFreak.Hook();
 	}
   }
 ```
