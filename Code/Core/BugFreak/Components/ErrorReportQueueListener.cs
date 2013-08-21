@@ -1,10 +1,6 @@
-﻿using BugFreak.Collections;
-using BugFreak.Framework;
-
-namespace BugFreak.Components
+﻿namespace BugFreak.Components
 {
     using global::BugFreak.Collections;
-    using global::BugFreak.Framework;
 
     public class ErrorReportQueueListener : IErrorReportQueueListener
     {

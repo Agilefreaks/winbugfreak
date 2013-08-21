@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace BugFreak
+﻿namespace BugFreak
 {
+    using System;
+    using System.Collections.Generic;
+
     public class ErrorReport
     {
         public string Message { get; set; }
@@ -29,14 +28,14 @@ namespace BugFreak
             var errorReport = new ErrorReport
                                     {
                                         Message = exc.Message,
-#if !SILVERLIGHT
+#if !(SILVERLIGHT || WinRT)
                                         Source = exc.Source,
 #endif
                                         StackTrace = exc.StackTrace,
-                                        AdditionalData = new List<KeyValuePair<string, string>>()
+                                        AdditionalData = GetAdditionalData(exc)
                                     };
 
-            // Populate additional data
+            // Populate additional data from providers
             foreach (var errorDataProvider in GlobalConfig.ErrorDataProviders)
             {
                 foreach (var keyValuePair in errorDataProvider.GetData())
@@ -46,6 +45,18 @@ namespace BugFreak
             }
 
             return errorReport;
+        }
+
+        private static List<KeyValuePair<string, string>> GetAdditionalData(Exception exc)
+        {
+            var result = new List<KeyValuePair<string, string>>();
+
+            foreach (var key in exc.Data.Keys)
+            {
+                result.Add(new KeyValuePair<string, string>(key.ToString(), exc.Data[key].ToString()));
+            }
+
+            return result;
         }
     }
 }

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BugFreak.Framework;
-
-namespace BugFreak.Components
+﻿namespace BugFreak.Components
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Reflection;
     using global::BugFreak.Framework;
 
     internal class SimpleServiceContainer : IServiceLocator
@@ -73,9 +72,18 @@ namespace BugFreak.Components
             return instances.Union(creations).ToList();
         }
 
-        private IEnumerable<T> GetValues<T>(Dictionary<Type, List<T>> dictionary, Type key)
+        private IEnumerable<T> GetValues<T>(Dictionary<Type, List<T>> dictionary, Type requestedType)
         {
-            return dictionary.Where(i => i.Key.IsAssignableFrom(key)).SelectMany(i => i.Value);
+            return dictionary.Where(item => IsAssignableFrom(requestedType, item.Key)).SelectMany(i => i.Value);
+        }
+
+        private static bool IsAssignableFrom(Type target, Type source)
+        {
+#if WinRT
+            return source.GetTypeInfo().IsAssignableFrom(target.GetTypeInfo());
+#else
+            return source.IsAssignableFrom(target);
+#endif
         }
     }
 }
