@@ -15,7 +15,7 @@ Instalation
 
 You can grab the package from [nuget](http://www.nuget.org/)
 
-For wpf
+For WPF
 ```
 PM> Install-Package BugFreak.WPF
 ```
@@ -30,7 +30,7 @@ For WinRT
 PM> Install-Package BugFreak.WinRT
 ```
 
-For MVC3
+For ASP.NET MVC3
 ```
 PM> Install-Package BugFreak.MVC3
 ```
@@ -50,15 +50,15 @@ For WPF hook in App.xaml.cs
 ```csharp
   using BugFreak;
 
-	public partial class App
-	{
-		protected override void OnStartup(System.Windows.StartupEventArgs e)
-		{
-			base.OnStartup(e);
-		  
-			BugFreak.Hook("ApiKey", "Token", this);
-		}
-	}
+  public partial class App
+  {
+    protected override void OnStartup(System.Windows.StartupEventArgs e)
+    {
+      base.OnStartup(e);
+	 
+      BugFreak.Hook("ApiKey", "Token", this);
+    }
+  }
 
 ```
 
@@ -71,16 +71,16 @@ For Silverlight hook in App.xaml.cs
   {
     public App()
     {
-        this.Startup += this.Application_Startup;
-
-        InitializeComponent();
+      this.Startup += this.Application_Startup;
+      
+      InitializeComponent();
     }
-
+    
     private void Application_Startup(object sender, StartupEventArgs e)
     {
-        this.RootVisual = new MainPage();
-		  
-		BugFreak.Hook("ApiKey", "Token", this);
+      this.RootVisual = new MainPage();
+    	  
+      BugFreak.Hook("ApiKey", "Token", this);
     }
   }
 ```
@@ -88,29 +88,29 @@ For Silverlight hook in App.xaml.cs
 For WinRT hook in App.xaml.cs
 
 ```csharp
-	using BugFreak;
-	  
-	public partial class App
-	{
-		protected override void OnLaunched(LaunchActivatedEventArgs args)
-		{
-			BugFreak.Hook("ApiKey", "Token", this);
-		}
-	}
+  using BugFreak;
+    
+  public partial class App
+  {
+    protected override void OnLaunched(LaunchActivatedEventArgs args)
+    {
+      BugFreak.Hook("ApiKey", "Token", this);
+    }
+  }
 ```
 
 For ASP.NET MVC3 hook in Global.asax.cs
 
 ```csharp
-	using BugFreak;
-
-	public class MvcApplication : System.Web.HttpApplication
-	{
-		protected void Application_Start()
-		{
-			BugFreak.Hook();
-		}
-	}
+  using BugFreak;
+  
+  public class MvcApplication : System.Web.HttpApplication
+  {
+    protected void Application_Start()
+    {
+      BugFreak.Hook();
+    }
+  }
 ```
 
 That's all folks, any uncatched exceptions will be reported back to the server
