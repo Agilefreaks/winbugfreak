@@ -8,7 +8,7 @@ Overview
 
 A bare bones bug tracking framework that you can use and deploy yourself, it's main aim is to integrate seemesly 
 with your application and centralize issues in a main repository, we are working on having a free server deployed
-please contact us if you can help
+please contact us if you can help.
 
 Instalation
 ===========
@@ -24,6 +24,19 @@ For Silverlight
 ```
 PM> Install-Package BugFreak.Silverlight
 ```
+
+For WinRT
+```
+PM> Install-Package BugFreak.WinRT
+```
+
+Registration
+============
+
+1. Register for an account [http://bugfreak.co](https://bugfreak.co/users/sign_up)
+2. Create a new application
+3. Go to Applications and get the Token for the registered application
+4. Get the Api Key from your Profile
 
 Setup
 =============
@@ -70,6 +83,26 @@ For Silverlight add a hook it up in your App.xaml.cs
 
           BugFreak.Hook();
       }
+  }
+```
+
+For WinRT add a hook it up in your App.xaml.cs
+
+```csharp
+  using BugFreak;
+
+  public partial class App
+  {
+	protected override void OnLaunched(LaunchActivatedEventArgs args)
+	{
+		GlobalConfig.ApiKey = "[apiKey]";
+		GlobalConfig.Token = "[token]";
+	
+		BugFreak.WinRT.BugFreak.Hook();
+
+		Frame rootFrame = Window.Current.Content as Frame;
+		// ...
+	}
   }
 ```
 
