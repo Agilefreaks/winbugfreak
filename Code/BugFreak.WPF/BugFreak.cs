@@ -48,9 +48,9 @@
             var configSection = ConfigurationManager.GetSection("BugFreak") as NameValueCollection;
             if (configSection != null)
             {
-                GlobalConfig.Settings.ServiceEndPoint = configSection["ServiceEndpoint"];
-                GlobalConfig.Settings.ApiKey = configSection["ApiKey"];
-                GlobalConfig.Settings.Token = configSection["Token"];
+                GlobalConfig.ServiceEndPoint = configSection["ServiceEndpoint"];
+                GlobalConfig.ApiKey = configSection["ApiKey"];
+                GlobalConfig.Token = configSection["Token"];
             }
         }
     }

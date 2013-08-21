@@ -19,9 +19,9 @@
         [SetUp]
         public void SetUp()
         {
-            GlobalConfig.Settings.Token = "user-token";
-            GlobalConfig.Settings.ServiceEndPoint = "http://myTests.com";
-            GlobalConfig.Settings.ApiKey = "apiKey";
+            GlobalConfig.Token = "user-token";
+            GlobalConfig.ServiceEndPoint = "http://myTests.com";
+            GlobalConfig.ApiKey = "apiKey";
 
             ReportingService.Init();
 
@@ -48,9 +48,9 @@
             }
 
             GlobalConfig.ServiceLocator = null;
-            GlobalConfig.Settings.Token = null;
-            GlobalConfig.Settings.ApiKey = null;
-            GlobalConfig.Settings.ServiceEndPoint = null;
+            GlobalConfig.Token = null;
+            GlobalConfig.ApiKey = null;
+            GlobalConfig.ServiceEndPoint = null;
         }
 
         [Test]
@@ -84,7 +84,7 @@
         [ExpectedException(typeof(ArgumentException))]
         public void Init_WhenApiKeyIsNotSet_RaisesArgumentException()
         {
-            GlobalConfig.Settings.Token = null;
+            GlobalConfig.Token = null;
 
             ReportingService.Init();
         }
@@ -93,7 +93,7 @@
         [ExpectedException(typeof(ArgumentException))]
         public void Init_WhenApiKeyNotSet_RaisesArgumentException()
         {
-            GlobalConfig.Settings.ApiKey = null;
+            GlobalConfig.ApiKey = null;
 
             ReportingService.Init();
         }
@@ -101,7 +101,7 @@
         [Test]
         public void Init_WhenInvalidServiceEndpoint_DoesNotRaiseException()
         {
-            GlobalConfig.Settings.ServiceEndPoint = "http:/test.com";
+            GlobalConfig.ServiceEndPoint = "http:/test.com";
 
             ReportingService.Init();
 
@@ -111,7 +111,7 @@
         [Test]
         public void Init_Always_SetsSerializerToFormSerializer()
         {
-            GlobalConfig.Settings.Token = "user-token";
+            GlobalConfig.Token = "user-token";
 
             ReportingService.Init();
 
@@ -121,7 +121,7 @@
         [Test]
         public void Init_Always_SetsDefaultIRemoteErrorReportStorage()
         {
-            GlobalConfig.Settings.Token = "user-token";
+            GlobalConfig.Token = "user-token";
 
             ReportingService.Init();
 
@@ -131,7 +131,7 @@
         [Test]
         public void Init_Always_SetsDefaultErrorQueueListener()
         {
-            GlobalConfig.Settings.Token = "user-token";
+            GlobalConfig.Token = "user-token";
 
             ReportingService.Init();
 
@@ -141,7 +141,7 @@
         [Test]
         public void Init_Always_SetsDefaultErrorHandler()
         {
-            GlobalConfig.Settings.Token = "user-token";
+            GlobalConfig.Token = "user-token";
 
             ReportingService.Init();
 
@@ -151,7 +151,7 @@
         [Test]
         public void Init_Always_SetsDefaultWebRequestCreate()
         {
-            GlobalConfig.Settings.Token = "user-token";
+            GlobalConfig.Token = "user-token";
 
             ReportingService.Init();
 
@@ -185,25 +185,25 @@
         [Test]
         public void Init_WhenServiceEndpointIsNotSet_SetsDefault()
         {
-            GlobalConfig.Settings.Token = "token";
-            GlobalConfig.Settings.ApiKey = "apikey";
-            GlobalConfig.Settings.ServiceEndPoint = null;
+            GlobalConfig.Token = "token";
+            GlobalConfig.ApiKey = "apikey";
+            GlobalConfig.ServiceEndPoint = null;
 
             ReportingService.Init();
 
-            Assert.AreEqual("https://www.bugfreak.co/v1/api/errors", GlobalConfig.Settings.ServiceEndPoint);
+            Assert.AreEqual("https://www.bugfreak.co/v1/api/errors", GlobalConfig.ServiceEndPoint);
         }
 
         [Test]
         public void Init_WhenServiceEndpointIsSet_DoesNotOverwrite()
         {
-            GlobalConfig.Settings.Token = "token";
-            GlobalConfig.Settings.ApiKey = "apikey";
-            GlobalConfig.Settings.ServiceEndPoint = "http://test.com";
+            GlobalConfig.Token = "token";
+            GlobalConfig.ApiKey = "apikey";
+            GlobalConfig.ServiceEndPoint = "http://test.com";
 
             ReportingService.Init();
 
-            Assert.AreEqual("http://test.com", GlobalConfig.Settings.ServiceEndPoint);
+            Assert.AreEqual("http://test.com", GlobalConfig.ServiceEndPoint);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Net;
-using BugFreak;
 using BugFreak.Components;
 using BugFreak.Framework;
 using BugFreak.Results;
@@ -25,8 +24,8 @@ namespace BugFreak.Tests
         [SetUp]
         public void SetUp()
         {
-            GlobalConfig.Settings.Token = "user-token";
-            GlobalConfig.Settings.ServiceEndPoint = "http://global-endpoint.com";
+            GlobalConfig.Token = "user-token";
+            GlobalConfig.ServiceEndPoint = "http://global-endpoint.com";
 
             _mockSerializer = new Mock<IErrorReportSerializer>();
             _mockWebRequest = new Mock<WebRequest>();
@@ -52,14 +51,14 @@ namespace BugFreak.Tests
         [TearDown]
         public void TearDown()
         {
-            GlobalConfig.Settings.Token = null;
-            GlobalConfig.Settings.ServiceEndPoint = null;
+            GlobalConfig.Token = null;
+            GlobalConfig.ServiceEndPoint = null;
         }
 
         [Test]
         public void Build_Always_SetsUriToEndPoint()
         {
-            GlobalConfig.Settings.ServiceEndPoint = "http://endpoint.com";
+            GlobalConfig.ServiceEndPoint = "http://endpoint.com";
 
             new SequentialResult(new[] { new RequestBuildResult(_subject, new ErrorReport()) }).Execute(new ExecutionContext());
 
@@ -77,7 +76,7 @@ namespace BugFreak.Tests
         [Test]
         public void Build_Always_SetsInstanceIdentifier()
         {
-            GlobalConfig.Settings.Token = "user-token";
+            GlobalConfig.Token = "user-token";
             var webHeaderCollection = new WebHeaderCollection();
             _mockWebRequest.Setup(m => m.Headers).Returns(webHeaderCollection);
 
@@ -89,7 +88,7 @@ namespace BugFreak.Tests
         [Test]
         public void Build_Always_SetsApiKeyInHeaders()
         {
-            GlobalConfig.Settings.ApiKey = "apiKey";
+            GlobalConfig.ApiKey = "apiKey";
             var webHeaderCollection = new WebHeaderCollection();
             _mockWebRequest.Setup(m => m.Headers).Returns(webHeaderCollection);
 

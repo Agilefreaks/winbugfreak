@@ -15,23 +15,23 @@ namespace BugFreak.Components
 
         private static void SetDefaults()
         {
-            if (!Uri.IsWellFormedUriString(GlobalConfig.Settings.ServiceEndPoint, UriKind.Absolute))
+            if (!Uri.IsWellFormedUriString(GlobalConfig.ServiceEndPoint, UriKind.Absolute))
             {
-                GlobalConfig.Settings.ServiceEndPoint = "https://www.bugfreak.co/v1/api/errors";
+                GlobalConfig.ServiceEndPoint = "https://www.bugfreak.co/v1/api/errors";
             }
         }
 
         private static void VerifySettings()
         {
-            if (String.IsNullOrEmpty(GlobalConfig.Settings.Token))
+            if (String.IsNullOrEmpty(GlobalConfig.Token))
             {
                 throw new ArgumentException("Token not set");
             }
-            if (!Uri.IsWellFormedUriString(GlobalConfig.Settings.ServiceEndPoint, UriKind.Absolute))
+            if (!Uri.IsWellFormedUriString(GlobalConfig.ServiceEndPoint, UriKind.Absolute))
             {
                 throw new ArgumentException("ServiceEndpoint not valid");
             }
-            if (string.IsNullOrEmpty(GlobalConfig.Settings.ApiKey))
+            if (string.IsNullOrEmpty(GlobalConfig.ApiKey))
             {
                 throw new ArgumentException("ApiKey not set");
             }

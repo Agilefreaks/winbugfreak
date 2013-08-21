@@ -12,17 +12,17 @@
         [SetUp]
         public void SetUp()
         {
-            GlobalConfig.Settings.Token = "token";
-            GlobalConfig.Settings.ApiKey = "apiKey";
-            GlobalConfig.Settings.ServiceEndPoint = "http://service.co";
+            GlobalConfig.Token = "token";
+            GlobalConfig.ApiKey = "apiKey";
+            GlobalConfig.ServiceEndPoint = "http://service.co";
         }
 
         [TearDown]
         public void TearDown()
         {
-            GlobalConfig.Settings.Token = null;
-            GlobalConfig.Settings.ApiKey = null;
-            GlobalConfig.Settings.ServiceEndPoint = null;
+            GlobalConfig.Token = null;
+            GlobalConfig.ApiKey = null;
+            GlobalConfig.ServiceEndPoint = null;
         }
 
         [Test]
