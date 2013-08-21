@@ -43,9 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bugfreak.MVC3, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Bugfreak.MVC3, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Bugfreak.MVC3.1.0.0.2\lib\net40\Bugfreak.MVC3.dll</HintPath>
+      <HintPath>..\..\packages\BugFreak.MVC3.1.0.1.0\lib\net40\Bugfreak.MVC3.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">

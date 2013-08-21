@@ -2,30 +2,18 @@
 
 namespace BugFreak
 {
-    using System.Collections.Specialized;
-    using System.Configuration;
     using System.Web.Mvc;
 
     public class BugFreak
     {
-        public static void Hook()
+        public static void Hook(string apiKey, string token)
         {
-            ReadSettings();
+            GlobalConfig.ApiKey = apiKey;
+            GlobalConfig.Token = token;
 
             ReportingService.Init();
             
             GlobalFilters.Filters.Add(new ReportErrorAttribute());
-        }
-
-        private static void ReadSettings()
-        {
-            var configSection = ConfigurationManager.GetSection("BugFreak") as NameValueCollection;
-            if (configSection != null)
-            {
-                GlobalConfig.ServiceEndPoint = configSection["ServiceEndpoint"];
-                GlobalConfig.ApiKey = configSection["ApiKey"];
-                GlobalConfig.Token = configSection["Token"];
-            }
         }
     }
 }

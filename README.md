@@ -41,57 +41,71 @@ Registration
 Setup
 =============
 
-For WPF add a hook in your App.xaml.cs#OnStartup method
+For WPF hook in App.xaml.cs
 ```csharp
   using BugFreak;
 
-  public partial class App
-  {
-      protected override void OnStartup(System.Windows.StartupEventArgs e)
-      {
-          base.OnStartup(e);
-		  
-		  BugFreak.Hook("ApiKey", "Token", this);
-      }
-  }
-
-```
-
-For Silverlight add a hook it up in your App.xaml.cs
-
-```csharp
-  using BugFreak;
-
-  public partial class App
-  {
-      public App()
-      {
-          this.Startup += this.Application_Startup;
-
-          InitializeComponent();
-      }
-
-      private void Application_Startup(object sender, StartupEventArgs e)
-      {
-          this.RootVisual = new MainPage();
-		  
-		  BugFreak.Hook("ApiKey", "Token", this);
-      }
-  }
-```
-
-For WinRT add a hook it up in your App.xaml.cs
-
-```csharp
-  using BugFreak;
-  
-  public partial class App
-  {
-	protected override void OnLaunched(LaunchActivatedEventArgs args)
+	public partial class App
 	{
-		BugFreak.Hook("ApiKey", "Token", this);
+		protected override void OnStartup(System.Windows.StartupEventArgs e)
+		{
+			base.OnStartup(e);
+		  
+			BugFreak.Hook("ApiKey", "Token", this);
+		}
 	}
+
+```
+
+For Silverlight hook in App.xaml.cs
+
+```csharp
+  using BugFreak;
+
+  public partial class App
+  {
+    public App()
+    {
+        this.Startup += this.Application_Startup;
+
+        InitializeComponent();
+    }
+
+    private void Application_Startup(object sender, StartupEventArgs e)
+    {
+        this.RootVisual = new MainPage();
+		  
+		BugFreak.Hook("ApiKey", "Token", this);
+    }
   }
+```
+
+For WinRT hook in App.xaml.cs
+
+```csharp
+	using BugFreak;
+	  
+	public partial class App
+	{
+		protected override void OnLaunched(LaunchActivatedEventArgs args)
+		{
+			BugFreak.Hook("ApiKey", "Token", this);
+		}
+	}
+```
+
+For ASP.NET MVC3 hook in Global.asax.cs
+
+```csharp
+	using BugFreak;
+
+	public class MvcApplication : System.Web.HttpApplication
+	{
+		protected void Application_Start()
+		{
+			BugFreak.Hook();
+		}
+	}
 ```
 
 That's all folks, any uncatched exceptions will be reported back to the server
