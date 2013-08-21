@@ -9,7 +9,6 @@ Add in Web.config:
 </configSections>
 
 <BugFreak>
-    <add key="ServiceEndpoint" value="http://endpoint.com"/>
     <add key="ApiKey" value="apiKey"/>
     <add key="Token" value="token"/>
 </BugFreak>
@@ -19,6 +18,13 @@ INITIALIZATION
 ==================================================
 
 Go to Global.asax.cs
-Method Application_Start and put at the beginning
 
-    Bugfreak.MVC3.BugFreak.Hook();
+using BugFreak;
+
+public class MvcApplication : System.Web.HttpApplication
+{
+    protected void Application_Start()
+    {
+        BugFreak.Hook();
+    }
+}
