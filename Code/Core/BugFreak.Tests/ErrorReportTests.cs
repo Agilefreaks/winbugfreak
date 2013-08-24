@@ -5,6 +5,7 @@ using NUnit.Framework;
 namespace BugFreak.Tests
 {
     using System.Collections.Generic;
+    using System.Collections.Specialized;
 
     using BugFreak.Components;
 

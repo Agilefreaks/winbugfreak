@@ -2,7 +2,6 @@
 {
     using System;
     using BugFreak;
-    using BugFreak.WinRT;
     using Windows.ApplicationModel;
     using Windows.ApplicationModel.Activation;
     using Windows.UI.Xaml;
