@@ -1,9 +1,6 @@
-﻿using System;
-using BugFreak.Components;
-using BugFreak.Framework;
-
-namespace BugFreak.Results
+﻿namespace BugFreak.Results
 {
+    using System;
     using global::BugFreak.Components;
     using global::BugFreak.Framework;
 

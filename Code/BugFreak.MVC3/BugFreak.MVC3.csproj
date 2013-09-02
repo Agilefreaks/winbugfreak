@@ -73,14 +73,11 @@
     <Compile Include="..\Core\BugFreak\Collections\ObservableList.cs">
       <Link>Core\Collections\ObservableList.cs</Link>
     </Compile>
-    <Compile Include="..\Core\BugFreak\Components\ErrorReportHandler.cs">
-      <Link>Core\Components\ErrorReportHandler.cs</Link>
+    <Compile Include="..\Core\BugFreak\Components\ErrorHandler.cs">
+      <Link>Core\Components\ErrorHandler.cs</Link>
     </Compile>
-    <Compile Include="..\Core\BugFreak\Components\ErrorReportQueue.cs">
-      <Link>Core\Components\ErrorReportQueue.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\ErrorReportQueueListener.cs">
-      <Link>Core\Components\ErrorReportQueueListener.cs</Link>
+    <Compile Include="..\Core\BugFreak\Components\ErrorQueue.cs">
+      <Link>Core\Components\ErrorQueue.cs</Link>
     </Compile>
     <Compile Include="..\Core\BugFreak\Components\ErrorReportSaveCompletedEventArgs.cs">
       <Link>Core\Components\ErrorReportSaveCompletedEventArgs.cs</Link>
@@ -91,14 +88,11 @@
     <Compile Include="..\Core\BugFreak\Components\IErrorDataProvider.cs">
       <Link>Core\Components\IErrorDataProvider.cs</Link>
     </Compile>
-    <Compile Include="..\Core\BugFreak\Components\IErrorReportHandler.cs">
-      <Link>Core\Components\IErrorReportHandler.cs</Link>
+    <Compile Include="..\Core\BugFreak\Components\IErrorHandler.cs">
+      <Link>Core\Components\IErrorHandler.cs</Link>
     </Compile>
-    <Compile Include="..\Core\BugFreak\Components\IErrorReportQueue.cs">
-      <Link>Core\Components\IErrorReportQueue.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\IErrorReportQueueListener.cs">
-      <Link>Core\Components\IErrorReportQueueListener.cs</Link>
+    <Compile Include="..\Core\BugFreak\Components\IErrorQueue.cs">
+      <Link>Core\Components\IErrorQueue.cs</Link>
     </Compile>
     <Compile Include="..\Core\BugFreak\Components\IErrorReportSerializer.cs">
       <Link>Core\Components\IErrorReportSerializer.cs</Link>
@@ -114,6 +108,9 @@
     </Compile>
     <Compile Include="..\Core\BugFreak\Components\LocalErrorReportStorage.cs">
       <Link>Core\Components\LocalErrorReportStorage.cs</Link>
+    </Compile>
+    <Compile Include="..\Core\BugFreak\Components\PendingReport.cs">
+      <Link>Core\Components\PendingReport.cs</Link>
     </Compile>
     <Compile Include="..\Core\BugFreak\Components\RemoteErrorReportStorage.cs">
       <Link>Core\Components\RemoteErrorReportStorage.cs</Link>

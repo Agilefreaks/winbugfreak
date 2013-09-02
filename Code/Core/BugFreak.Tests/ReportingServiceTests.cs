@@ -1,4 +1,6 @@
-﻿namespace BugFreak.Tests
+﻿using BugFreak.Tests.Helpers;
+
+namespace BugFreak.Tests
 {
     using System;
     using System.Net;
@@ -7,14 +9,14 @@
     using BugFreak.Framework;
     using Moq;
     using NUnit.Framework;
+    using System.Collections.Generic;
+    using System.Threading;
 
     [TestFixture]
     public class ReportingServiceTests
     {
-        private Mock<IErrorReportQueue> _mockErrorQueue;
         private Mock<IServiceLocator> _mockServiceProvider;
-        private Mock<IErrorReportHandler> _mockErrorReportHandler;
-        private Mock<IErrorReportQueueListener> _mockErrorReportQueueListener;
+        private Mock<IErrorHandler> _mockErrorReportHandler;
 
         [SetUp]
         public void SetUp()
@@ -25,17 +27,11 @@
 
             ReportingService.Init();
 
-            _mockErrorQueue = new Mock<IErrorReportQueue>();
-            _mockErrorReportHandler = new Mock<IErrorReportHandler>();
-            _mockErrorReportQueueListener = new Mock<IErrorReportQueueListener>();
+            _mockErrorReportHandler = new Mock<IErrorHandler>();
             _mockServiceProvider = new Mock<IServiceLocator>();
-            _mockServiceProvider.Setup(m => m.GetService<IErrorReportQueue>())
-                                .Returns(_mockErrorQueue.Object);
-            _mockServiceProvider.Setup(m => m.GetService<IErrorReportHandler>())
+            _mockServiceProvider.Setup(m => m.GetService<IErrorHandler>())
                                 .Returns(_mockErrorReportHandler.Object);
-            _mockServiceProvider.Setup(m => m.GetService<IErrorReportQueueListener>())
-                                .Returns(_mockErrorReportQueueListener.Object);
-
+            
             GlobalConfig.ServiceLocator = _mockServiceProvider.Object;
         }
 
@@ -129,23 +125,13 @@
         }
 
         [Test]
-        public void Init_Always_SetsDefaultErrorQueueListener()
-        {
-            GlobalConfig.Token = "user-token";
-
-            ReportingService.Init();
-
-            Assert.IsTrue(GlobalConfig.ServiceLocator.GetService<IErrorReportQueueListener>() is ErrorReportQueueListener);
-        }
-
-        [Test]
         public void Init_Always_SetsDefaultErrorHandler()
         {
             GlobalConfig.Token = "user-token";
 
             ReportingService.Init();
 
-            Assert.IsTrue(GlobalConfig.ServiceLocator.GetService<IErrorReportHandler>() is ErrorReportHandler);
+            Assert.IsTrue(GlobalConfig.ServiceLocator.GetService<IErrorHandler>() is ErrorHandler);
         }
 
         [Test]
@@ -159,11 +145,37 @@
         }
 
         [Test]
-        public void BeginRequest_Always_CallsReportQueueEnqueue()
+        public void BeginReport_Always_CallsHandlerHandle()
         {
-            ReportingService.Instance.BeginReport(new Exception());
+            var exception = new Exception();
 
-            _mockErrorQueue.Verify(m => m.Enqueue(It.IsAny<ErrorReport>()));
+            ReportingService.Instance.BeginReport(exception);
+
+            _mockErrorReportHandler.Verify(m => m.Handle(exception, It.IsAny<ReportCompletedCallback>()));
+        }
+
+        [Test]
+        public void BeginReport_Always_OnCompleteCallsReportCompleteCallback()
+        {
+            var called = false;
+            _mockServiceProvider.Setup(m => m.GetServices<IErrorReportStorage>())
+                                .Returns(new List<IErrorReportStorage>());
+
+            ReportingService.Instance.BeginReport(new Exception(), (exc, reported) => called = true);
+            
+            Assert.IsTrue(called);
+        }
+
+        [Test]
+        public void BeginReport_Always_CallsCallbackOnlyOnce()
+        {
+            var count = 0;
+            _mockServiceProvider.Setup(m => m.GetServices<IErrorReportStorage>())
+                                .Returns(new List<IErrorReportStorage> { new MockErrorReportStorage(), new MockErrorReportStorage() });
+
+            ReportingService.Instance.BeginReport(new Exception(), (exc, reported) => count++);
+
+            Assert.AreEqual(1, count);
         }
 
         [Test]
@@ -179,7 +191,7 @@
         {
             ReportingService.Dispose();
 
-            _mockErrorReportQueueListener.Verify(m => m.Dispose());
+            _mockErrorReportHandler.Verify(m => m.Dispose());
         }
 
         [Test]

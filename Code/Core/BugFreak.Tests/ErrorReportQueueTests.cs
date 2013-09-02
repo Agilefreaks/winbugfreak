@@ -1,26 +1,25 @@
-﻿using BugFreak;
-using BugFreak.Components;
-using NUnit.Framework;
-
-namespace BugFreak.Tests
+﻿namespace BugFreak.Tests
 {
+    using Components;
+    using NUnit.Framework;
+
     [TestFixture]
     public class ErrorReportQueueTests
     {
-        private ErrorReportQueue _subject;
+        private ErrorQueue _subject;
 
         [SetUp]
         public void SetUp()
         {
-            _subject = new ErrorReportQueue();
+            _subject = new ErrorQueue();
         }
 
         [Test]
         public void Dequeue_Always_RemovesElementFromQueue()
         {
-            _subject.Enqueue(new ErrorReport());
-            _subject.Enqueue(new ErrorReport());
-            _subject.Enqueue(new ErrorReport());
+            _subject.Enqueue(new PendingReport(null, null));
+            _subject.Enqueue(new PendingReport(null, null));
+            _subject.Enqueue(new PendingReport(null, null));
 
             var item = _subject.Dequeue();
 
@@ -30,10 +29,10 @@ namespace BugFreak.Tests
         [Test]
         public void Dequeue_Always_ReturnsFirstElement()
         {
-            var firstItem = new ErrorReport();
+            var firstItem = new PendingReport(null, null);
             _subject.Enqueue(firstItem);
-            _subject.Enqueue(new ErrorReport());
-            _subject.Enqueue(new ErrorReport());
+            _subject.Enqueue(new PendingReport(null, null));
+            _subject.Enqueue(new PendingReport(null, null));
 
             var item = _subject.Dequeue();
 

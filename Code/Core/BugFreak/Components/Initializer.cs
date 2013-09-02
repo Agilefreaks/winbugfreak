@@ -1,8 +1,8 @@
-﻿using System;
-using System.Net;
-
-namespace BugFreak.Components
+﻿namespace BugFreak.Components
 {
+    using System;
+    using System.Net;
+
     internal class Initializer
     {
         public static void Initialize()
@@ -44,21 +44,16 @@ namespace BugFreak.Components
             GlobalConfig.ServiceLocator = serviceContainer;
             GlobalConfig.ErrorReportSerializer = new FormErrorReportSerializer();
            
-            var errorReportQueue = new ErrorReportQueue();
+            var errorReportQueue = new ErrorQueue();
             serviceContainer.AddService(typeof(IWebRequestCreate), new WebRequestFactory());
             serviceContainer.AddService(typeof(IErrorReportSerializer), (container, type) => GlobalConfig.ErrorReportSerializer);
             serviceContainer.AddService(typeof(IReportRequestBuilder), (container, type) => new ReportRequestBuilder());
             serviceContainer.AddService(typeof(IErrorReportStorage), (container, type) => new RemoteErrorReportStorage());
             serviceContainer.AddService(typeof(IErrorReportStorage), (container, type) => new LocalErrorReportStorage());
-            serviceContainer.AddService(typeof(IErrorReportQueue), errorReportQueue);
+            serviceContainer.AddService(typeof(IErrorQueue), errorReportQueue);
             
-            var errorHandler = new ErrorReportHandler();
-            serviceContainer.AddService(typeof(IErrorReportHandler), errorHandler);
-
-            var errorQueueListener = new ErrorReportQueueListener();
-            serviceContainer.AddService(typeof(IErrorReportQueueListener), errorQueueListener);
-
-            errorQueueListener.Listen(errorReportQueue);
+            var errorHandler = new ErrorHandler();
+            serviceContainer.AddService(typeof(IErrorHandler), errorHandler);
         }
 
         private static void InitReporter()

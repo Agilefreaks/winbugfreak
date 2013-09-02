@@ -49,7 +49,7 @@ namespace BugFreak.Tests
         [Test]
         public void ServiceProvider_GetServiceOfTypeIErrorReportQueue_ReturnsInstance()
         {
-            var result = GlobalConfig.ServiceLocator.GetService<IErrorReportQueue>();
+            var result = GlobalConfig.ServiceLocator.GetService<IErrorQueue>();
 
             Assert.IsNotNull(result);
         }
@@ -57,9 +57,9 @@ namespace BugFreak.Tests
         [Test]
         public void ServiceProvider_GetServiceOfTypeIErrorReportQueue_ReturnsSameInstance()
         {
-            var instance1 = GlobalConfig.ServiceLocator.GetService<IErrorReportQueue>();
+            var instance1 = GlobalConfig.ServiceLocator.GetService<IErrorQueue>();
 
-            var instance2 = GlobalConfig.ServiceLocator.GetService<IErrorReportQueue>();
+            var instance2 = GlobalConfig.ServiceLocator.GetService<IErrorQueue>();
 
             Assert.AreSame(instance1, instance2);
         }
