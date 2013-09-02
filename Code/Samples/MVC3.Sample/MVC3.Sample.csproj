@@ -22,8 +22,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <SilverlightApplicationList>
-    </SilverlightApplicationList>
+    <SilverlightApplicationList>{DFEA50F5-3668-48C5-AFB4-C874E23E0786}|..\Silverlight.Sample\Silverlight.Sample.csproj|ClientBin|False</SilverlightApplicationList>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -177,7 +176,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Silverlight.js" />
-    <Content Include="Silverlight.SampleTestPage.aspx" />
     <Content Include="Silverlight.SampleTestPage.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -226,7 +224,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>65367</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:27290/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
