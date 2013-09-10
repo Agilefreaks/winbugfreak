@@ -13,8 +13,5 @@ In your App.xaml.cs
         {
             this.RootVisual = new MainPage();
 
-            GlobalConfig.Settings.ApiKey = "[apiKey]";
-            GlobalConfig.Settings.Token = "[token]";
-
-            BugFreak.Hook();
+            BugFreak.Hook("ApiKey", "Token", this);
         }

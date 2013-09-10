@@ -1,15 +1,12 @@
-﻿using System;
-using BugFreak;
-using BugFreak.WinRT;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-
-// The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
-
-namespace WinRT.Sample
+﻿namespace WinRT.Sample
 {
+    using System;
+    using BugFreak;
+    using Windows.ApplicationModel;
+    using Windows.ApplicationModel.Activation;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
@@ -33,10 +30,7 @@ namespace WinRT.Sample
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
-            GlobalConfig.ApiKey = "9dd7f8aa-6b29-4022-80fa-441609ca1547";
-            GlobalConfig.Token = "5213000d9e12019607000002";
-            
-            BugFreak.WinRT.BugFreak.Hook();
+            BugFreak.Hook("9dd7f8aa-6b29-4022-80fa-441609ca1547", "5213000d9e12019607000002", this);
 
             Frame rootFrame = Window.Current.Content as Frame;
 

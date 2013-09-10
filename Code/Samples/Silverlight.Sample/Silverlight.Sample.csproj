@@ -62,8 +62,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BugFreak.Silverlight">
-      <HintPath>..\..\packages\BugFreak.Silverlight.1.0.0.6\lib\sl40\BugFreak.Silverlight.dll</HintPath>
+    <Reference Include="BugFreak.Silverlight, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\BugFreak.Silverlight.1.0.1.0\lib\sl40\BugFreak.Silverlight.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System.Runtime.Serialization" />

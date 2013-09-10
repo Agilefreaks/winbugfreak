@@ -2,11 +2,13 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
+    <StackPanel>
         <TextBlock Text="Sample WPF aplication for ">
             <Hyperlink NavigateUri="http://bugfreak.co">
                 <TextBlock Text="http://bugfreak.co"></TextBlock>
             </Hyperlink>
         </TextBlock>
-    </Grid>
+        
+        <Button Content="Boom!" Click="BoomClick"/>
+    </StackPanel>
 </Window>

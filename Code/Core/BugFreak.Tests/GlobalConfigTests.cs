@@ -1,5 +1,4 @@
-﻿using BugFreak;
-using BugFreak.Components;
+﻿using BugFreak.Components;
 using NUnit.Framework;
 
 namespace BugFreak.Tests
@@ -10,9 +9,9 @@ namespace BugFreak.Tests
         [SetUp]
         public void SetUp()
         {
-            GlobalConfig.Settings.Token = "v2.2";
-            GlobalConfig.Settings.ApiKey = "apiKey";
-            GlobalConfig.Settings.ServiceEndPoint = "http://myTest.com";
+            GlobalConfig.Token = "v2.2";
+            GlobalConfig.ApiKey = "apiKey";
+            GlobalConfig.ServiceEndPoint = "http://myTest.com";
 
             ReportingService.Init();
         }
@@ -20,9 +19,9 @@ namespace BugFreak.Tests
         [TearDown]
         public void TearDown()
         {
-            GlobalConfig.Settings.Token = null;
-            GlobalConfig.Settings.ApiKey = null;
-            GlobalConfig.Settings.ServiceEndPoint = null;
+            GlobalConfig.Token = null;
+            GlobalConfig.ApiKey = null;
+            GlobalConfig.ServiceEndPoint = null;
         }
 
         [Test]
@@ -50,7 +49,7 @@ namespace BugFreak.Tests
         [Test]
         public void ServiceProvider_GetServiceOfTypeIErrorReportQueue_ReturnsInstance()
         {
-            var result = GlobalConfig.ServiceLocator.GetService<IErrorReportQueue>();
+            var result = GlobalConfig.ServiceLocator.GetService<IErrorQueue>();
 
             Assert.IsNotNull(result);
         }
@@ -58,9 +57,9 @@ namespace BugFreak.Tests
         [Test]
         public void ServiceProvider_GetServiceOfTypeIErrorReportQueue_ReturnsSameInstance()
         {
-            var instance1 = GlobalConfig.ServiceLocator.GetService<IErrorReportQueue>();
+            var instance1 = GlobalConfig.ServiceLocator.GetService<IErrorQueue>();
 
-            var instance2 = GlobalConfig.ServiceLocator.GetService<IErrorReportQueue>();
+            var instance2 = GlobalConfig.ServiceLocator.GetService<IErrorQueue>();
 
             Assert.AreSame(instance1, instance2);
         }

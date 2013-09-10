@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class ErrorReport
     {
@@ -49,14 +50,10 @@
 
         private static List<KeyValuePair<string, string>> GetAdditionalData(Exception exc)
         {
-            var result = new List<KeyValuePair<string, string>>();
-
-            foreach (var key in exc.Data.Keys)
-            {
-                result.Add(new KeyValuePair<string, string>(key.ToString(), exc.Data[key].ToString()));
-            }
-
-            return result;
+            return (from object key in exc.Data.Keys 
+                    let data = exc.Data[key] 
+                    where data != null 
+                    select new KeyValuePair<string, string>(key.ToString(), data.ToString())).ToList();
         }
     }
 }

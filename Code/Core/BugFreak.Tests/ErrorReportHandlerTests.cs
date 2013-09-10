@@ -1,5 +1,6 @@
 ﻿namespace BugFreak.Tests
 {
+    using System;
     using System.Collections.Generic;
     using BugFreak.Components;
     using BugFreak.Framework;
@@ -12,7 +13,8 @@
         private Mock<IErrorReportStorage> _mockRemoteErrorReportStorage;
         private Mock<IErrorReportStorage> _mockLocalErrorReportStorage;
         private Mock<IServiceLocator> _mockServiceProvider;
-        private ErrorReportHandler _subject;
+        private ErrorQueue _queue;
+        private ErrorHandler _subject;
 
         [SetUp]
         public void SetUp()
@@ -20,12 +22,15 @@
             _mockRemoteErrorReportStorage = new Mock<IErrorReportStorage>();
             _mockLocalErrorReportStorage = new Mock<IErrorReportStorage>();
             _mockServiceProvider = new Mock<IServiceLocator>();
+            _queue = new ErrorQueue();
             _mockServiceProvider.Setup(m => m.GetServices<IErrorReportStorage>())
                                 .Returns(new List<IErrorReportStorage> { _mockRemoteErrorReportStorage.Object, _mockLocalErrorReportStorage.Object });
+            _mockServiceProvider.Setup(m => m.GetService<IErrorQueue>())
+                                .Returns(_queue);
 
             GlobalConfig.ServiceLocator = _mockServiceProvider.Object;
 
-            _subject = new ErrorReportHandler();
+            _subject = new ErrorHandler();
         }
 
         [TearDown]
@@ -35,41 +40,35 @@
         }
 
         [Test]
-        public void Ctor_Always_CallsServiceProviderGetServiceOfTypeIRemoteErrorReportStorage()
-        {
-            _mockServiceProvider.Verify(m => m.GetServices<IErrorReportStorage>());
-        }
-
-        [Test]
         public void Handl_Always_CallsRemoteStorage()
         {
-            var errorReport = new ErrorReport();
+            var exception = new Exception();
 
-            _subject.Handle(errorReport);
+            _subject.Handle(exception, null);
 
-            _mockRemoteErrorReportStorage.Verify(m => m.SaveAsync(errorReport));
+            _mockRemoteErrorReportStorage.Verify(m => m.SaveAsync(It.IsAny<ErrorReport>()));
         }
 
         [Test]
         public void Handle_WhenRemoteStorageReturnsFalse_CallsLocalStorage()
         {
-            var errorReport = new ErrorReport();
-            _mockRemoteErrorReportStorage.Setup(m => m.SaveAsync(errorReport))
+            var exception = new Exception();
+            _mockRemoteErrorReportStorage.Setup(m => m.SaveAsync(It.IsAny<ErrorReport>()))
                 .Raises(m => m.SaveCompleted += null, new ErrorReportSaveCompletedEventArgs { Success = false });
 
-            _subject.Handle(errorReport);
+            _subject.Handle(exception, null);
 
-            _mockLocalErrorReportStorage.Verify(m => m.SaveAsync(errorReport));
+            _mockLocalErrorReportStorage.Verify(m => m.SaveAsync(It.IsAny<ErrorReport>()));
         }
 
         [Test]
         public void Handle_WhenRemoteStorageReturnsTrue_DoesNotCallLocalStorage()
         {
-            var errorReport = new ErrorReport();
-            _mockRemoteErrorReportStorage.Setup(m => m.SaveAsync(errorReport))
+            var exception = new Exception();
+            _mockRemoteErrorReportStorage.Setup(m => m.SaveAsync(It.IsAny<ErrorReport>()))
                 .Raises(m => m.SaveCompleted += null, new ErrorReportSaveCompletedEventArgs { Success = true });
 
-            _subject.Handle(errorReport);
+            _subject.Handle(exception, null);
 
             _mockLocalErrorReportStorage.Verify(m => m.SaveAsync(It.IsAny<ErrorReport>()), Times.Never());
         }

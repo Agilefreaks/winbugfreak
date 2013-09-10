@@ -29,7 +29,7 @@ namespace BugFreak.Components
 
         private WebRequest CreateRequest()
         {
-            return _webRequestFactory.Create(new Uri(GlobalConfig.Settings.ServiceEndPoint));
+            return _webRequestFactory.Create(new Uri(GlobalConfig.ServiceEndPoint));
         }
 
         private void SetMethod(WebRequest request)
@@ -39,8 +39,8 @@ namespace BugFreak.Components
 
         private void Sign(WebRequest request)
         {
-            request.Headers[ApiKey] = GlobalConfig.Settings.ApiKey;
-            request.Headers[TokenKey] = GlobalConfig.Settings.Token;
+            request.Headers[ApiKey] = GlobalConfig.ApiKey;
+            request.Headers[TokenKey] = GlobalConfig.Token;
         }
 
         private void WriteAsync(ErrorReport report, WebRequest request)
