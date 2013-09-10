@@ -5,15 +5,26 @@
 
     public class ReportingService : IReportingService
     {
-        private static IErrorHandler _errorHandler;
+        private static IErrorHandler errorHandler;
+
+        public static IErrorHandler ErrorHandler
+        {
+            get
+            {
+                return errorHandler ?? (errorHandler = GlobalConfig.ServiceLocator.GetService<IErrorHandler>());
+            }
+
+            internal set
+            {
+                errorHandler = value;
+            }
+        }
 
         public static IReportingService Instance { get; internal set; }
 
         public static void Init()
         {
             Initializer.Initialize();
-
-            _errorHandler = GlobalConfig.ServiceLocator.GetService<IErrorHandler>();
         }
 
         public void BeginReport(Exception exc)
@@ -23,13 +34,13 @@
 
         public void BeginReport(Exception exc, ReportCompletedCallback completeCallback)
         {
-            _errorHandler.Handle(exc, completeCallback);
+            ErrorHandler.Handle(exc, completeCallback);
         }
 
         public static void Dispose()
         {
-            _errorHandler.Dispose();
-            _errorHandler = null;
+            ErrorHandler.Dispose();
+            ErrorHandler = null;
             Instance = null;
         }
     }

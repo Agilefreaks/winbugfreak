@@ -1,6 +1,4 @@
-﻿using BugFreak.Tests.Helpers;
-
-namespace BugFreak.Tests
+﻿namespace BugFreak.Tests
 {
     using System;
     using System.Net;
@@ -9,8 +7,6 @@ namespace BugFreak.Tests
     using BugFreak.Framework;
     using Moq;
     using NUnit.Framework;
-    using System.Collections.Generic;
-    using System.Threading;
 
     [TestFixture]
     public class ReportingServiceTests
@@ -155,27 +151,14 @@ namespace BugFreak.Tests
         }
 
         [Test]
-        public void BeginReport_Always_OnCompleteCallsReportCompleteCallback()
+        public void BeginReport_Always_PassesTheCallBack()
         {
-            var called = false;
-            _mockServiceProvider.Setup(m => m.GetServices<IErrorReportStorage>())
-                                .Returns(new List<IErrorReportStorage>());
+            var exception = new Exception();
+            ReportCompletedCallback callback = (ex, repored) => { };
 
-            ReportingService.Instance.BeginReport(new Exception(), (exc, reported) => called = true);
-            
-            Assert.IsTrue(called);
-        }
+            ReportingService.Instance.BeginReport(exception, callback);
 
-        [Test]
-        public void BeginReport_Always_CallsCallbackOnlyOnce()
-        {
-            var count = 0;
-            _mockServiceProvider.Setup(m => m.GetServices<IErrorReportStorage>())
-                                .Returns(new List<IErrorReportStorage> { new MockErrorReportStorage(), new MockErrorReportStorage() });
-
-            ReportingService.Instance.BeginReport(new Exception(), (exc, reported) => count++);
-
-            Assert.AreEqual(1, count);
+            _mockErrorReportHandler.Verify(m => m.Handle(exception, callback));
         }
 
         [Test]
