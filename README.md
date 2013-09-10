@@ -108,7 +108,7 @@ For ASP.NET MVC3 hook in Global.asax.cs
   {
     protected void Application_Start()
     {
-      BugFreak.Hook();
+      BugFreak.Hook("ApiKey", "Token");
     }
   }
 ```
