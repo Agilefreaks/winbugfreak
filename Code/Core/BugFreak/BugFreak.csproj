@@ -39,27 +39,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\IErrorQueue.cs" />
+    <Compile Include="Components\PendingReport.cs" />
     <Compile Include="ReportingService.cs" />
     <Compile Include="Components\EnvironmentErrorDataProvider.cs" />
     <Compile Include="Components\IErrorDataProvider.cs" />
-    <Compile Include="Components\ErrorReportHandler.cs" />
-    <Compile Include="Components\ErrorReportQueueListener.cs" />
+    <Compile Include="Components\ErrorHandler.cs" />
     <Compile Include="Components\ErrorReportSaveCompletedEventArgs.cs" />
     <Compile Include="Components\ReportRequestBuildCompletedEventArgs.cs" />
     <Compile Include="Framework\IServiceLocator.cs" />
     <Compile Include="Results\ErrorReportSaveResult.cs" />
     <Compile Include="Framework\ExecutionContext.cs" />
-    <Compile Include="Components\IErrorReportHandler.cs" />
-    <Compile Include="Components\IErrorReportQueueListener.cs" />
+    <Compile Include="Components\IErrorHandler.cs" />
     <Compile Include="Components\IErrorReportStorage.cs" />
     <Compile Include="Components\LocalErrorReportStorage.cs" />
     <Compile Include="Components\RemoteErrorReportStorage.cs" />
     <Compile Include="Components\SimpleServiceContainer.cs" />
     <Compile Include="Components\WebRequestFactory.cs" />
     <Compile Include="ErrorReport.cs" />
-    <Compile Include="Components\ErrorReportQueue.cs" />
+    <Compile Include="Components\ErrorQueue.cs" />
     <Compile Include="Components\FormErrorReportSerializer.cs" />
-    <Compile Include="Components\IErrorReportQueue.cs" />
     <Compile Include="Components\IErrorReportSerializer.cs" />
     <Compile Include="Components\Initializer.cs" />
     <Compile Include="Framework\IResult.cs" />

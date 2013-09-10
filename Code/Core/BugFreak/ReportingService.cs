@@ -5,6 +5,21 @@
 
     public class ReportingService : IReportingService
     {
+        private static IErrorHandler errorHandler;
+
+        public static IErrorHandler ErrorHandler
+        {
+            get
+            {
+                return errorHandler ?? (errorHandler = GlobalConfig.ServiceLocator.GetService<IErrorHandler>());
+            }
+
+            internal set
+            {
+                errorHandler = value;
+            }
+        }
+
         public static IReportingService Instance { get; internal set; }
 
         public static void Init()
@@ -14,27 +29,18 @@
 
         public void BeginReport(Exception exc)
         {
-            var errorReport = CreateReport(exc);
-            Queue(errorReport);
+            BeginReport(exc, null);
         }
 
-        private ErrorReport CreateReport(Exception exc)
+        public void BeginReport(Exception exc, ReportCompletedCallback completeCallback)
         {
-            return ErrorReport.FromException(exc);
-        }
-
-        private void Queue(ErrorReport errorReport)
-        {
-            var errorReportQueue = GlobalConfig.ServiceLocator.GetService<IErrorReportQueue>();
-            
-            errorReportQueue.Enqueue(errorReport);
+            ErrorHandler.Handle(exc, completeCallback);
         }
 
         public static void Dispose()
         {
-            GlobalConfig.ServiceLocator.GetService<IErrorReportQueueListener>().Dispose();
-            GlobalConfig.ServiceLocator.GetService<IErrorReportHandler>().Dispose();
-
+            ErrorHandler.Dispose();
+            ErrorHandler = null;
             Instance = null;
         }
     }

@@ -15,7 +15,7 @@ Instalation
 
 You can grab the package from [nuget](http://www.nuget.org/)
 
-For wpf
+For WPF
 ```
 PM> Install-Package BugFreak.WPF
 ```
@@ -30,6 +30,11 @@ For WinRT
 PM> Install-Package BugFreak.WinRT
 ```
 
+For ASP.NET MVC3
+```
+PM> Install-Package BugFreak.MVC3
+```
+
 Registration
 ============
 
@@ -41,63 +46,70 @@ Registration
 Setup
 =============
 
-For WPF add a hook in your App.xaml.cs#OnStartup method
+For WPF hook in App.xaml.cs
 ```csharp
   using BugFreak;
 
   public partial class App
   {
-      protected override void OnStartup(System.Windows.StartupEventArgs e)
-      {
-          base.OnStartup(e);
-
-          GlobalConfig.Settings.ApiKey = "ApiKey";
-          GlobalConfig.Settings.Token = "Token";
-
-          BugFreak.Hook();
-      }
+    protected override void OnStartup(System.Windows.StartupEventArgs e)
+    {
+      base.OnStartup(e);
+	 
+      BugFreak.Hook("ApiKey", "Token", this);
+    }
   }
 
 ```
 
-For Silverlight add a hook it up in your App.xaml.cs
+For Silverlight hook in App.xaml.cs
 
 ```csharp
   using BugFreak;
 
   public partial class App
   {
-      public App()
-      {
-          this.Startup += this.Application_Startup;
-
-          InitializeComponent();
-      }
-
-      private void Application_Startup(object sender, StartupEventArgs e)
-      {
-          this.RootVisual = new MainPage();
-
-          GlobalConfig.Settings.ApiKey = "ApiKey";
-          GlobalConfig.Settings.Token = "Token";
-
-          BugFreak.Hook();
-      }
+    public App()
+    {
+      this.Startup += this.Application_Startup;
+      
+      InitializeComponent();
+    }
+    
+    private void Application_Startup(object sender, StartupEventArgs e)
+    {
+      this.RootVisual = new MainPage();
+    	  
+      BugFreak.Hook("ApiKey", "Token", this);
+    }
   }
 ```
 
-For WinRT add a hook it up in your App.xaml.cs
+For WinRT hook in App.xaml.cs
 
 ```csharp
+  using BugFreak;
+    
   public partial class App
   {
-	protected override void OnLaunched(LaunchActivatedEventArgs args)
-	{
-		BugFreak.WinRT.GlobalConfig.ApiKey = "ApiKey";
-		BugFreak.WinRT.GlobalConfig.Token = "Token";
+    protected override void OnLaunched(LaunchActivatedEventArgs args)
+    {
+      BugFreak.Hook("ApiKey", "Token", this);
+    }
+  }
+```
 
-		BugFreak.WinRT.BugFreak.Hook();
-	}
+For ASP.NET MVC3 hook in Global.asax.cs
+
+```csharp
+  using BugFreak;
+  
+  public class MvcApplication : System.Web.HttpApplication
+  {
+    protected void Application_Start()
+    {
+      BugFreak.Hook();
+    }
   }
 ```
 

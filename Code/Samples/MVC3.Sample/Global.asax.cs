@@ -1,12 +1,11 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Web.Mvc;
-using System.Web.Routing;
-
+﻿
 namespace MVC3.Sample
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
+    using BugFreak;
+    using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
+    using System.Web.Mvc;
+    using System.Web.Routing;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -29,8 +28,8 @@ namespace MVC3.Sample
 
         protected void Application_Start()
         {
-            Bugfreak.MVC3.BugFreak.Hook();
-
+            BugFreak.Hook("9dd7f8aa-6b29-4022-80fa-441609ca1547", "5212200969b114b17e000009");
+            
             AreaRegistration.RegisterAllAreas();
 
             // Use LocalDB for Entity Framework by default

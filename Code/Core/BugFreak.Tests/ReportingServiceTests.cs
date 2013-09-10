@@ -11,31 +11,23 @@
     [TestFixture]
     public class ReportingServiceTests
     {
-        private Mock<IErrorReportQueue> _mockErrorQueue;
         private Mock<IServiceLocator> _mockServiceProvider;
-        private Mock<IErrorReportHandler> _mockErrorReportHandler;
-        private Mock<IErrorReportQueueListener> _mockErrorReportQueueListener;
+        private Mock<IErrorHandler> _mockErrorReportHandler;
 
         [SetUp]
         public void SetUp()
         {
-            GlobalConfig.Settings.Token = "user-token";
-            GlobalConfig.Settings.ServiceEndPoint = "http://myTests.com";
-            GlobalConfig.Settings.ApiKey = "apiKey";
+            GlobalConfig.Token = "user-token";
+            GlobalConfig.ServiceEndPoint = "http://myTests.com";
+            GlobalConfig.ApiKey = "apiKey";
 
             ReportingService.Init();
 
-            _mockErrorQueue = new Mock<IErrorReportQueue>();
-            _mockErrorReportHandler = new Mock<IErrorReportHandler>();
-            _mockErrorReportQueueListener = new Mock<IErrorReportQueueListener>();
+            _mockErrorReportHandler = new Mock<IErrorHandler>();
             _mockServiceProvider = new Mock<IServiceLocator>();
-            _mockServiceProvider.Setup(m => m.GetService<IErrorReportQueue>())
-                                .Returns(_mockErrorQueue.Object);
-            _mockServiceProvider.Setup(m => m.GetService<IErrorReportHandler>())
+            _mockServiceProvider.Setup(m => m.GetService<IErrorHandler>())
                                 .Returns(_mockErrorReportHandler.Object);
-            _mockServiceProvider.Setup(m => m.GetService<IErrorReportQueueListener>())
-                                .Returns(_mockErrorReportQueueListener.Object);
-
+            
             GlobalConfig.ServiceLocator = _mockServiceProvider.Object;
         }
 
@@ -48,9 +40,9 @@
             }
 
             GlobalConfig.ServiceLocator = null;
-            GlobalConfig.Settings.Token = null;
-            GlobalConfig.Settings.ApiKey = null;
-            GlobalConfig.Settings.ServiceEndPoint = null;
+            GlobalConfig.Token = null;
+            GlobalConfig.ApiKey = null;
+            GlobalConfig.ServiceEndPoint = null;
         }
 
         [Test]
@@ -84,7 +76,7 @@
         [ExpectedException(typeof(ArgumentException))]
         public void Init_WhenApiKeyIsNotSet_RaisesArgumentException()
         {
-            GlobalConfig.Settings.Token = null;
+            GlobalConfig.Token = null;
 
             ReportingService.Init();
         }
@@ -93,7 +85,7 @@
         [ExpectedException(typeof(ArgumentException))]
         public void Init_WhenApiKeyNotSet_RaisesArgumentException()
         {
-            GlobalConfig.Settings.ApiKey = null;
+            GlobalConfig.ApiKey = null;
 
             ReportingService.Init();
         }
@@ -101,7 +93,7 @@
         [Test]
         public void Init_WhenInvalidServiceEndpoint_DoesNotRaiseException()
         {
-            GlobalConfig.Settings.ServiceEndPoint = "http:/test.com";
+            GlobalConfig.ServiceEndPoint = "http:/test.com";
 
             ReportingService.Init();
 
@@ -111,7 +103,7 @@
         [Test]
         public void Init_Always_SetsSerializerToFormSerializer()
         {
-            GlobalConfig.Settings.Token = "user-token";
+            GlobalConfig.Token = "user-token";
 
             ReportingService.Init();
 
@@ -121,7 +113,7 @@
         [Test]
         public void Init_Always_SetsDefaultIRemoteErrorReportStorage()
         {
-            GlobalConfig.Settings.Token = "user-token";
+            GlobalConfig.Token = "user-token";
 
             ReportingService.Init();
 
@@ -129,29 +121,19 @@
         }
 
         [Test]
-        public void Init_Always_SetsDefaultErrorQueueListener()
-        {
-            GlobalConfig.Settings.Token = "user-token";
-
-            ReportingService.Init();
-
-            Assert.IsTrue(GlobalConfig.ServiceLocator.GetService<IErrorReportQueueListener>() is ErrorReportQueueListener);
-        }
-
-        [Test]
         public void Init_Always_SetsDefaultErrorHandler()
         {
-            GlobalConfig.Settings.Token = "user-token";
+            GlobalConfig.Token = "user-token";
 
             ReportingService.Init();
 
-            Assert.IsTrue(GlobalConfig.ServiceLocator.GetService<IErrorReportHandler>() is ErrorReportHandler);
+            Assert.IsTrue(GlobalConfig.ServiceLocator.GetService<IErrorHandler>() is ErrorHandler);
         }
 
         [Test]
         public void Init_Always_SetsDefaultWebRequestCreate()
         {
-            GlobalConfig.Settings.Token = "user-token";
+            GlobalConfig.Token = "user-token";
 
             ReportingService.Init();
 
@@ -159,11 +141,24 @@
         }
 
         [Test]
-        public void BeginRequest_Always_CallsReportQueueEnqueue()
+        public void BeginReport_Always_CallsHandlerHandle()
         {
-            ReportingService.Instance.BeginReport(new Exception());
+            var exception = new Exception();
 
-            _mockErrorQueue.Verify(m => m.Enqueue(It.IsAny<ErrorReport>()));
+            ReportingService.Instance.BeginReport(exception);
+
+            _mockErrorReportHandler.Verify(m => m.Handle(exception, It.IsAny<ReportCompletedCallback>()));
+        }
+
+        [Test]
+        public void BeginReport_Always_PassesTheCallBack()
+        {
+            var exception = new Exception();
+            ReportCompletedCallback callback = (ex, repored) => { };
+
+            ReportingService.Instance.BeginReport(exception, callback);
+
+            _mockErrorReportHandler.Verify(m => m.Handle(exception, callback));
         }
 
         [Test]
@@ -179,31 +174,31 @@
         {
             ReportingService.Dispose();
 
-            _mockErrorReportQueueListener.Verify(m => m.Dispose());
+            _mockErrorReportHandler.Verify(m => m.Dispose());
         }
 
         [Test]
         public void Init_WhenServiceEndpointIsNotSet_SetsDefault()
         {
-            GlobalConfig.Settings.Token = "token";
-            GlobalConfig.Settings.ApiKey = "apikey";
-            GlobalConfig.Settings.ServiceEndPoint = null;
+            GlobalConfig.Token = "token";
+            GlobalConfig.ApiKey = "apikey";
+            GlobalConfig.ServiceEndPoint = null;
 
             ReportingService.Init();
 
-            Assert.AreEqual("https://www.bugfreak.co/v1/api/errors", GlobalConfig.Settings.ServiceEndPoint);
+            Assert.AreEqual("https://www.bugfreak.co/v1/api/errors", GlobalConfig.ServiceEndPoint);
         }
 
         [Test]
         public void Init_WhenServiceEndpointIsSet_DoesNotOverwrite()
         {
-            GlobalConfig.Settings.Token = "token";
-            GlobalConfig.Settings.ApiKey = "apikey";
-            GlobalConfig.Settings.ServiceEndPoint = "http://test.com";
+            GlobalConfig.Token = "token";
+            GlobalConfig.ApiKey = "apikey";
+            GlobalConfig.ServiceEndPoint = "http://test.com";
 
             ReportingService.Init();
 
-            Assert.AreEqual("http://test.com", GlobalConfig.Settings.ServiceEndPoint);
+            Assert.AreEqual("http://test.com", GlobalConfig.ServiceEndPoint);
         }
     }
 }

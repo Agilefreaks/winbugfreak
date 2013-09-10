@@ -10,8 +10,8 @@ namespace BugFreak.WinRT.Tests
         [SetUp]
         public void SetUp()
         {
-            GlobalConfig.Settings.ApiKey = "apiKey";
-            GlobalConfig.Settings.Token = "token";
+            GlobalConfig.ApiKey = "apiKey";
+            GlobalConfig.Token = "token";
         }
 
         [Test]

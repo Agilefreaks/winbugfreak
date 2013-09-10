@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
-    <title>$title$</title>
+    <id>BugFreak.WinRT</id>
+    <version>1.0.1.0</version>
+    <title>BugFreak.WinRT</title>
     <authors>dev@omnipasteapp.com</authors>
-    <owners>$author$</owners>
+    <owners>AgileFreaks</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
     <projectUrl>https://github.com/Agilefreaks/winbugfreak</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
+    <description>BugFreak for WinRT. Easily track your applications errors. More info at https://bugfreak.co</description>
     <releaseNotes>Beta version of BugFreak for WinRT</releaseNotes>
     <copyright>Copyright 2013</copyright>
-    <tags>error reporting exception handle</tags>
+    <tags>error reporting exception handle winrt</tags>
   </metadata>
    <files>
 		<file src="readme.txt" target="" />

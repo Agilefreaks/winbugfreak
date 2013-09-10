@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net;
-using BugFreak.Framework;
 
 namespace BugFreak.Results
 {

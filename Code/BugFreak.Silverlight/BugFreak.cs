@@ -14,9 +14,10 @@
         {
         }
 
-        public static void Hook()
+        public static void Hook(string apiKey, string token, Application app)
         {
-            var app = Application.Current;
+            GlobalConfig.ApiKey = apiKey;
+            GlobalConfig.Token = token;
 
             ReportingService.Init();
             GlobalConfig.ErrorDataProviders.Add(new SilverlightErrorDataProvider());
