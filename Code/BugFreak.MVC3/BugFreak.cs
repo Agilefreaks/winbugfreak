@@ -1,4 +1,5 @@
-﻿using BugFreak.MVC3;
+﻿using BugFreak.Core.Components;
+using BugFreak.MVC3;
 
 namespace BugFreak
 {
@@ -12,6 +13,9 @@ namespace BugFreak
             GlobalConfig.Token = token;
 
             ReportingService.Init();
+            GlobalConfig.ErrorDataProviders.Add(new RequestErrorDataProvider());
+            GlobalConfig.ErrorDataProviders.Add(new SessionErrorDataProvider());
+            GlobalConfig.ErrorDataProviders.Add(new UserErrorDataProvider());
             
             GlobalFilters.Filters.Add(new ReportErrorAttribute());
         }
