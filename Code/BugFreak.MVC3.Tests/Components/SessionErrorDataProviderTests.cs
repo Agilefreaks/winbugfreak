@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using System.Linq;
-using BugFreak.Core.Components;
+using BugFreak.Components;
 using FluentAssertions;
 using NUnit.Framework;
 

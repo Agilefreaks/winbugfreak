@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Web;
-using BugFreak.Components;
-
-namespace BugFreak.Core.Components
+﻿namespace BugFreak.Components
 {
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Web;
+
     public class SessionErrorDataProvider : IErrorDataProvider
     {
         private HttpContext _httpContext;

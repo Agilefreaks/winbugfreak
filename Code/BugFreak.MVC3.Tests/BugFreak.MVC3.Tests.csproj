@@ -65,6 +65,10 @@
       <Project>{5e6fc290-8b43-4e53-bb07-cc2abd839b75}</Project>
       <Name>BugFreak.MVC3</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Core\BugFreak\BugFreak.csproj">
+      <Project>{6423cea7-9e46-48c4-b3c5-c0cfa5e5ff7a}</Project>
+      <Name>BugFreak</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

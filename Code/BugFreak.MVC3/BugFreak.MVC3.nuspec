@@ -14,7 +14,7 @@
     <copyright>Copyright 2013</copyright>
     <tags>error reporting exception handle mvc</tags>
   </metadata>
-   <files>
-		<file src="readme.txt" target="" />
-   </files>
+  <files>
+    <file src="readme.txt" target="" />
+  </files>
 </package>

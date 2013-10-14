@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Web;
-using BugFreak.Components;
-
-namespace BugFreak.Core.Components
+﻿namespace BugFreak.Components
 {
+    using System.Collections.Generic;
+    using System.Web;
+
     public class UserErrorDataProvider : IErrorDataProvider
     {
         private HttpContextBase _httpContext;

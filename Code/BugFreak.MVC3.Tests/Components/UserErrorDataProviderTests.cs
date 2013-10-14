@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Security.Principal;
 using System.Web;
-using BugFreak.Core.Components;
+using BugFreak.Components;
 using FluentAssertions;
 using Moq;
 using NUnit.Framework;
