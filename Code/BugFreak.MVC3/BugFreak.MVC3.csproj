@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.1.0.20105.408\lib\net40\System.Web.Helpers.dll</HintPath>
@@ -164,6 +165,9 @@
       <Link>Core\Results\RequestExecutionResult.cs</Link>
     </Compile>
     <Compile Include="BugFreak.cs" />
+    <Compile Include="Core\Components\RequestErrorDataProvider.cs" />
+    <Compile Include="Core\Components\SessionErrorDataProvider.cs" />
+    <Compile Include="Core\Components\UserErrorDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportErrorAttribute.cs" />
   </ItemGroup>
