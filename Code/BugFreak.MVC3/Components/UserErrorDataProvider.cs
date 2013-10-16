@@ -9,7 +9,12 @@
 
         public HttpContextBase HttpContext
         {
-            get { return _httpContext ?? new HttpContextWrapper(System.Web.HttpContext.Current); }
+            get
+            {
+                return _httpContext ?? (System.Web.HttpContext.Current != null
+                                            ? new HttpContextWrapper(System.Web.HttpContext.Current)
+                                            : null);
+            }
             set { _httpContext = value; }
         }
 
@@ -17,7 +22,7 @@
         {
             var result = new List<KeyValuePair<string, string>>();
 
-            if (HttpContext.Request.IsAuthenticated)
+            if (HttpContext != null && HttpContext.Request.IsAuthenticated)
             {
                 result.Add(new KeyValuePair<string, string>("Username", HttpContext.User.Identity.Name));
                 result.Add(new KeyValuePair<string, string>("AuthenticationType", HttpContext.User.Identity.AuthenticationType));

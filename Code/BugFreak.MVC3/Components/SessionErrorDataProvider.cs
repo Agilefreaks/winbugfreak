@@ -16,12 +16,14 @@
 
         public List<KeyValuePair<string, string>> GetData()
         {
-            var result = new List<KeyValuePair<string, string>>
-                {
-                    new KeyValuePair<string, string>("SessionID", HttpContext.Session.SessionID),
-                    new KeyValuePair<string, string>("SessionTimeout", HttpContext.Session.Timeout.ToString(CultureInfo.InvariantCulture)),
-                    new KeyValuePair<string, string>("SessionIsNew", HttpContext.Session.IsNewSession.ToString())
-                };
+            var result = new List<KeyValuePair<string, string>>();
+
+            if (HttpContext != null && HttpContext.Session != null)
+            {
+                result.Add(new KeyValuePair<string, string>("SessionID", HttpContext.Session.SessionID));
+                result.Add(new KeyValuePair<string, string>("SessionTimeout", HttpContext.Session.Timeout.ToString(CultureInfo.InvariantCulture)));
+                result.Add(new KeyValuePair<string, string>("SessionIsNew", HttpContext.Session.IsNewSession.ToString()));
+            }
 
             return result;
         }

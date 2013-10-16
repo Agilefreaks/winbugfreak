@@ -49,5 +49,15 @@ namespace BugFreak.MVC3.Tests.Components
             var timeout = result.First(pair => pair.Key == "SessionTimeout").Value;
             timeout.Should().Be(_subject.HttpContext.Session.Timeout.ToString(CultureInfo.InvariantCulture));
         }
+
+        [Test]
+        public void GetData_WhenHttpContextIsNull_ReturnsEmptyList()
+        {
+            _subject.HttpContext = null;
+
+            var result = _subject.GetData();
+
+            result.Should().BeEmpty();
+        }
     }
 }

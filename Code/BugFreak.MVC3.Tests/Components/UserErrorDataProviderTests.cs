@@ -83,5 +83,15 @@ namespace BugFreak.MVC3.Tests.Components
             var addedAuthenticationType = result.First(pair => pair.Key == "AuthenticationType");
             addedAuthenticationType.Should().Be(addedAuthenticationType);
         }
+
+        [Test]
+        public void GetData_WhenHttpContextIsNull_ReturnsEmptyList()
+        {
+            _subject.HttpContext = null;
+
+            var result = _subject.GetData();
+
+            result.Should().BeEmpty();
+        }
     }
 }
