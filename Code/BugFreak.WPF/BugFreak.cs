@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace BugFreak
 {
@@ -38,6 +39,7 @@ namespace BugFreak
         private static void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs unhandledExceptionEventArgs)
         {
             OnException(sender, (Exception)unhandledExceptionEventArgs.ExceptionObject);
+            Thread.Sleep(3000);
         }
 
         private static void OnException(object sender, Exception exception)
