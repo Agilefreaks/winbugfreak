@@ -26,6 +26,11 @@
                 return null;
             }
 
+            while (exc.InnerException != null)
+            {
+                exc = exc.InnerException;
+            }
+
             var errorReport = new ErrorReport
                                     {
                                         Message = exc.Message,
