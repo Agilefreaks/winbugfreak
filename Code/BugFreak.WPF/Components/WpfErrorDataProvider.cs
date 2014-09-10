@@ -5,9 +5,13 @@
 
     public class WpfErrorDataProvider : EnvironmentErrorDataProvider
     {
-        public WpfErrorDataProvider()
+        public override List<KeyValuePair<string, string>> GetData()
         {
-            EnvironmentData.Add(new KeyValuePair<string, string>("ServicePack", Environment.OSVersion.ServicePack));
+            var result = base.GetData();
+
+            result.Add(new KeyValuePair<string, string>("ServicePack", Environment.OSVersion.ServicePack));
+            
+            return result;
         }
     }
 }

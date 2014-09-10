@@ -17,11 +17,14 @@
 
         public static IErrorReportSerializer ErrorReportSerializer { get; set; }
 
-        public static List<IErrorDataProvider> ErrorDataProviders { get; set; }
+        public static List<IErrorDataProvider> ErrorDataProviders { get; private set; }
+
+        public static IList<KeyValuePair<string, string>> AdditionalData { get; private set; }
 
         static GlobalConfig()
         {
             ErrorDataProviders = new List<IErrorDataProvider>();
+            AdditionalData = new List<KeyValuePair<string, string>>();
         }
     }
 }
