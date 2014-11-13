@@ -9,7 +9,7 @@ namespace BugFreak.Components
         public const string ApiKey = "Api-Key";
         public const string TokenKey = "Token";
         public const string HttpMethod = "POST";
-        
+
         private readonly IWebRequestCreate _webRequestFactory;
 
         public event EventHandler<ReportRequestBuildCompletedEventArgs> BuildCompleted;
@@ -55,16 +55,25 @@ namespace BugFreak.Components
 
         private void HandleWrite(IAsyncResult result, string serializedError)
         {
+            ReportRequestBuildCompletedEventArgs eventArgs;
             var request = (WebRequest)result.AsyncState;
-            var stream = request.EndGetRequestStream(result);
+            try
+            {
+                var stream = request.EndGetRequestStream(result);
+                using (var writer = new StreamWriter(stream))
+                {
+                    writer.Write(serializedError);
+                    writer.Flush();
+                }
 
-            var writer = new StreamWriter(stream);
+                eventArgs = new ReportRequestBuildCompletedEventArgs { Result = request };
+            }
+            catch (Exception exception)
+            {
+                eventArgs = new ReportRequestBuildCompletedEventArgs { Error = exception };
+            }
 
-            writer.Write(serializedError);
-            writer.Flush();
-            writer.Dispose();
-
-            OnBuildCompleted(new ReportRequestBuildCompletedEventArgs { Result = request });
+            OnBuildCompleted(eventArgs);
         }
 
         protected virtual void OnBuildCompleted(ReportRequestBuildCompletedEventArgs e)
