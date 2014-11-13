@@ -1,8 +1,7 @@
-using System.Web.Mvc;
-using BugFreak;
-
-namespace BugFreak.MVC3
+namespace BugFreak.Infrastructure
 {
+    using System.Web.Mvc;
+
     public class ReportErrorAttribute : HandleErrorAttribute
     {
         public override void OnException(ExceptionContext filterContext)

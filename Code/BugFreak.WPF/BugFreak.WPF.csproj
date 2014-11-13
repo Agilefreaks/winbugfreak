@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BugFreak, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\BugFreak.1.0.1.0\lib\net35-Client\BugFreak.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -42,107 +48,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Core\BugFreak\Collections\ObservableList.cs">
-      <Link>Collections\ObservableList.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\EnvironmentErrorDataProvider.cs">
-      <Link>Components\EnvironmentErrorDataProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\ErrorHandler.cs">
-      <Link>Components\ErrorHandler.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\ErrorQueue.cs">
-      <Link>Components\ErrorQueue.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\ErrorReportSaveCompletedEventArgs.cs">
-      <Link>Components\ErrorReportSaveCompletedEventArgs.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\FormErrorReportSerializer.cs">
-      <Link>Components\FormErrorReportSerializer.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\IErrorDataProvider.cs">
-      <Link>Components\IErrorDataProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\IErrorHandler.cs">
-      <Link>Components\IErrorHandler.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\IErrorQueue.cs">
-      <Link>Components\IErrorQueue.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\IErrorReportSerializer.cs">
-      <Link>Components\IErrorReportSerializer.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\IErrorReportStorage.cs">
-      <Link>Components\IErrorReportStorage.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\Initializer.cs">
-      <Link>Components\Initializer.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\IReportRequestBuilder.cs">
-      <Link>Components\IReportRequestBuilder.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\LocalErrorReportStorage.cs">
-      <Link>Components\LocalErrorReportStorage.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\PendingReport.cs">
-      <Link>Components\PendingReport.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\RemoteErrorReportStorage.cs">
-      <Link>Components\RemoteErrorReportStorage.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\ReportRequestBuildCompletedEventArgs.cs">
-      <Link>Components\ReportRequestBuildCompletedEventArgs.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\ReportRequestBuilder.cs">
-      <Link>Components\ReportRequestBuilder.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\SimpleServiceContainer.cs">
-      <Link>Components\SimpleServiceContainer.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Components\WebRequestFactory.cs">
-      <Link>Components\WebRequestFactory.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\ErrorReport.cs">
-      <Link>ErrorReport.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Framework\ExecutionContext.cs">
-      <Link>Framework\ExecutionContext.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Framework\IResult.cs">
-      <Link>Framework\IResult.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Framework\IServiceLocator.cs">
-      <Link>Framework\IServiceLocator.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Framework\ResultCompletionEventArgs.cs">
-      <Link>Framework\ResultCompletionEventArgs.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Framework\SequentialResult.cs">
-      <Link>Framework\SequentialResult.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\GlobalConfig.cs">
-      <Link>GlobalConfig.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\IReportingService.cs">
-      <Link>IReportingService.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\ReportingService.cs">
-      <Link>ReportingService.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Results\ErrorReportSaveResult.cs">
-      <Link>Results\ErrorReportSaveResult.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Results\RequestBuildResult.cs">
-      <Link>Results\RequestBuildResult.cs</Link>
-    </Compile>
-    <Compile Include="..\Core\BugFreak\Results\RequestExecutionResult.cs">
-      <Link>Results\RequestExecutionResult.cs</Link>
-    </Compile>
     <Compile Include="BugFreak.cs" />
     <Compile Include="Components\WpfErrorDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

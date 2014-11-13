@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using System.Linq;
-using BugFreak.Core.Components;
+using BugFreak.Components;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -49,6 +49,16 @@ namespace BugFreak.MVC3.Tests.Components
 
             var addedQuery = result.First(pair => pair.Key == "Query").Value;
             addedQuery.Should().Be(query);
+        }
+
+        [Test]
+        public void GetData_WhenContextIsNull_ReturnsEmptyList()
+        {
+            _subject.HttpContext = null;
+
+            var result = _subject.GetData();
+
+            result.Should().BeEmpty();
         }
     }
 }

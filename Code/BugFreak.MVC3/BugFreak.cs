@@ -1,10 +1,9 @@
-﻿using BugFreak.Core.Components;
-using BugFreak.MVC3;
+﻿using BugFreak.Components;
+using BugFreak.Infrastructure;
+using System.Web.Mvc;
 
 namespace BugFreak
 {
-    using System.Web.Mvc;
-
     public class BugFreak
     {
         public static void Hook(string apiKey, string token)
