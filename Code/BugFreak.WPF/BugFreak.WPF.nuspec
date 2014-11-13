@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>$id$</id>
+    <id>BugFreak.WPF</id>
     <version>$version$</version>
-    <title>$title$</title>
+    <title>BugFreak.WPF</title>
     <authors>dev@omnipasteapp.com</authors>
-    <owners>$author$</owners>
+    <owners>AgileFreaks</owners>
     <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0.txt</licenseUrl>
     <projectUrl>https://github.com/Agilefreaks/winbugfreak</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
+    <description>BugFreak. Easily track your applications errors. More info at https://bugfreak.co</description>
     <releaseNotes>Beta version of BugFreak for WPF</releaseNotes>
     <copyright>Copyright 2013</copyright>
     <tags>error reporting exception handle</tags>

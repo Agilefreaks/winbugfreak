@@ -8,16 +8,14 @@
     {
         public virtual List<KeyValuePair<string, string>> GetData()
         {
-            List<KeyValuePair<string, string>> result = new List<KeyValuePair<string, string>>
-                                                            {
-                                                                new KeyValuePair<string, string>("ExitCode", Environment.ExitCode.ToString(CultureInfo.InvariantCulture)),
-                                                                new KeyValuePair<string, string>("Platform", Environment.OSVersion.Platform.ToString()),
-                                                                new KeyValuePair<string, string>("OS Version", Environment.OSVersion.Version.ToString()),
-                                                                new KeyValuePair<string, string>("ProcessorCount", Environment.ProcessorCount.ToString(CultureInfo.InvariantCulture)),
-                                                                new KeyValuePair<string, string>("Version", Environment.Version.ToString())
-                                                            };
-
-            return result;
+            return new List<KeyValuePair<string, string>>
+                              {
+                                  new KeyValuePair<string, string>("ExitCode", Environment.ExitCode.ToString(CultureInfo.InvariantCulture)),
+                                  new KeyValuePair<string, string>("Platform", Environment.OSVersion.Platform.ToString()),                              
+                                  new KeyValuePair<string, string>("OS Version", Environment.OSVersion.Version.ToString()),
+                                  new KeyValuePair<string, string>("ProcessorCount", Environment.ProcessorCount.ToString(CultureInfo.InvariantCulture)),
+                                  new KeyValuePair<string, string>("Version", Environment.Version.ToString())
+                              }; ;
         }
     }
 }

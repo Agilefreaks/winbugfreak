@@ -48,5 +48,16 @@ namespace BugFreak.Tests
 
             Assert.AreEqual("test", result.AdditionalData.First(kvp => kvp.Key == "test").Value);
         }
+
+        [Test]
+        public void FromException_WhenThereIsAnInnerException_UsesTheInnerException()
+        {
+            var exception = new Exception("parent exception", new Exception("inner exception"));
+            GlobalConfig.ErrorDataProviders.Add(new MockErrorDataProvider());
+
+            var result = ErrorReport.FromException(exception);
+
+            Assert.AreEqual("inner exception", result.Message);
+        }
     }
 }

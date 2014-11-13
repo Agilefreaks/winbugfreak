@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{62D7089D-37DB-4B9C-9912-61441AAA1490}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{A673F37C-A8F8-4BA3-ABFA-E4AF497A4E3B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugFreak", "Core\BugFreak\BugFreak.csproj", "{6423CEA7-9E46-48C4-B3C5-C0CFA5E5FF7A}"
 EndProject
@@ -14,8 +18,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugFreak.MVC3", "BugFreak.MVC3\BugFreak.MVC3.csproj", "{5E6FC290-8B43-4E53-BB07-CC2ABD839B75}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BugFreak.WPF.Tests", "BugFreak.WPF.Tests\BugFreak.WPF.Tests.csproj", "{73982C18-43D0-4D58-859E-9DC7D26AE495}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{A673F37C-A8F8-4BA3-ABFA-E4AF497A4E3B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.Sample", "Samples\Wpf.Sample\Wpf.Sample.csproj", "{89BC656B-E102-4812-8C82-FC2F3DB23A94}"
 EndProject

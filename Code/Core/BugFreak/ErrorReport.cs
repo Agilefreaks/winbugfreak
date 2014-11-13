@@ -26,6 +26,11 @@
                 return null;
             }
 
+            while (exc.InnerException != null)
+            {
+                exc = exc.InnerException;
+            }
+
             var errorReport = new ErrorReport
                                     {
                                         Message = exc.Message,
@@ -37,12 +42,9 @@
                                     };
 
             // Populate additional data from providers
-            foreach (var errorDataProvider in GlobalConfig.ErrorDataProviders)
+            foreach (var keyValuePair in GlobalConfig.ErrorDataProviders.SelectMany(errorDataProvider => errorDataProvider.GetData()).Concat(GlobalConfig.AdditionalData))
             {
-                foreach (var keyValuePair in errorDataProvider.GetData())
-                {
-                    errorReport.AdditionalData.Add(keyValuePair);
-                }
+                errorReport.AdditionalData.Add(keyValuePair);
             }
 
             return errorReport;

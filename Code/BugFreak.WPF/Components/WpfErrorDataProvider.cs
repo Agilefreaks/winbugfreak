@@ -10,7 +10,7 @@
             var result = base.GetData();
 
             result.Add(new KeyValuePair<string, string>("ServicePack", Environment.OSVersion.ServicePack));
-
+            
             return result;
         }
     }
