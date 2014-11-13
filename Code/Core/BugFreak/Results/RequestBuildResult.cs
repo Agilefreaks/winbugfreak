@@ -24,13 +24,27 @@ namespace BugFreak.Results
         public void Execute(ExecutionContext context)
         {
             _builder.BuildCompleted += BuilderOnBuildCompleted;
-            _builder.BuildAsync(_report);
+            try
+            {
+                _builder.BuildAsync(_report);
+            }
+            catch (Exception exception)
+            {
+                OnCompleted(new ResultCompletionEventArgs { WasCancelled = true, Error = exception });
+            }
         }
 
         private void BuilderOnBuildCompleted(object sender, ReportRequestBuildCompletedEventArgs eventArgs)
         {
             Result = eventArgs.Result;
-            OnCompleted(new ResultCompletionEventArgs());
+            var resultCompletionEventArgs = new ResultCompletionEventArgs();
+            if (eventArgs.Error != null)
+            {
+                resultCompletionEventArgs.WasCancelled = true;
+                resultCompletionEventArgs.Error = eventArgs.Error;
+            }
+            
+            OnCompleted(resultCompletionEventArgs);
         }
 
         protected virtual void OnCompleted(ResultCompletionEventArgs e)

@@ -138,14 +138,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="BugFreak, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\BugFreak.WinRT.1.0.1.1\lib\win\BugFreak.winmd</HintPath>
-    </Reference>
-    <Reference Include="BugFreak.WinRT.Lib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\BugFreak.WinRT.1.0.1.1\lib\win\BugFreak.WinRT.Lib.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\..\BugFreak.WinRT\BugFreak.WinRT.csproj">
+      <Project>{b068de33-0c58-4363-92ae-3a0d33b283c6}</Project>
+      <Name>BugFreak.WinRT</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
